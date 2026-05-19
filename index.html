@@ -1,0 +1,3080 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atez.com — Otonom ve Zeki Dış Ticaret Çözümleri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      /* ── Atez primary + palette (Ant Design 10-step generation) ── */
+      --primary:          #005287;
+      --annbar-h:         50px;
+      --primary-1:        #e8f5ff;
+      --primary-2:        #bae3ff;
+      --primary-3:        #7ec9f7;
+      --primary-4:        #46a9e3;
+      --primary-5:        #1a88ce;
+      --primary-6:        #005287;
+      --primary-7:        #003d66;
+      --primary-8:        #002b48;
+      --primary-dark:     #003d66;
+      --primary-glow:     rgba(0,82,135,.2);
+
+      /* ── Semantic colors (Ant Design) ── */
+      --color-success:    #52c41a;
+      --color-warning:    #faad14;
+      --color-error:      #ff4d4f;
+      --color-info:       #005287;
+
+      --header-h:         96px;
+      --ff:               'Inter','Segoe UI',Arial,sans-serif;
+      --ff-head:          'Outfit','Inter','Segoe UI',Arial,sans-serif;
+
+      /* ── Light mode — Ant Design neutral tokens ── */
+      --bg:               #ffffff;
+      --bg-alt:           #f5f5f5;
+      --text:             rgba(0,0,0,.88);
+      --text-secondary:   rgba(0,0,0,.65);
+      --muted:            rgba(0,0,0,.65);
+      --text-disabled:    rgba(0,0,0,.25);
+      --divider:          #d9d9d9;
+      --section-border:   #f0f0f0;
+      --card-bg:          #ffffff;
+      --card-border:      #d9d9d9;
+      --mono-bg:          #e8f5ff;
+      --hdr-scrolled-bg:  rgba(255,255,255,.94);
+      --hdr-shadow:       0 1px 0 rgba(0,0,0,.06);
+      --news-img-bg:      linear-gradient(135deg,#daeeff 0%,#bae3ff 100%);
+
+      /* ── Hero / header-top (light) ── */
+      --hero-bg:          #e8f5ff;
+      --logo-hero:        var(--primary);
+      --nav-hero:         rgba(0,0,0,.72);
+      --nav-hero-hover:   rgba(0,0,0,.88);
+      --pill-hero-c:      rgba(0,0,0,.65);
+      --pill-hero-bd:     rgba(0,0,0,.15);
+      --pill-hero-bg:     rgba(0,0,0,.04);
+      --srch-hero-c:      rgba(0,0,0,.88);
+      --srch-hero-bd:     rgba(0,0,0,.15);
+      --srch-hero-bg:     rgba(0,0,0,.04);
+      --srch-hero-ph:     rgba(0,0,0,.25);
+      --h1-eyebrow-c:     rgba(0,0,0,.45);
+      --h1-main-c:        rgba(0,0,0,.88);
+      --h1-accent-grad:   linear-gradient(115deg,#003d66 0%,#005287 50%,#1a88ce 100%);
+      --hcard-bg:         rgba(255,255,255,.88);
+      --hcard-bd:         rgba(0,82,135,.14);
+      --hcard-text:       rgba(0,0,0,.88);
+      --hcard-sh:         0 8px 40px rgba(0,82,135,.1),inset 0 1px 0 rgba(255,255,255,.9);
+      --hcard-inner-bg:   #e8f5ff;
+      --hbadge-bg:        rgba(255,255,255,.88);
+      --cta-hero-bg:      rgba(255,255,255,.62);
+      --cta-hero-bd:      rgba(0,82,135,.22);
+      --cta-hero-c:       rgba(0,0,0,.88);
+      --cta-hero-ph:      rgba(0,0,0,.25);
+      --cta-focus-sh:     0 0 0 3px rgba(0,82,135,.18), 0 8px 32px rgba(0,82,135,.14);
+      --cta-hero-sh:      0 4px 24px rgba(0,82,135,.1), inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    [data-theme="dark"] {
+      /* ── Dark mode — Ant Design dark neutral tokens ── */
+      --bg:               #141414;
+      --bg-alt:           #1f1f1f;
+      --text:             rgba(255,255,255,.85);
+      --text-secondary:   rgba(255,255,255,.65);
+      --muted:            rgba(255,255,255,.65);
+      --text-disabled:    rgba(255,255,255,.25);
+      --divider:          #303030;
+      --section-border:   #303030;
+      --card-bg:          #1f1f1f;
+      --card-border:      #424242;
+      --mono-bg:          rgba(0,130,220,.14);
+      --hdr-scrolled-bg:  rgba(20,20,20,.94);
+      --hdr-shadow:       0 1px 0 rgba(0,0,0,.3);
+      --news-img-bg:      linear-gradient(135deg,#0d2340 0%,#0a1e35 100%);
+
+      /* ── Hero / header-top (dark) ── */
+      --hero-bg:          #0a0f19;
+      --logo-hero:        #ffffff;
+      --nav-hero:         rgba(255,255,255,.85);
+      --nav-hero-hover:   #ffffff;
+      --pill-hero-c:      rgba(255,255,255,.85);
+      --pill-hero-bd:     rgba(255,255,255,.22);
+      --pill-hero-bg:     rgba(255,255,255,.08);
+      --srch-hero-c:      rgba(255,255,255,.85);
+      --srch-hero-bd:     rgba(255,255,255,.22);
+      --srch-hero-bg:     rgba(255,255,255,.08);
+      --srch-hero-ph:     rgba(255,255,255,.35);
+      --h1-eyebrow-c:     rgba(255,255,255,.45);
+      --h1-main-c:        rgba(255,255,255,.85);
+      --h1-accent-grad:   linear-gradient(115deg,#ffffff 0%,#7dd3fc 40%,#005287 100%);
+      --hcard-bg:         rgba(255,255,255,.08);
+      --hcard-bd:         rgba(255,255,255,.12);
+      --hcard-text:       rgba(255,255,255,.85);
+      --hcard-sh:         0 8px 40px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07);
+      --hcard-inner-bg:   rgba(255,255,255,.06);
+      --hbadge-bg:        rgba(255,255,255,.08);
+      --cta-hero-bg:      rgba(255,255,255,.08);
+      --cta-hero-bd:      rgba(255,255,255,.22);
+      --cta-hero-c:       rgba(255,255,255,.85);
+      --cta-hero-ph:      rgba(255,255,255,.35);
+      --cta-focus-sh:     0 0 0 3px rgba(0,82,135,.4), 0 8px 32px rgba(0,130,220,.2);
+      --cta-hero-sh:      0 4px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--ff);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background .35s, color .35s;
+    }
+
+    h1, h2, h3, h4,
+    .h1-main, .h1-eyebrow,
+    .sol-eyebrow, .sol-h2,
+    .channels-header h2,
+    .testimonials-section h2,
+    .news-section-header h2,
+    .stat-product, .stat-number,
+    .news-card-title,
+    .pc-name, .sol-card h3 {
+      font-family: var(--ff-head);
+    }
+
+    /* ── ANNOUNCEMENT BAR ──────────────────── */
+    @keyframes annbar-flow {
+      0%   { background-position: 0% 50%;   }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%;   }
+    }
+    .announcement-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--annbar-h);
+      z-index: 300;
+      background: linear-gradient(120deg, #003d66, #005287, #0073b8, #0a3d7a, #6a00b8, #0073b8, #005287);
+      background-size: 300% 300%;
+      animation: annbar-flow 8s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: height .3s ease, opacity .3s ease;
+    }
+    html.annbar-off { --annbar-h: 0px; }
+    html.annbar-off .announcement-bar { opacity: 0; pointer-events: none; }
+    .announcement-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: #fff;
+      white-space: nowrap;
+      padding: 0 56px 0 16px;
+    }
+    .announcement-badge {
+      background: rgba(255,255,255,.22);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .announcement-text { opacity: .92; }
+    .announcement-link {
+      color: #fff;
+      font-weight: 600;
+      font-size: .78rem;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,.55);
+      border-radius: 20px;
+      padding: 4px 14px;
+      flex-shrink: 0;
+      transition: background .18s, border-color .18s;
+      white-space: nowrap;
+    }
+    .announcement-link:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+    .announcement-close {
+      position: absolute;
+      right: 14px;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,.75);
+      cursor: pointer;
+      padding: 5px 7px;
+      border-radius: 4px;
+      display: flex;
+      transition: color .15s, background .15s;
+    }
+    .announcement-close:hover { color: #fff; background: rgba(255,255,255,.15); }
+
+    /* ── HEADER ─────────────────────────────── */
+    header {
+      position: fixed;
+      top: var(--annbar-h); left: 0; right: 0;
+      height: var(--header-h);
+      background: rgba(240,247,255,.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,82,135,.07);
+      display: flex;
+      align-items: center;
+      padding: 0 max(48px, calc((100vw - 1440px) / 2 + 48px));
+      z-index: 200;
+      transition: background .35s, box-shadow .35s, border-color .35s, top .3s ease, height .3s ease;
+    }
+    [data-theme="dark"] header {
+      background: rgba(7,13,31,.28);
+      border-bottom-color: rgba(100,150,255,.08);
+    }
+    header.scrolled {
+      background: var(--hdr-scrolled-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--hdr-shadow);
+      border-bottom-color: transparent;
+      height: 72px;
+    }
+
+    .logo {
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; user-select: none;
+    }
+    .logo svg { width: 52px; height: 52px; display: block; }
+    .logo svg path { transition: fill .35s; }
+    header:not(.scrolled) .logo svg path { fill: var(--logo-hero); }
+
+    nav { display:flex; gap:40px; margin-left:44px; flex:1; }
+
+    nav a {
+      text-decoration:none; font-size:1rem; font-weight:600;
+      color:var(--nav-hero); letter-spacing:.02em;
+      transition:color .2s, opacity .2s;
+    }
+    nav a:hover { color:var(--nav-hero-hover); }
+    header.scrolled nav a { color:var(--text); opacity:.75; }
+    header.scrolled nav a:hover { opacity:1; color:var(--primary); }
+
+    .header-right { display:flex; align-items:center; gap:12px; }
+
+    .btn-pill {
+      height:38px; padding:0 18px;
+      border:1px solid var(--pill-hero-bd);
+      border-radius:20px; background:var(--pill-hero-bg);
+      font-family:var(--ff); font-size:.9rem; font-weight:500;
+      color:var(--pill-hero-c); cursor:pointer;
+      display:flex; align-items:center; gap:7px;
+      transition:background .2s, border-color .2s, color .2s;
+    }
+    .btn-pill:hover {
+      background:var(--pill-hero-bg);
+      filter: brightness(1.15);
+      color:var(--nav-hero-hover);
+    }
+    .btn-pill svg { width:15px; height:15px; opacity:.65; }
+    header.scrolled .btn-pill {
+      border-color:var(--divider);
+      background:transparent;
+      color:var(--text);
+    }
+    header.scrolled .btn-pill:hover {
+      background:rgba(0,82,135,.07);
+      border-color:rgba(0,82,135,.3);
+      color:var(--primary);
+    }
+    header.scrolled .btn-pill svg { opacity:.5; }
+
+    .btn-theme { padding: 0 12px; gap: 0; }
+    .icon-sun  { display: none; }
+    [data-theme="dark"] .icon-sun  { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
+    /* search bar */
+    .header-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .header-search input {
+      height: 38px;
+      width: 260px;
+      padding: 0 38px 0 16px;
+      border: 1px solid var(--srch-hero-bd);
+      border-radius: 20px;
+      background: var(--srch-hero-bg);
+      font-family: var(--ff);
+      font-size: .9rem;
+      color: var(--srch-hero-c);
+      outline: none;
+      transition: width .25s, border-color .25s, background .25s, color .25s;
+    }
+    .header-search input::placeholder { color: var(--srch-hero-ph); }
+    .header-search input:focus {
+      width: 320px;
+      border-color: var(--primary);
+      background: var(--srch-hero-bg);
+    }
+    .header-search .search-icon {
+      position: absolute;
+      right: 13px;
+      width: 15px; height: 15px;
+      color: var(--srch-hero-ph);
+      pointer-events: none;
+    }
+    header.scrolled .header-search input {
+      border-color: var(--divider);
+      background: transparent;
+      color: var(--text);
+    }
+    header.scrolled .header-search input::placeholder { color: var(--muted); }
+    header.scrolled .header-search input:focus {
+      border-color: rgba(0,82,135,.35);
+      background: rgba(0,82,135,.04);
+    }
+    header.scrolled .header-search .search-icon { color: var(--muted); }
+
+    /* ── HERO ────────────────────────────────── */
+    .hero {
+      position:relative;
+      height:100vh;
+      display:flex; flex-direction:column;
+      overflow:hidden;
+      padding-top:calc(var(--header-h) + var(--annbar-h));
+      background: var(--hero-bg);
+      transition: background .35s;
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23005287' fill-opacity='0.09'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 110% 70% at 50% -20%, rgba(0,82,135,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 55% at 90% 75%, rgba(0,100,200,.07) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 8% 20%,  rgba(0,82,135,.05) 0%, transparent 50%);
+      background-size: 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+      background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+      pointer-events:none; z-index:0;
+    }
+    [data-theme="dark"] .hero::before {
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%231a6bc4' fill-opacity='0.15'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 110% 70% at 50% -20%, rgba(0,82,135,.70) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 55% at 90% 75%, rgba(0,130,220,.30) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 8% 20%,  rgba(0,82,135,.22) 0%, transparent 50%);
+    }
+
+    #lines-canvas { display:none; }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      padding: 0 max(48px, calc((100vw - 1440px) / 2 + 48px));
+      width: 100%;
+      flex: 1;
+    }
+
+    .hero-content {
+      position:relative; z-index:3;
+      text-align:center;
+      display:flex; flex-direction:column; align-items:center;
+      width:100%;
+      padding: 0 clamp(32px, 12vw, 220px);
+      flex-shrink:0;
+    }
+
+    .hero-content h1 {
+      font-size: 1rem;
+      line-height: 1;
+      color: #fff;
+    }
+    .h1-eyebrow {
+      display: block;
+      font-size: clamp(.78rem,1.3vw,1rem);
+      font-weight: 400;
+      color: var(--h1-eyebrow-c);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      transition: color .35s;
+    }
+    .h1-main {
+      display: block;
+      font-size: clamp(3rem,7.2vw,6.4rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: .94;
+      color: var(--h1-main-c);
+      transition: color .35s;
+    }
+    .h1-main + .h1-main { margin-top: .08em; }
+    .h1-accent {
+      background: var(--h1-accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── HERO CTA INPUT ─────────────────────── */
+    .hero-cta {
+      margin-top: 2.6rem;
+      display: flex;
+      align-items: center;
+      background: var(--cta-hero-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--cta-hero-bd);
+      border-radius: 100px;
+      padding: 6px 6px 6px 22px;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: var(--cta-hero-sh);
+      transition: border-color .28s, background .28s, box-shadow .28s;
+    }
+    .hero-cta:focus-within {
+      border-color: var(--primary);
+      box-shadow: var(--cta-focus-sh);
+    }
+    .hero-cta input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--ff);
+      font-size: .95rem;
+      color: var(--cta-hero-c);
+      padding: 6px 0;
+      min-width: 0;
+      transition: color .35s;
+    }
+    .hero-cta input::placeholder { color: var(--cta-hero-ph); }
+    .hero-cta-btn {
+      flex-shrink: 0;
+      height: 44px;
+      padding: 0 22px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      font-family: var(--ff);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .2s, gap .2s;
+      white-space: nowrap;
+    }
+    .hero-cta-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.03);
+      gap: 12px;
+    }
+    .hero-cta-btn:active { transform: scale(.98); }
+    .cta-arrow {
+      display: inline-flex;
+      transition: transform .22s cubic-bezier(.34,1.56,.64,1);
+    }
+    .hero-cta-btn:hover .cta-arrow { transform: translate(2px, -2px); }
+
+    .btn-primary {
+      height:48px; padding:0 28px;
+      background:var(--primary); color:#fff;
+      border:none; border-radius:6px;
+      font-family:var(--ff); font-size:.9rem; font-weight:700;
+      letter-spacing:.04em; cursor:pointer;
+      transition:transform .18s, box-shadow .18s, background .18s;
+      box-shadow:0 4px 20px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      background:var(--primary-dark);
+      transform:translateY(-2px);
+      box-shadow:0 8px 28px rgba(0,82,135,.35);
+    }
+
+    .btn-secondary {
+      height:48px; padding:0 28px;
+      background:transparent; color:rgba(255,255,255,.85);
+      border:1.5px solid rgba(255,255,255,.28);
+      border-radius:6px;
+      font-family:var(--ff); font-size:.9rem; font-weight:500;
+      letter-spacing:.04em; cursor:pointer;
+      transition:transform .18s, background .18s, border-color .18s;
+    }
+    .btn-secondary:hover {
+      background:rgba(255,255,255,.1);
+      border-color:rgba(255,255,255,.6);
+      transform:translateY(-2px);
+    }
+
+    /* ── HERO FLOAT (parallax cards) ────────── */
+
+    .hero-card {
+      position: absolute;
+      background: var(--hcard-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--hcard-bd);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: var(--hcard-text);
+      box-shadow: var(--hcard-sh);
+      will-change: transform;
+      transition: transform 0.55s cubic-bezier(.23,1,.32,1), background .35s, border-color .35s, color .35s;
+      min-width: 200px;
+    }
+    .hero-card svg { stroke: var(--hcard-text); }
+
+    .hc-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 13px;
+    }
+    .hc-icon {
+      width: 26px; height: 26px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hc-tag {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      opacity: .65;
+    }
+    .hc-tag-sub {
+      font-size: .65rem;
+      opacity: .38;
+      margin-left: 2px;
+    }
+
+    .hc-user-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      background: var(--hcard-inner-bg);
+      border-radius: 10px;
+      margin-bottom: 11px;
+    }
+    .hc-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(0,82,135,.55);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .hc-name { font-size: .8rem; font-weight: 600; }
+    .hc-email { font-size: .66rem; opacity: .45; }
+    .hc-badge-green {
+      margin-left: auto;
+      font-size: .6rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 10px;
+      background: rgba(16,185,129,.22); color: #34d399;
+      white-space: nowrap;
+    }
+
+    .hc-icons-row {
+      display: flex; gap: 7px;
+    }
+    .hc-icon-btn {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: var(--hcard-inner-bg);
+      border: 1px solid var(--hcard-bd);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hc-icon-btn svg { width: 13px; height: 13px; opacity: .65; }
+
+    .hc-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .hc-list li {
+      font-size: .8rem;
+      padding: 6px 9px;
+      border-radius: 6px;
+      opacity: .72;
+    }
+    .hc-list li:hover { background: rgba(255,255,255,.07); opacity: 1; }
+
+    .hc-channels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .hc-channel {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 5px;
+    }
+    .hc-ch-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: var(--hcard-inner-bg);
+      border: 1px solid var(--hcard-bd);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hc-ch-icon svg { width: 15px; height: 15px; opacity: .7; }
+    .hc-channel span { font-size: .6rem; opacity: .55; text-align: center; }
+
+    .hero-badge-card {
+      position: absolute;
+      background: var(--hbadge-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--hcard-bd);
+      border-radius: 50px;
+      padding: 9px 16px;
+      display: flex; align-items: center; gap: 9px;
+      color: var(--hcard-text);
+      font-size: .76rem; font-weight: 600;
+      box-shadow: var(--hcard-sh);
+      will-change: transform;
+      transition: transform 0.55s cubic-bezier(.23,1,.32,1), background .35s, border-color .35s, color .35s;
+      white-space: nowrap;
+    }
+    .hero-badge-card svg { stroke: var(--hcard-text); }
+    .hb-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── HERO TWO-COLUMN LAYOUT ─────────────── */
+    .hero-left {
+      flex: 0 0 42%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+      z-index: 3;
+      min-width: 0;
+    }
+    .hero-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 0;
+      z-index: 3;
+    }
+    .hero-mockup-wrap {
+      width: 100%;
+      max-width: 600px;
+      max-height: calc(100vh - var(--header-h) - var(--annbar-h) - 200px);
+      overflow: hidden;
+      border-radius: 14px;
+      filter:
+        drop-shadow(0 4px 12px rgba(0,82,135,.12))
+        drop-shadow(0 20px 48px rgba(0,82,135,.18));
+      transition: filter .4s ease, transform .4s ease;
+    }
+    .hero-mockup-wrap:hover {
+      transform: translateY(-4px);
+      filter:
+        drop-shadow(0 8px 20px rgba(0,82,135,.16))
+        drop-shadow(0 28px 56px rgba(0,82,135,.24));
+    }
+    [data-theme="dark"] .hero-mockup-wrap {
+      filter:
+        drop-shadow(0 4px 12px rgba(0,0,0,.3))
+        drop-shadow(0 20px 48px rgba(0,0,0,.5));
+    }
+    [data-theme="dark"] .hero-mockup-wrap:hover {
+      filter:
+        drop-shadow(0 8px 20px rgba(0,0,0,.4))
+        drop-shadow(0 28px 56px rgba(0,0,0,.6));
+    }
+
+    /* Left heading overrides */
+    .hero-left h1 { text-align: left; }
+    .hero-left .h1-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      background: rgba(0,82,135,.08);
+      border: 1px solid rgba(0,82,135,.15);
+      border-radius: 100px;
+      padding: 5px 16px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    [data-theme="dark"] .hero-left .h1-eyebrow {
+      background: rgba(0,130,220,.12);
+      border-color: rgba(0,130,220,.22);
+      color: #7dd3fc;
+    }
+    .hero-left .h1-main {
+      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+      text-align: left;
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+      transition: color .35s;
+    }
+
+    /* CTA buttons */
+    .hero-cta-actions { display: flex; flex-direction: column; gap: 14px; }
+    .hero-cta-btns { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+    .hero-btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      height: 52px; padding: 0 28px;
+      background: var(--text); color: var(--bg);
+      border: none; border-radius: 100px;
+      font-family: var(--ff); font-size: .97rem; font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      white-space: nowrap;
+    }
+    .hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.2); }
+    [data-theme="dark"] .hero-btn-primary { background: #fff; color: #0a0f19; }
+
+    .hero-btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 52px; padding: 0 24px;
+      background: transparent;
+      border: 1.5px solid var(--pill-hero-bd);
+      border-radius: 100px;
+      font-family: var(--ff); font-size: .95rem; font-weight: 500;
+      color: var(--nav-hero); cursor: pointer;
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .hero-btn-secondary:hover { background: rgba(0,82,135,.06); border-color: rgba(0,82,135,.3); }
+    [data-theme="dark"] .hero-btn-secondary { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.8); }
+
+    .hero-proof {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .83rem; color: var(--muted); flex-wrap: wrap;
+    }
+    .hero-proof-stars { color: #f59e0b; letter-spacing: .04em; }
+    .hero-proof-sep { width: 1px; height: 14px; background: var(--divider); display: inline-block; }
+
+    /* ── PRODUCT MOCKUP ─────────────────────── */
+    .hero-mockup-frame {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,82,135,.12);
+      background: #fff;
+      font-family: var(--ff);
+      font-size: 10px;
+    }
+    [data-theme="dark"] .hero-mockup-frame {
+      background: #1a2035;
+      border-color: rgba(255,255,255,.08);
+    }
+
+    .mock-topbar {
+      display: flex; align-items: center;
+      padding: 0 12px; height: 38px;
+      background: #0f1a2e; gap: 8px; flex-shrink: 0;
+    }
+    .mock-logo {
+      display: flex; align-items: center; gap: 5px;
+      color: #fff; font-weight: 700; font-size: 11px; white-space: nowrap;
+    }
+    .mock-logo img { width: 14px; height: 14px; filter: brightness(5); }
+    .mock-nav { display: flex; align-items: center; flex: 1; margin-left: 8px; overflow: hidden; }
+    .mock-nav-item {
+      padding: 0 10px; height: 38px;
+      display: flex; align-items: center;
+      font-size: 9.5px; color: rgba(255,255,255,.45);
+      white-space: nowrap;
+    }
+    .mock-nav-item.active { color: #fff; background: rgba(255,255,255,.07); border-bottom: 2px solid #3b82f6; }
+    .mock-user {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #3b82f6; color: #fff;
+      font-size: 8.5px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .mock-body {
+      padding: 14px 14px 12px; background: #f8fafc;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    [data-theme="dark"] .mock-body { background: #111827; }
+
+    .mock-section-hd { display: flex; align-items: center; gap: 7px; }
+    .mock-sec-title { font-size: 13px; font-weight: 700; color: #0f1a2e; }
+    [data-theme="dark"] .mock-sec-title { color: #f1f5f9; }
+    .mock-badge {
+      background: #e0e7ef; color: #0f1a2e;
+      border-radius: 5px; padding: 1px 7px; font-size: 9px; font-weight: 700;
+    }
+    [data-theme="dark"] .mock-badge { background: rgba(255,255,255,.1); color: #e2e8f0; }
+    .mock-section-hd-right { margin-left: auto; }
+    .mock-filter-btn {
+      display: flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border: 1px solid #d1d5db;
+      border-radius: 6px; font-size: 8.5px; color: #374151; background: #fff;
+    }
+    [data-theme="dark"] .mock-filter-btn { background: #1e293b; border-color: #334155; color: #94a3b8; }
+    .mock-filter-dot { width: 5px; height: 5px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; }
+
+    .mock-filter-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .mock-filter-sel {
+      padding: 4px 10px 4px 8px; border: 1px solid #e5e7eb;
+      border-radius: 6px; background: #fff; font-size: 9px; color: #6b7280;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .mock-filter-sel::after { content: '⌄'; font-size: 8px; opacity: .5; }
+    [data-theme="dark"] .mock-filter-sel { background: #1e293b; border-color: #334155; color: #64748b; }
+    .mock-filter-save {
+      padding: 4px 10px; background: #0f1a2e; color: #fff;
+      border-radius: 6px; font-size: 9px; font-weight: 600;
+    }
+    .mock-filter-clear { font-size: 9px; color: #ef4444; }
+
+    .mock-stats-strip {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;
+    }
+    [data-theme="dark"] .mock-stats-strip { background: #1e293b; border-color: #334155; }
+    .mock-stat-col {
+      padding: 8px 10px; border-right: 1px solid #e5e7eb;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    [data-theme="dark"] .mock-stat-col { border-right-color: #334155; }
+    .mock-stat-col:last-child { border-right: none; }
+    .mock-stat-num { font-size: 13px; font-weight: 700; color: #0f1a2e; line-height: 1; }
+    [data-theme="dark"] .mock-stat-num { color: #f1f5f9; }
+    .mock-stat-lbl { font-size: 7px; color: #9ca3af; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mock-stat-pct { font-size: 8px; color: #6b7280; font-weight: 600; }
+    .mock-progress-bar { height: 3px; background: #f3f4f6; border-radius: 2px; overflow: hidden; margin-top: 2px; }
+    [data-theme="dark"] .mock-progress-bar { background: #374151; }
+    .mock-progress-fill { height: 100%; border-radius: 2px; }
+
+    .mock-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .mock-card { border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .mock-card-pink { background: linear-gradient(135deg,#fdf2f8,#fce7f3); border: 1px solid #f9a8d4; }
+    [data-theme="dark"] .mock-card-pink { background: rgba(244,114,182,.1); border-color: rgba(244,114,182,.2); }
+    .mock-card-blue { background: linear-gradient(135deg,#eff6ff,#dbeafe); border: 1px solid #93c5fd; }
+    [data-theme="dark"] .mock-card-blue { background: rgba(59,130,246,.1); border-color: rgba(59,130,246,.2); }
+    .mock-card-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700;
+    }
+    .mock-card-pink .mock-card-icon { background: #fce7f3; color: #ec4899; border: 1px solid #f9a8d4; }
+    .mock-card-blue .mock-card-icon { background: #dbeafe; color: #3b82f6; border: 1px solid #93c5fd; }
+    .mock-card-title { font-size: 10px; font-weight: 700; color: #0f1a2e; }
+    [data-theme="dark"] .mock-card-title { color: #f1f5f9; }
+    .mock-card-desc { font-size: 8px; color: #6b7280; line-height: 1.4; }
+    .mock-tabs-row { display: flex; gap: 4px; margin-bottom: 4px; }
+    .mock-tab { padding: 3px 8px; border-radius: 5px; font-size: 7.5px; font-weight: 600; color: #6b7280; }
+    .mock-tab.active { background: #3b82f6; color: #fff; }
+    .mock-counter-row { display: flex; align-items: center; gap: 14px; }
+    .mock-counter-n { font-size: 15px; font-weight: 800; color: #0f1a2e; }
+    [data-theme="dark"] .mock-counter-n { color: #f1f5f9; }
+    .mock-git-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 4px; padding: 4px 12px;
+      background: #3b82f6; color: #fff;
+      border-radius: 6px; font-size: 9px; font-weight: 700;
+      align-self: flex-end; margin-left: auto;
+    }
+
+    @media(max-width:1100px) {
+      .hero-inner { gap: 32px; }
+      .hero-left { flex: 0 0 46%; }
+      .hero-left .h1-main { font-size: clamp(2.2rem, 4vw, 3.6rem); }
+    }
+    @media(max-width:800px) {
+      .hero-inner { flex-direction: column; gap: 28px; padding-bottom: 20px; align-items: stretch; }
+      .hero-left { flex: none; width: 100%; align-items: center; }
+      .hero-left h1, .hero-left .h1-main { text-align: center; }
+      .hero-left .h1-eyebrow { text-align: center; }
+      .hero-right { width: 100%; justify-content: center; overflow: visible; }
+      .hero-mockup-wrap { max-width: 100%; max-height: 360px; }
+    }
+
+    /* ── SOLUTIONS SECTION ──────────────────── */
+    .solutions-section {
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+      padding: 130px 0 140px;
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .sol-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .sol-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      will-change: transform;
+    }
+    .sol-blob-1 {
+      width: 65vw; height: 55vh;
+      background: rgba(0,82,135,.1);
+      top: -18%; right: -8%;
+      animation: solB1 17s ease-in-out infinite;
+    }
+    .sol-blob-2 {
+      width: 55vw; height: 60vh;
+      background: rgba(0,130,220,.07);
+      bottom: -22%; left: -10%;
+      animation: solB2 23s ease-in-out infinite;
+    }
+    .sol-blob-3 {
+      width: 40vw; height: 40vh;
+      background: rgba(70,169,227,.08);
+      top: 28%; left: 16%;
+      animation: solB3 13s ease-in-out infinite;
+    }
+    .sol-blob-4 {
+      width: 38vw; height: 38vh;
+      background: rgba(0,82,135,.06);
+      bottom: 4%; right: 6%;
+      animation: solB4 19s ease-in-out infinite;
+    }
+    @keyframes solB1 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%  { transform: translate(8vw,-5vh) scale(1.14); }
+      66%  { transform: translate(-4vw,9vh) scale(.88); }
+    }
+    @keyframes solB2 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      30%  { transform: translate(-7vw,6vh) scale(1.2); }
+      70%  { transform: translate(6vw,-7vh) scale(.85); }
+    }
+    @keyframes solB3 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(10vw,10vh) scale(1.28); }
+    }
+    @keyframes solB4 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      40%  { transform: translate(-6vw,-7vh) scale(1.18); }
+      80%  { transform: translate(8vw,5vh) scale(.82); }
+    }
+    .solutions-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, var(--bg) 0%, transparent 12%, transparent 88%, var(--bg) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sol-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4%, 72px);
+    }
+
+    .sol-top {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 72px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .sol-eyebrow {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .sol-h2 {
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      color: var(--text);
+      margin: 0;
+    }
+    .sol-h2-gradient {
+      display: block;
+      background: linear-gradient(100deg, #002b48 0%, #005287 45%, #1a88ce 80%, #46a9e3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sol-desc {
+      font-size: .97rem;
+      line-height: 1.8;
+      color: var(--muted);
+      padding-top: 12px;
+    }
+
+    .sol-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .sol-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--divider);
+      border-radius: 22px;
+      padding: 34px 28px 38px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: background .22s, border-color .22s, box-shadow .22s;
+    }
+    .sol-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .55s ease, transform .55s cubic-bezier(.22,.61,.36,1),
+                  background .22s, border-color .22s, box-shadow .22s;
+    }
+    .sol-card.visible:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 24px rgba(0,82,135,.1), 0 1px 4px rgba(0,0,0,.06);
+      transition: background .18s, border-color .18s, box-shadow .18s;
+    }
+    .sol-card-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,82,135,.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .28s;
+      pointer-events: none;
+    }
+    .sol-card.visible:hover .sol-card-glow { opacity: 1; }
+
+    .sol-card-line {
+      height: 3px;
+      width: 44px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .sol-card:nth-child(1) .sol-card-line { background: linear-gradient(90deg,#38bdf8,#818cf8); }
+    .sol-card:nth-child(2) .sol-card-line { background: linear-gradient(90deg,#818cf8,#c084fc); }
+    .sol-card:nth-child(3) .sol-card-line { background: linear-gradient(90deg,#c084fc,#f0abfc); }
+    .sol-card:nth-child(4) .sol-card-line { background: linear-gradient(90deg,#2dd4bf,#38bdf8); }
+
+    .sol-card-icon {
+      width: 54px; height: 54px;
+      border-radius: 15px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sol-card:nth-child(1) .sol-card-icon { background: rgba(56,189,248,.14); }
+    .sol-card:nth-child(2) .sol-card-icon { background: rgba(129,140,248,.14); }
+    .sol-card:nth-child(3) .sol-card-icon { background: rgba(192,132,252,.14); }
+    .sol-card:nth-child(4) .sol-card-icon { background: rgba(45,212,191,.14); }
+    .sol-card-icon svg { width: 24px; height: 24px; fill: none; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+    .sol-card:nth-child(1) .sol-card-icon svg { stroke: #38bdf8; }
+    .sol-card:nth-child(2) .sol-card-icon svg { stroke: #818cf8; }
+    .sol-card:nth-child(3) .sol-card-icon svg { stroke: #c084fc; }
+    .sol-card:nth-child(4) .sol-card-icon svg { stroke: #2dd4bf; }
+
+    .sol-card h3 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      letter-spacing: -.014em;
+    }
+    .sol-card p {
+      font-size: .875rem;
+      line-height: 1.74;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    @media(max-width:1024px) {
+      .sol-cards { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:900px) {
+      .sol-top { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media(max-width:560px) {
+      .sol-cards { grid-template-columns: 1fr; }
+      .solutions-section { padding: 80px 0 90px; }
+    }
+
+    /* ── BRANDS SECTION ─────────────────────── */
+    .brands-section {
+      padding: 72px 0 64px;
+      border-top: 1px solid var(--section-border);
+      border-bottom: 1px solid var(--section-border);
+      overflow: hidden;
+      background: var(--bg);
+      transition: background .35s;
+    }
+
+    .brands-label {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .brands-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+
+    .brands-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .brands-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 52px;
+      border-right: 1px solid var(--divider);
+      height: 96px;
+      cursor: default;
+      user-select: none;
+      transition: opacity .2s;
+      opacity: .5;
+      flex-shrink: 0;
+    }
+    .brand-item:hover { opacity: 1; }
+
+    .brand-logo {
+      height: 48px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      filter: grayscale(1) brightness(.25);
+      transition: filter .22s;
+    }
+    [data-theme="dark"] .brand-logo {
+      filter: grayscale(1) brightness(3) invert(0);
+    }
+    .brand-item:hover .brand-logo { filter: none; }
+
+    /* ── CHANNELS / PRODUCTS SECTION ──────── */
+    .channels-section {
+      padding: 100px 48px 110px;
+      background: var(--ch-section-bg);
+      position: relative;
+      transition: background .35s;
+    }
+    :root {
+      --ch-section-bg:   #f5f5f5;
+      --ch-card-base:    #ffffff;
+      --ch-card-pink:    #fff0f6;
+      --ch-card-blue:    #e6f4ff;
+      --ch-card-purple:  #f9f0ff;
+      --ch-card-green:   #f6ffed;
+      --ch-tag-bg:       rgba(0,0,0,.06);
+      --ch-tag-c:        rgba(0,0,0,.65);
+      --ch-border:       #d9d9d9;
+      --ch-hover-border: #005287;
+    }
+    [data-theme="dark"] {
+      --ch-section-bg:   #141414;
+      --ch-card-base:    #1f1f1f;
+      --ch-card-pink:    rgba(255,64,155,.08);
+      --ch-card-blue:    rgba(0,82,135,.12);
+      --ch-card-purple:  rgba(114,46,209,.1);
+      --ch-card-green:   rgba(82,196,26,.08);
+      --ch-tag-bg:       rgba(255,255,255,.08);
+      --ch-tag-c:        rgba(255,255,255,.65);
+      --ch-border:       #303030;
+      --ch-hover-border: #1a88ce;
+    }
+
+    .channels-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+    .channels-header h2 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .channels-h2-accent {
+      display: block;
+      background: var(--h1-accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .channels-header p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Bento grid */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media(max-width:900px) {
+      .channels-grid { grid-template-columns: repeat(2,1fr); }
+      .product-card.wide { grid-column: span 1 !important; }
+    }
+    @media(max-width:560px) {
+      .channels-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Card base */
+    .product-card {
+      background: var(--ch-card-base);
+      border: 1px solid var(--ch-border);
+      border-radius: 24px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(20px) scale(.98);
+      will-change: transform, box-shadow;
+      transition:
+        opacity .5s ease,
+        transform .5s ease,
+        box-shadow .28s ease,
+        border-color .22s ease,
+        background .35s;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    .product-card.wide { grid-column: span 2; }
+
+    /* Entrance animation */
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hover lift — scale via JS spring, border via CSS */
+    .product-card:hover {
+      border-color: var(--ch-hover-border);
+      box-shadow: 0 16px 56px rgba(0,82,135,.11), 0 2px 8px rgba(0,0,0,.06);
+    }
+    [data-theme="dark"] .product-card:hover {
+      box-shadow: 0 16px 56px rgba(0,130,220,.18), 0 2px 8px rgba(0,0,0,.2);
+    }
+
+    /* Active (expanded) state */
+    .product-card.is-open {
+      border-color: var(--ch-hover-border);
+    }
+
+    /* Card colour tints */
+    .product-card[data-tint="pink"]   { background: var(--ch-card-pink); }
+    .product-card[data-tint="blue"]   { background: var(--ch-card-blue); }
+    .product-card[data-tint="purple"] { background: var(--ch-card-purple); }
+    .product-card[data-tint="green"]  { background: var(--ch-card-green); }
+
+    /* Card header row */
+    .pc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .pc-icon-row { display: flex; align-items: center; gap: 11px; }
+
+    .pc-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+    }
+    .product-card:hover .pc-icon { transform: rotate(-9deg) scale(1.14); }
+    .pc-icon img { width: 28px; height: 28px; display: block; }
+
+    .pc-tag {
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--ch-tag-c);
+      background: var(--ch-tag-bg);
+      border-radius: 50px;
+      padding: 4px 10px;
+    }
+
+    /* Chevron toggle indicator */
+    .pc-chevron {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--ch-tag-bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1), background .2s;
+    }
+    .pc-chevron svg {
+      width: 12px; height: 12px;
+      stroke: var(--muted); fill: none; stroke-width: 2.2;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    }
+    .product-card.is-open .pc-chevron { background: var(--primary); }
+    .product-card.is-open .pc-chevron svg { stroke: #fff; transform: rotate(180deg); }
+
+    .pc-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 4px;
+      transition: color .35s;
+    }
+    .pc-subtitle {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Collapsible body — height driven by JS spring */
+    .pc-body {
+      height: 0;
+      overflow: hidden;
+    }
+    .pc-body-inner {
+      padding-top: 16px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .28s ease .06s, transform .28s ease .06s;
+    }
+    .product-card.is-open .pc-body-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pc-desc {
+      font-size: .875rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Feature chips */
+    .pc-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+    .pc-feat {
+      font-size: .73rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50px;
+      background: var(--ch-tag-bg);
+      color: var(--text);
+      border: 1px solid var(--ch-border);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pc-feat-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Mini preview areas */
+    .pc-preview {
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: var(--ch-tag-bg);
+      border: 1px solid var(--ch-border);
+      margin-bottom: 16px;
+    }
+    .pc-preview-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .78rem;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--ch-border);
+    }
+    .pc-preview-row:last-child { border-bottom: none; }
+    .pc-preview-label { color: var(--muted); }
+    .pc-preview-val { font-weight: 600; color: var(--text); font-family: monospace; font-size: .76rem; }
+    .pc-status-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .7rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 10px;
+    }
+    .pc-status-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+    /* Transport grid for Logicust */
+    .pc-transport-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pc-transport-item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      padding: 10px 6px;
+      border-radius: 12px;
+      background: var(--ch-tag-bg);
+      border: 1px solid var(--ch-border);
+      font-size: .65rem; font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+    }
+    .pc-transport-item svg { width: 18px; height: 18px; opacity: .7; }
+
+    /* Code mapping for TransCode */
+    .pc-code-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .pc-code-box {
+      font-size: .7rem; font-weight: 700;
+      padding: 5px 10px; border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-family: monospace;
+    }
+    .pc-code-arrow {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* CTA link */
+    .pc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      transition: gap .22s cubic-bezier(.34,1.56,.64,1);
+    }
+    .pc-link:hover { gap: 9px; }
+    .pc-link-arrow {
+      display: inline-flex;
+      transition: transform .22s cubic-bezier(.34,1.56,.64,1);
+    }
+    .pc-link:hover .pc-link-arrow { transform: translate(2px,-2px); }
+
+    /* Decorative corner glow */
+    .pc-deco {
+      position: absolute;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      right: -40px; bottom: -40px;
+      pointer-events: none;
+      filter: blur(60px);
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+    .product-card:hover .pc-deco,
+    .product-card.is-open .pc-deco { opacity: .45; }
+    [data-theme="dark"] .product-card:hover .pc-deco,
+    [data-theme="dark"] .product-card.is-open .pc-deco { opacity: .65; }
+
+    /* ── STATS STRIP ────────────────────────── */
+    .stats-strip {
+      background: var(--bg);
+      border-bottom: 1px solid var(--divider);
+    }
+    .stats-strip-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 max(48px, calc((100vw - 1440px) / 2 + 48px));
+    }
+    .stats-strip-hd {
+      padding: 28px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stats-strip-hd span {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stats-strip-hd::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* ── TESTIMONIALS ───────────────────────── */
+    .testimonials-section {
+      padding: 100px 48px 110px;
+      position: relative;
+    }
+
+    .testimonials-section h2 {
+      font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 700; letter-spacing: .02em;
+      color: var(--text); line-height: 1.1;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media(max-width:900px){ .testimonials-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:560px){ .testimonials-grid { grid-template-columns: 1fr; } }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px 28px 28px;
+      display: flex; flex-direction: column; gap: 20px;
+      opacity: 0; transform: translateY(24px);
+      transition: box-shadow .25s, transform .25s, background .35s, border-color .35s;
+    }
+    .testimonial-card.visible {
+      animation: fadeUp .6s forwards;
+    }
+    .testimonial-card:hover {
+      box-shadow: 0 8px 32px rgba(0,82,135,.12);
+      transform: translateY(-3px);
+    }
+
+    .testimonial-quote {
+      font-size: .95rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .testimonial-quote::before { content: '\201C'; }
+    .testimonial-quote::after  { content: '\201D'; }
+
+    .testimonial-author { display: flex; flex-direction: column; gap: 3px; }
+    .testimonial-name {
+      font-size: .88rem; font-weight: 700;
+      color: var(--primary);
+    }
+    .testimonial-company {
+      font-size: .78rem; color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--divider);
+      border-left: 1px solid var(--divider);
+    }
+    @media(max-width:900px){ .stats-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:520px){ .stats-grid { grid-template-columns: repeat(2,1fr); } }
+
+    .stat-card {
+      padding: 22px 24px 20px;
+      border-right: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      display: flex; flex-direction: column; gap: 3px;
+      opacity: 0; transform: translateY(16px);
+      transition: background .2s;
+    }
+    .stat-card.visible { animation: statIn .45s forwards; }
+    @keyframes statIn { to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp  { to { opacity:1; transform:translateY(0); } }
+    .stat-card:hover { background: var(--bg-alt); }
+
+    .stat-top {
+      display: flex; align-items: center; gap: 7px;
+      margin-bottom: 6px;
+    }
+    .stat-logo { width:18px; height:18px; object-fit:contain; flex-shrink:0; }
+    .stat-product {
+      font-size:.65rem; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      color: var(--primary);
+    }
+    .stat-number {
+      font-size: clamp(1.5rem,2.2vw,2rem);
+      font-weight: 700; letter-spacing: -.02em;
+      color: var(--text); line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-desc {
+      font-size: .72rem; color: var(--muted); line-height: 1.4;
+    }
+
+    /* ── HERO STATS BAR ─────────────────────── */
+    .hero-stats-bar {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      border-top: 1px solid rgba(0,82,135,.12);
+      background: rgba(232,245,255,.42);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    [data-theme="dark"] .hero-stats-bar {
+      border-top-color: rgba(255,255,255,.07);
+      background: rgba(10,15,25,.48);
+    }
+    .hero-stats-inner {
+      padding: 0 max(48px, calc((100vw - 1440px) / 2 + 48px));
+    }
+    .hero-stats-label {
+      padding: 14px 0 8px;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--h1-eyebrow-c);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-stats-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,82,135,.1);
+    }
+    [data-theme="dark"] .hero-stats-label::after {
+      background: rgba(255,255,255,.07);
+    }
+    .hero-stats-grid-wrap {
+      overflow: visible;
+    }
+    .hero-stats-bar .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: none;
+      overflow: visible;
+    }
+    .hero-stats-bar .stat-card {
+      border-top: none;
+      border-left: none;
+      border-right: 1px solid rgba(0,82,135,.08);
+      border-bottom: 1px solid rgba(0,82,135,.06);
+      background: transparent;
+      min-width: unset;
+      padding: 12px 24px 16px;
+    }
+    .hero-stats-bar .stat-card:nth-child(4n) { border-right: none; }
+    .hero-stats-bar .stat-card:nth-last-child(-n+4) { border-bottom: none; }
+    [data-theme="dark"] .hero-stats-bar .stat-card {
+      border-right-color: rgba(255,255,255,.06);
+      border-bottom-color: rgba(255,255,255,.04);
+    }
+    .hero-stats-bar .stat-number {
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      color: var(--h1-main-c);
+    }
+    .hero-stats-bar .stat-product { color: var(--primary); }
+    .hero-stats-bar .stat-desc { color: var(--h1-eyebrow-c); }
+
+    /* ── NEWS SECTION ───────────────────────── */
+    .news-section {
+      padding: 96px 48px 100px;
+      max-width: 1296px;
+      margin: 0 auto;
+    }
+
+    .news-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .news-section-header h2 {
+      font-size: clamp(1.6rem,3.5vw,2.4rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
+    .news-all-link {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: .02em;
+      opacity: .8;
+      transition: opacity .2s;
+    }
+    .news-all-link:hover { opacity: 1; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media(max-width:900px){ .news-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:560px){ .news-grid { grid-template-columns: 1fr; } }
+
+    .news-card {
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .22s, transform .22s, background .35s, border-color .35s;
+      background: var(--card-bg);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .news-card.visible { animation: fadeUp .55s forwards; }
+    .news-card:hover {
+      box-shadow: 0 8px 32px rgba(0,82,135,.1);
+      transform: translateY(-3px);
+    }
+
+    .news-card-img {
+      height: 180px;
+      background: var(--news-img-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .news-card-body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .news-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .news-tag {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .news-tag.sirket   { color: #005287; border-color: rgba(0,82,135,.25);  background: rgba(0,82,135,.06);  }
+    .news-tag.sektor   { color: #0e7a4f; border-color: rgba(14,122,79,.25); background: rgba(14,122,79,.06); }
+    .news-tag.mevzuat  { color: #7a4f0e; border-color: rgba(122,79,14,.25); background: rgba(122,79,14,.06); }
+
+    .news-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .news-card-excerpt {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .news-card-meta {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--bg-alt);
+      color: var(--text);
+      padding: 72px max(64px, calc((100vw - 1440px) / 2 + 64px)) 40px;
+      border-top: 1px solid var(--section-border);
+      transition: background .35s;
+    }
+
+    .footer-brand {
+      margin-bottom: 52px;
+    }
+
+    .footer-tagline {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--text);
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--card-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color .18s, background .18s, color .18s;
+    }
+    .footer-social-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+    }
+    .footer-social-btn svg { width: 17px; height: 17px; }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin-bottom: 48px;
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    @media(max-width:900px){ .footer-nav { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:520px){ .footer-nav { grid-template-columns: 1fr; } }
+
+    .footer-nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-nav-group h4 {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .01em;
+      margin-bottom: 14px;
+    }
+
+    .footer-nav-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-nav-group ul li a {
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: color .16s;
+    }
+    .footer-nav-group ul li a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--divider);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-bottom-logo svg { width: 28px; height: 28px; }
+    .footer-bottom-logo span {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .footer-copy {
+      font-size: .78rem;
+      color: var(--muted);
+      opacity: .6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-content">
+      <span class="announcement-badge">Yeni</span>
+      <span class="announcement-text">Webinar: AI ile Gümrük Otomasyonu — <strong>25 Ocak 2025, 14:00</strong></span>
+      <a href="#" class="announcement-link">Ücretsiz Kayıt Ol →</a>
+    </div>
+    <button class="announcement-close" id="announcement-close" aria-label="Kapat">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="#005287"/>
+      </svg>
+    </div>
+    <nav>
+      <a href="#">Çözümler</a>
+      <a href="#">Ürünler</a>
+      <a href="#">Yapay Zekâ</a>
+      <a href="#">Blockchain</a>
+    </nav>
+    <div class="header-right">
+      <div class="header-search">
+        <input type="text" placeholder="Tüm ürünler, makaleler ve sayfalarda..">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </div>
+      <button class="btn-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+        </svg>
+        TR / EN
+      </button>
+      <button class="btn-pill btn-theme" id="theme-toggle" title="Temayı değiştir" aria-label="Temayı değiştir">
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="lines-canvas"></canvas>
+    <div class="hero-inner">
+
+      <!-- LEFT: Metin + CTA -->
+      <div class="hero-left">
+        <span class="h1-eyebrow">Otonom &amp; Zeki Dış Ticaret</span>
+        <h1>
+          <span class="h1-main">Gümrük süreçlerini</span>
+          <span class="h1-main"><span class="h1-accent">AI ile</span> yönetin.</span>
+        </h1>
+        <p class="hero-sub">Beyan otomasyonundan lojistik yönetimine — dış ticaretin her boyutunda saniyeler içinde başlayın.</p>
+        <div class="hero-cta-actions">
+          <div class="hero-cta-btns">
+            <button class="hero-btn-primary">
+              Demo Talep Et
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </button>
+            <button class="hero-btn-secondary">Ürünleri Keşfet</button>
+          </div>
+          <div class="hero-proof">
+            <span class="hero-proof-stars">★★★★★</span>
+            <span>1.200+ aktif müşteri</span>
+            <span class="hero-proof-sep"></span>
+            <span>Kredi kartı gerekmez</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Logicust Dashboard Mockup -->
+      <div class="hero-right">
+        <div class="hero-mockup-wrap">
+          <div class="hero-mockup-frame">
+
+            <!-- Uygulama üst çubuğu -->
+            <div class="mock-topbar">
+              <div class="mock-logo">
+                <img src="assets/icons/Logicust.svg" width="14" height="14" alt="">
+                Logicust
+              </div>
+              <div class="mock-nav">
+                <span class="mock-nav-item">Dashboard</span>
+                <span class="mock-nav-item">İş Takip</span>
+                <span class="mock-nav-item active">Eşya Kataloğu</span>
+                <span class="mock-nav-item">Sorgular</span>
+                <span class="mock-nav-item">Mevzuat</span>
+              </div>
+              <div class="mock-user">ME</div>
+            </div>
+
+            <!-- İçerik -->
+            <div class="mock-body">
+
+              <div class="mock-section-hd">
+                <span class="mock-sec-title">Eşya Kataloğu</span>
+                <span class="mock-badge">763</span>
+                <div class="mock-section-hd-right">
+                  <div class="mock-filter-btn">
+                    <span class="mock-filter-dot"></span>
+                    Hızlı Filtreler (21)
+                  </div>
+                </div>
+              </div>
+
+              <div class="mock-filter-row">
+                <div class="mock-filter-sel">Firma</div>
+                <div class="mock-filter-sel">Ülke</div>
+                <div class="mock-filter-sel">GTİP</div>
+                <div class="mock-filter-save">Kaydet</div>
+                <div class="mock-filter-clear">Filtreleri Temizle</div>
+              </div>
+
+              <div class="mock-stats-strip">
+                <div class="mock-stat-col">
+                  <div class="mock-stat-num">1654</div>
+                  <div class="mock-stat-lbl">Gönderildi</div>
+                  <div class="mock-stat-pct">24%</div>
+                  <div class="mock-progress-bar"><div class="mock-progress-fill" style="width:24%;background:#3b82f6"></div></div>
+                </div>
+                <div class="mock-stat-col">
+                  <div class="mock-stat-num">0</div>
+                  <div class="mock-stat-lbl">Güncelleme Bekliyor</div>
+                  <div class="mock-stat-pct">14%</div>
+                  <div class="mock-progress-bar"><div class="mock-progress-fill" style="width:14%;background:#f59e0b"></div></div>
+                </div>
+                <div class="mock-stat-col">
+                  <div class="mock-stat-num">78</div>
+                  <div class="mock-stat-lbl">Sınıflandırılıyor</div>
+                  <div class="mock-stat-pct">23%</div>
+                  <div class="mock-progress-bar"><div class="mock-progress-fill" style="width:23%;background:#22c55e"></div></div>
+                </div>
+                <div class="mock-stat-col">
+                  <div class="mock-stat-num">45</div>
+                  <div class="mock-stat-lbl">Sınıflandırıldı</div>
+                  <div class="mock-stat-pct">31%</div>
+                  <div class="mock-progress-bar"><div class="mock-progress-fill" style="width:31%;background:#22c55e"></div></div>
+                </div>
+                <div class="mock-stat-col">
+                  <div class="mock-stat-num">123</div>
+                  <div class="mock-stat-lbl">Tamamlandı</div>
+                  <div class="mock-stat-pct">10%</div>
+                  <div class="mock-progress-bar"><div class="mock-progress-fill" style="width:10%;background:#22c55e"></div></div>
+                </div>
+              </div>
+
+              <div class="mock-cards-row">
+                <div class="mock-card mock-card-pink">
+                  <div class="mock-card-icon">＋</div>
+                  <div class="mock-card-title">Eşya Yükle</div>
+                  <div class="mock-card-desc">Geriye dönük 5 yıla ait işlemler üzerinden oluşturulmuş detaylı raporlar.</div>
+                </div>
+                <div class="mock-card mock-card-blue">
+                  <div class="mock-tabs-row">
+                    <span class="mock-tab active">Eşya Kataloğu</span>
+                    <span class="mock-tab">Eşya Havuzu</span>
+                    <span class="mock-tab">İş Listem</span>
+                  </div>
+                  <div class="mock-counter-row">
+                    <span class="mock-counter-n">112,893</span>
+                    <span class="mock-counter-n" style="font-size:12px;color:#64748b">/ 43</span>
+                  </div>
+                  <div class="mock-git-btn">→ Git</div>
+                </div>
+              </div>
+
+            </div><!-- /.mock-body -->
+          </div><!-- /.hero-mockup-frame -->
+        </div><!-- /.hero-mockup-wrap -->
+      </div><!-- /.hero-right -->
+
+    </div><!-- /.hero-inner -->
+
+    <!-- STATS BAR — hero alt kısım -->
+    <div class="hero-stats-bar" id="stats">
+      <div class="hero-stats-inner">
+        <div class="hero-stats-label">Sayılarla Platformumuz</div>
+        <div class="hero-stats-grid-wrap">
+          <div class="stats-grid" id="stats-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section class="solutions-section" id="solutions">
+    <div class="sol-bg">
+      <div class="sol-blob sol-blob-1"></div>
+      <div class="sol-blob sol-blob-2"></div>
+      <div class="sol-blob sol-blob-3"></div>
+      <div class="sol-blob sol-blob-4"></div>
+    </div>
+
+    <div class="sol-inner">
+      <div class="sol-top">
+        <div class="sol-left">
+          <div class="sol-eyebrow">Uzmanlık Alanlarımız</div>
+          <h2 class="sol-h2">
+            Odaklandığımız
+            <span class="sol-h2-gradient">Çözüm Alanları</span>
+          </h2>
+        </div>
+        <p class="sol-desc">ATEZ Yazılım Teknolojileri, sınır ötesi eşya hareketleri, gümrük mevzuatı uyumluluğu ve gümrük/transit beyanları odaklı üst düzey yazılım çözümleri konusunda uzmanlaşmıştır. Blockchain, Yapay Zeka, Makine Öğrenimi ve İş Zekası dahil olmak üzere yeni nesil teknolojilerden yararlanarak uçtan uca veri akışını ve prosedür yönetimini mümkün olduğunca otonom hale getirmeyi amaçlamaktadır.</p>
+      </div>
+
+      <div class="sol-cards">
+
+        <!-- Card 1 -->
+        <div class="sol-card">
+          <div class="sol-card-glow"></div>
+          <div class="sol-card-line"></div>
+          <div class="sol-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l1.8 5.4L19.8 9l-6 1.8L12 16.8l-1.8-6L4.2 9l6-1.6L12 2z"/>
+              <path d="M19 16l.9 2.6L22.5 19.5l-2.6.9L19 23l-.9-2.5L15.5 19.5l2.6-.9L19 16z"/>
+              <path d="M5 3l.6 1.8L7.5 5.5 5.8 6.1 5.2 8 4.5 6.2 2.5 5.5l1.7-.7L5 3z"/>
+            </svg>
+          </div>
+          <h3>Yapay Zeka Destekli Veri Girişi ve Kontroller</h3>
+          <p>Beyan öncesi veri girişlerinizi ve beyan sonrası kontrollerinizi otonom hale getirmek için Yapay Zeka ile tanışın.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sol-card">
+          <div class="sol-card-glow"></div>
+          <div class="sol-card-line"></div>
+          <div class="sol-card-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="15" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="8.5" y="14" width="7" height="7" rx="1.5"/>
+              <path d="M5.5 10v1.5a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V10"/>
+              <line x1="12" y1="13" x2="12" y2="14"/>
+            </svg>
+          </div>
+          <h3>Uçtan Uca Veri Akışı ile Otonom Süreç Yönetimi</h3>
+          <p>Maksimum verimlilik ve minimum hata için süreçleriniz boyunca veri işlemeyi otomatikleştirin.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="sol-card">
+          <div class="sol-card-glow"></div>
+          <div class="sol-card-line"></div>
+          <div class="sol-card-icon">
+            <svg viewBox="0 0 24 24">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3>Hızlı, Kolaylaştırılmış Gümrük ve Transit Süreçleri</h3>
+          <p>Akıllı otomasyon ve entegrasyonlar yoluyla gümrük ve transit beyan süreçlerinizi basitleştirin ve hızlandırın.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="sol-card">
+          <div class="sol-card-glow"></div>
+          <div class="sol-card-line"></div>
+          <div class="sol-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <h3>Sınır Ötesi Eşya Hareketlerinde Gümrük Mevzuatına Uyum</h3>
+          <p>Karmaşık uluslararası gümrük ve transit süreçlerinde kolayca, risksiz ve hassasiyetle yol alın.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS / PRODUCTS -->
+  <section class="channels-section" id="channels">
+    <div class="channels-header">
+      <h2>
+        <span class="channels-h2-accent">Entegre Ürün Ekosistemi,</span>
+        sınırsız operasyonel kapsam
+      </h2>
+      <p>Beyan otomasyonundan lojistik yönetimine, tarife optimizasyonundan AI destekli taramaya — dış ticaretin her boyutunda yanınızdayız.</p>
+    </div>
+    <div class="channels-grid" id="channels-grid">
+
+      <!-- ROW 1 -->
+
+      <!-- TransitAI — OPEN, pink tint -->
+      <div class="product-card is-open" data-tint="pink">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
+              <img src="assets/icons/TransitAI.svg" alt="TransitAI" width="28" height="28">
+            </div>
+            <span class="pc-tag">AI · Transit</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">TransitAI</div>
+        <div class="pc-subtitle">Transit otomasyon platformu</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-features">
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#a855f7"></span>AI Beyan Otomasyonu</span>
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#3b82f6"></span>Anomali Tespiti</span>
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#06b6d4"></span>Akıllı Sınıflandırma</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(168,85,247,.45);"></div>
+      </div>
+
+      <!-- Declarant — OPEN, blue tint -->
+      <div class="product-card is-open" data-tint="blue">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
+              <img src="assets/icons/Declarant.svg" alt="Declarant" width="28" height="28">
+            </div>
+            <span class="pc-tag">Beyan</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">Declarant</div>
+        <div class="pc-subtitle">Gümrük beyanı yönetimi</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-preview">
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Dosya No</span>
+                <span class="pc-preview-val">TR-2025-047821</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">GTİP</span>
+                <span class="pc-preview-val">8471.30.00.00</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Durum</span>
+                <span class="pc-status-badge" style="background:rgba(16,185,129,.15);color:#10b981">
+                  <span class="pc-status-dot" style="background:#10b981"></span>Onaylı
+                </span>
+              </div>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
+      </div>
+
+      <!-- CustomShield — OPEN, green tint -->
+      <div class="product-card is-open" data-tint="green">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(16,185,129,.12);">
+              <img src="assets/icons/CustomShield.svg" alt="CustomShield" width="28" height="28">
+            </div>
+            <span class="pc-tag">Uyumluluk</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">CustomShield</div>
+        <div class="pc-subtitle">Mevzuat uyumluluk kalkanı</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-features">
+              <span class="pc-feat"><span class="pc-status-dot" style="background:#10b981"></span>Risk: Düşük</span>
+              <span class="pc-feat"><span class="pc-status-dot" style="background:#10b981"></span>Mevzuat Güncel</span>
+              <span class="pc-feat"><span class="pc-status-dot" style="background:#3b82f6"></span>24/7 İzleme</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(16,185,129,.4);"></div>
+      </div>
+
+      <!-- ROW 2 -->
+
+      <!-- Logicust — OPEN WIDE, blue tint -->
+      <div class="product-card is-open wide" data-tint="blue">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
+              <img src="assets/icons/Logicust.svg" alt="Logicust" width="28" height="28">
+            </div>
+            <span class="pc-tag">Lojistik</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">Logicust</div>
+        <div class="pc-subtitle">Çok modlu lojistik yönetimi</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-transport-grid">
+              <div class="pc-transport-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l2-10h14l2 10H3z"/><path d="M5 7V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+                Kara
+              </div>
+              <div class="pc-transport-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                Hava
+              </div>
+              <div class="pc-transport-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V10l8-6 8 6v10"/><path d="M10 20v-6h4v6"/></svg>
+                Deniz
+              </div>
+              <div class="pc-transport-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M1 10h22M7 6v12M17 6v12"/></svg>
+                Demiryolu
+              </div>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
+      </div>
+
+      <!-- DeclarantAI — CLOSED, purple tint -->
+      <div class="product-card" data-tint="purple">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
+              <img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI" width="28" height="28">
+            </div>
+            <span class="pc-tag">AI · Beyan</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">DeclarantAI</div>
+        <div class="pc-subtitle">AI destekli beyan sistemi</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-features">
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#a855f7"></span>Otomatik Form Doldurma</span>
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#ec4899"></span>Hata Önleme</span>
+              <span class="pc-feat"><span class="pc-feat-dot" style="background:#6366f1"></span>Akıllı Doğrulama</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(168,85,247,.4);"></div>
+      </div>
+
+      <!-- ROW 3 -->
+
+      <!-- AGSW — CLOSED -->
+      <div class="product-card">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(0,98,255,.12);">
+              <img src="assets/icons/AGSW.svg" alt="AGSW" width="28" height="28">
+            </div>
+            <span class="pc-tag">Entegrasyon</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">AGSW</div>
+        <div class="pc-subtitle">Sistem entegrasyon gateway'i</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-code-flow">
+              <span class="pc-code-box">ERP</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box" style="background:var(--primary)">AGSW</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box">WMS</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box">Gümrük</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(0,98,255,.4);"></div>
+      </div>
+
+      <!-- Tariff — CLOSED, blue tint -->
+      <div class="product-card" data-tint="blue">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
+              <img src="assets/icons/Tariff.svg" alt="Tariff" width="28" height="28">
+            </div>
+            <span class="pc-tag">Tarife</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">Tariff</div>
+        <div class="pc-subtitle">GTİP & tarife yönetimi</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-preview">
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Ürün</span>
+                <span class="pc-preview-val">Bilgisayar</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">HS Kodu</span>
+                <span class="pc-preview-val">8471.30</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Vergi Oranı</span>
+                <span class="pc-preview-val">0%</span>
+              </div>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
+      </div>
+
+      <!-- CustomLoop — CLOSED -->
+      <div class="product-card">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(0,98,255,.12);">
+              <img src="assets/icons/CustomLoop.svg" alt="CustomLoop" width="28" height="28">
+            </div>
+            <span class="pc-tag">Otomasyon</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">CustomLoop</div>
+        <div class="pc-subtitle">İş akışı otomasyon motoru</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-code-flow">
+              <span class="pc-code-box" style="background:#6366f1">Giriş</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box">İşlem</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box" style="background:#10b981">Çıkış</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(0,98,255,.4);"></div>
+      </div>
+
+      <!-- ROW 4 -->
+
+      <!-- X-rayAI — OPEN WIDE, pink tint -->
+      <div class="product-card is-open wide" data-tint="pink">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
+              <img src="assets/icons/XrayAI.svg" alt="X-rayAI" width="28" height="28">
+            </div>
+            <span class="pc-tag">AI · Tarama</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">X-rayAI</div>
+        <div class="pc-subtitle">AI destekli yük tarama analizi</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-preview">
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Tarama ID</span>
+                <span class="pc-preview-val">XR-20250518-0042</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Sonuç</span>
+                <span class="pc-status-badge" style="background:rgba(16,185,129,.15);color:#10b981"><span class="pc-status-dot" style="background:#10b981"></span>Güvenli</span>
+              </div>
+              <div class="pc-preview-row">
+                <span class="pc-preview-label">Güven Skoru</span>
+                <span class="pc-preview-val">98.4%</span>
+              </div>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(248,0,255,.4);"></div>
+      </div>
+
+      <!-- TransCode — CLOSED -->
+      <div class="product-card">
+        <div class="pc-header">
+          <div class="pc-icon-row">
+            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
+              <img src="assets/icons/TransCode.svg" alt="TransCode" width="28" height="28">
+            </div>
+            <span class="pc-tag">Kodlama</span>
+          </div>
+          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pc-title">TransCode</div>
+        <div class="pc-subtitle">Uluslararası kod dönüşüm motoru</div>
+        <div class="pc-body">
+          <div class="pc-body-inner">
+            <div class="pc-code-flow">
+              <span class="pc-code-box">HS</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box">TARIC</span>
+              <span class="pc-code-arrow">→</span>
+              <span class="pc-code-box">GTİP</span>
+            </div>
+            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+          </div>
+        </div>
+        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BRANDS (REFERANSLARIMIZ) -->
+  <section class="brands-section" id="brands">
+    <div class="brands-label">Referanslarımız</div>
+    <div class="brands-track-wrap">
+      <div class="brands-track" id="brands-track"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials">
+    <h2>Müşteriler Ne Diyor?</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">ATEZ Yazılım, gümrük süreçlerimizi devrim niteliğinde değiştirerek daha hızlı ve güvenilir hale getirdi.</p>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Fırat Pişirici</span>
+          <span class="testimonial-company">Amazon</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Olağanüstü destek ve en son teknoloji. ATEZ'i şiddetle tavsiye ederim.</p>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Andreas Luxbauer</span>
+          <span class="testimonial-company">Verag AG</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Yapay zeka destekli araçlar, uyumluluk ve verimlilik açısından oyunun kurallarını değiştiriyor.</p>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Özkan Derya</span>
+          <span class="testimonial-company">DCS Customs Consultancy</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Otonom veri akışı çözümleri manuel iş yükümüzü önemli ölçüde azalttı.</p>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Cihat Gür</span>
+          <span class="testimonial-company">Kale Seramik</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">ATEZ'in transit beyanlarına getirdiği uzmanlığı gelecek için çok önemli buluyorum.</p>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Erman Ereke</span>
+          <span class="testimonial-company">IRU</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <div class="news-section">
+      <div class="news-section-header">
+        <h2>Bizden Haberler</h2>
+        <a href="#" class="news-all-link">Tümünü Gör →</a>
+      </div>
+      <div class="news-grid">
+
+        <div class="news-card">
+          <div class="news-card-img">🇳🇱</div>
+          <div class="news-card-body">
+            <div class="news-tags">
+              <span class="news-tag sirket">Şirket</span>
+              <span class="news-tag mevzuat">Mevzuat</span>
+            </div>
+            <div class="news-card-title">Transcode artık Hollanda NCTS için hazır!</div>
+            <p class="news-card-excerpt">Hollanda NCTS beyannamelerinizi yapay zeka destekli Transcode ile saniyeler içinde oluşturun. Transcode üzerinden Transit…</p>
+            <div class="news-card-meta">16 Mayıs 2026</div>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card-img">🤖</div>
+          <div class="news-card-body">
+            <div class="news-tags">
+              <span class="news-tag sektor">Sektör</span>
+            </div>
+            <div class="news-card-title">Yapay Zekâ gümrük dünyasını nasıl dönüştürüyor?</div>
+            <p class="news-card-excerpt">Makine öğrenmesi ve büyük dil modelleri artık gümrük beyannamelerini otomatik olarak doğruluyor ve hataları önlüyor.</p>
+            <div class="news-card-meta">10 Mayıs 2026</div>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card-img">📋</div>
+          <div class="news-card-body">
+            <div class="news-tags">
+              <span class="news-tag mevzuat">Mevzuat</span>
+            </div>
+            <div class="news-card-title">AB Gümrük Kodundaki değişiklikler ne anlama geliyor?</div>
+            <p class="news-card-excerpt">2026 itibarıyla yürürlüğe girecek yeni AB Gümrük Kodu düzenlemeleri ve ATEZ platformlarının uyumluluk süreci.</p>
+            <div class="news-card-meta">2 Mayıs 2026</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- Tagline + Socials -->
+    <div class="footer-brand">
+      <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <!-- Nav columns -->
+    <div class="footer-nav">
+
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#">Ürünler</a></li>
+            <li><a href="#">Çözümler</a></li>
+            <li><a href="#">Nasıl Çalışır</a></li>
+            <li><a href="#">Yapay Zekâ</a></li>
+            <li><a href="#">Blockchain</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Şirket</h4>
+          <ul>
+            <li><a href="#">İletişim</a></li>
+            <li><a href="#">Haberler</a></li>
+            <li><a href="#">Basın Bültenleri</a></li>
+            <li><a href="#">Etkinlikler</a></li>
+            <li><a href="#">Yatırımcılar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Kurumsal Sorumluluk</h4>
+          <ul>
+            <li><a href="#">Şirket Politikası</a></li>
+            <li><a href="#">BT Güvenliği Taahhüdü</a></li>
+            <li><a href="#">Davranış Kuralları</a></li>
+            <li><a href="#">Karbon Emisyon Raporu</a></li>
+            <li><a href="#">Etik İhlali Bildirimi</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Hukuki</h4>
+          <ul>
+            <li><a href="#">Hizmet Koşulları</a></li>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Çerez Politikası</a></li>
+            <li><a href="#">Çerez Tercihleri</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-logo">
+        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="#005287"/>
+        </svg>
+        <span>ATEZ Yazılım A.Ş.</span>
+      </div>
+      <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script>
+
+  /* ── Stats ──────────────────────────────────────────────── */
+  const STATS = [
+    { product:'Tariff',         icon:'Tariff.svg',        label:'Tariff Kullanıcısı',                           value:2435    },
+    { product:'Tariff',         icon:'Tariff.svg',        label:'Tariff Sorgusu',                               value:77094   },
+    { product:'Logicust',       icon:'Logicust.svg',      label:'Logicust Üzerinde Yönetilen Ürün',             value:1037698 },
+    { product:'Customs Shield', icon:'CustomShield.svg',  label:'Customs Shield ile Kontrol Edilen Beyanname',  value:77821   },
+    { product:'Transcode',      icon:'TransCode.svg',     label:'Transcode ile Sunulan Transit Beyanı',          value:345782  },
+    { product:'TransitAI',      icon:'TransitAI.svg',     label:'TransitAI İşlemi',                              value:1417706 },
+    { product:'Declarant',      icon:'Declarant.svg',     label:'Declarant ile Sunulan Gümrük Beyanı',           value:13887   },
+    { product:'DeclarantAI',    icon:'DeclarantAI.svg',   label:'DeclarantAI İşlemi',                            value:56936   },
+  ];
+
+  const maxVal = Math.max(...STATS.map(s => s.value));
+
+  function fmt(n) {
+    return Math.floor(n).toLocaleString('tr-TR');
+  }
+
+  const grid = document.getElementById('stats-grid');
+  STATS.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'stat-card';
+    card.style.animationDelay = (i * 90) + 'ms';
+    card.innerHTML = `
+      <div class="stat-top">
+        <img class="stat-logo" src="assets/icons/${s.icon}" alt="${s.product}">
+        <span class="stat-product">${s.product}</span>
+      </div>
+      <div class="stat-number" data-target="${s.value}">0</div>
+      <div class="stat-desc">${s.label}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  function countUp(el, target, duration) {
+    const start = performance.now();
+    function step(now) {
+      const t    = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = fmt(ease * target);
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = fmt(target);
+    }
+    requestAnimationFrame(step);
+  }
+
+  let animated = false;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !animated) {
+        animated = true;
+        document.querySelectorAll('.stat-card').forEach((card, i) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+            const numEl = card.querySelector('.stat-number');
+            countUp(numEl, parseInt(numEl.dataset.target), 1800);
+          }, i * 90);
+        });
+      }
+    });
+  }, { threshold: 0 });
+
+  observer.observe(document.getElementById('stats'));
+
+  /* ── Brands marquee ─────────────────────────────────────── */
+  const BRANDS = [
+    { name:'Adidas',                             file:'adidas'        },
+    { name:'Amazon',                             file:'amazon'        },
+    { name:'Ambar Logistic Services',            file:'ambar'         },
+    { name:'Atilla Spedition',                   file:'atilla'        },
+    { name:'BKM Logistics',                      file:'bkm'           },
+    { name:'DB Schenker',                        file:'db-schenker'   },
+    { name:'DCS Digital Customs Services',       file:'dcs'           },
+    { name:'European Bank for Reconstruction',   file:'ebrd'          },
+    { name:'Fevzi Gandur Logistics',             file:'fevzi-gandur'  },
+    { name:'ImEx Customs Service',               file:'imex'          },
+    { name:'IRU International Road Transport',   file:'iru'           },
+  ];
+
+  const bTrack = document.getElementById('brands-track');
+  const buildBrands = () => BRANDS.map(b =>
+    `<div class="brand-item">
+       <img class="brand-logo" src="assets/brands/${b.file}.png" alt="${b.name}" loading="lazy">
+     </div>`
+  ).join('');
+  bTrack.innerHTML = buildBrands() + buildBrands();
+
+  /* ── Announcement bar ───────────────────────────────────── */
+  (function() {
+    const bar  = document.getElementById('announcement-bar');
+    const btn  = document.getElementById('announcement-close');
+    if (!bar) return;
+    if (localStorage.getItem('annbar-v1') === 'dismissed') {
+      document.documentElement.classList.add('annbar-off');
+      return;
+    }
+    btn.addEventListener('click', () => {
+      document.documentElement.classList.add('annbar-off');
+      localStorage.setItem('annbar-v1', 'dismissed');
+    });
+  })();
+
+  /* ── Theme toggle ───────────────────────────────────────── */
+  (function() {
+    const html   = document.documentElement;
+    const btn    = document.getElementById('theme-toggle');
+    const stored = localStorage.getItem('atez-theme');
+    if (stored) html.setAttribute('data-theme', stored);
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('atez-theme', next);
+    });
+  })();
+
+
+  /* ── Header scroll state ─────────────────────────────────── */
+  const headerEl = document.querySelector('header');
+  function updateHeader() {
+    headerEl.classList.toggle('scrolled', window.scrollY > 60);
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  /* ── Hero parallax ──────────────────────────────────────── */
+  const hero       = document.getElementById('hero');
+  const floatEls   = document.querySelectorAll('[data-depth]');
+  let heroRect     = hero.getBoundingClientRect();
+  let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+
+  window.addEventListener('resize', () => { heroRect = hero.getBoundingClientRect(); });
+
+  hero.addEventListener('mousemove', e => {
+    mouseX = (e.clientX - heroRect.left - heroRect.width  / 2) / (heroRect.width  / 2);
+    mouseY = (e.clientY - heroRect.top  - heroRect.height / 2) / (heroRect.height / 2);
+  });
+
+  hero.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
+
+  function animatePills() {
+    curX += (mouseX - curX) * 0.12;
+    curY += (mouseY - curY) * 0.12;
+    floatEls.forEach(el => {
+      const d  = parseFloat(el.dataset.depth) || 0.05;
+      const tx = curX * d * 100;
+      const ty = curY * d * 75;
+      el.style.transform = `translate(${tx}px, ${ty}px)`;
+    });
+    requestAnimationFrame(animatePills);
+  }
+  animatePills();
+
+  /* ── Hero background particle network (dark mode only) ───── */
+  (function() {
+    const nc = document.getElementById('lines-canvas');
+    const ctx = nc.getContext('2d');
+    const N = 55, MAX_D = 170, SPEED = 0.45;
+    let W, H, pts;
+
+    function resize() {
+      W = nc.width  = nc.offsetWidth;
+      H = nc.height = nc.offsetHeight;
+    }
+
+    function init() {
+      resize();
+      pts = Array.from({length: N}, () => ({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        vx: (Math.random() - .5) * SPEED,
+        vy: (Math.random() - .5) * SPEED,
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      });
+      for (let i = 0; i < N; i++) {
+        for (let j = i + 1; j < N; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          if (d < MAX_D) {
+            const a = (1 - d / MAX_D) * 0.45;
+            ctx.strokeStyle = `rgba(0,130,220,${a})`;
+            ctx.lineWidth = 0.75;
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      pts.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,130,220,0.65)';
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
+  })();
+
+  /* ── Product cards spring physics + entrance ─── */
+  (function() {
+    const SC = { stiffness: 120, damping: 14, mass: 0.8 };
+    const running = new WeakMap();
+
+    function springAnimate(el, from, to) {
+      if (running.has(el)) cancelAnimationFrame(running.get(el));
+      let pos = from, vel = 0, last = null;
+      function tick(t) {
+        if (!last) last = t;
+        const dt = Math.min((t - last) / 1000, 0.04); last = t;
+        vel += (-SC.stiffness * (pos - to) - SC.damping * vel) / SC.mass * dt;
+        pos += vel * dt;
+        el.style.height = pos + 'px';
+        if (Math.abs(pos - to) < 0.3 && Math.abs(vel) < 0.3) {
+          el.style.height = to > 0 ? 'auto' : '0';
+          running.delete(el);
+        } else {
+          running.set(el, requestAnimationFrame(tick));
+        }
+      }
+      running.set(el, requestAnimationFrame(tick));
+    }
+
+    function toggleCard(card) {
+      const body = card.querySelector('.pc-body');
+      const isOpen = card.classList.contains('is-open');
+      if (isOpen) {
+        const h = body.offsetHeight;
+        body.style.height = h + 'px';
+        card.classList.remove('is-open');
+        springAnimate(body, h, 0);
+      } else {
+        body.style.height = 'auto';
+        const h = body.scrollHeight;
+        body.style.height = '0';
+        void body.offsetHeight;
+        card.classList.add('is-open');
+        springAnimate(body, 0, h);
+      }
+    }
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      const body = card.querySelector('.pc-body');
+      if (body) body.style.height = card.classList.contains('is-open') ? 'auto' : '0';
+      card.addEventListener('click', () => toggleCard(card));
+    });
+
+    const pcObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.product-card').forEach((c, i) => {
+            setTimeout(() => c.classList.add('visible'), i * 55);
+          });
+          pcObs.disconnect();
+        }
+      });
+    }, { threshold: 0.05 });
+    const channelsSection = document.getElementById('channels');
+    if (channelsSection) pcObs.observe(channelsSection);
+  })();
+
+  /* ── Solutions cards entrance ─── */
+  const solObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.sol-card').forEach((c, i) => {
+          setTimeout(() => c.classList.add('visible'), i * 90);
+        });
+        solObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  const solSection = document.getElementById('solutions');
+  if (solSection) solObs.observe(solSection);
+
+  /* ── Testimonials scroll animation ─── */
+  const tObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.testimonial-card').forEach((card, i) => {
+          setTimeout(() => card.classList.add('visible'), i * 100);
+        });
+        tObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  tObserver.observe(document.getElementById('testimonials'));
+
+  /* ── News scroll animation ─── */
+  const nObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.news-card').forEach((card, i) => {
+          setTimeout(() => card.classList.add('visible'), i * 100);
+        });
+        nObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  nObserver.observe(document.getElementById('news'));
+
+  </script>
+</body>
+</html>
