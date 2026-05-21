@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasıl Çalışır — Atez.com</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="shortcut icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --primary:         #005287;
+      --primary-dark:    #003d66;
+      --annbar-h:        50px;
+      --header-h:        96px;
+      --ff:              'Inter','Segoe UI',Arial,sans-serif;
+      --ff-head:         'Inter','Segoe UI',Arial,sans-serif;
+
+      --bg:              #ffffff;
+      --bg-alt:          #f5f7fa;
+      --bg-subtle:       #fafafa;
+      --text:            rgba(0,0,0,.88);
+      --muted:           rgba(0,0,0,.55);
+      --divider:         #e8e8e8;
+      --section-border:  #f0f0f0;
+      --card-bg:         #ffffff;
+      --card-border:     #e5e7eb;
+      --hdr-scrolled-bg: rgba(255,255,255,.95);
+      --hdr-shadow:      0 1px 0 rgba(0,0,0,.07);
+
+      --nav-hero:        rgba(255,255,255,.82);
+      --nav-hero-hover:  #ffffff;
+      --pill-hero-c:     rgba(255,255,255,.75);
+      --pill-hero-bd:    rgba(255,255,255,.22);
+      --pill-hero-bg:    rgba(255,255,255,.09);
+      --srch-hero-c:     rgba(255,255,255,.82);
+      --srch-hero-bd:    rgba(255,255,255,.22);
+      --srch-hero-bg:    rgba(255,255,255,.08);
+      --srch-hero-ph:    rgba(255,255,255,.38);
+    }
+
+    [data-theme="dark"] {
+      --bg:              #111318;
+      --bg-alt:          #17191f;
+      --bg-subtle:       #141618;
+      --text:            rgba(255,255,255,.87);
+      --muted:           rgba(255,255,255,.52);
+      --divider:         #252730;
+      --section-border:  #252730;
+      --card-bg:         #1c1e26;
+      --card-border:     #2d2f3a;
+      --hdr-scrolled-bg: rgba(17,19,24,.96);
+      --hdr-shadow:      0 1px 0 rgba(0,0,0,.4);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); font-family:var(--ff); color:var(--text); overflow-x:hidden; transition:background .3s,color .3s; }
+    h1,h2,h3,h4 { font-family:var(--ff-head); }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    @keyframes annbar-flow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .announcement-bar {
+      position:fixed; top:0; left:0; right:0; height:var(--annbar-h); z-index:300;
+      background:linear-gradient(120deg,#003d66,#005287,#0073b8,#0a3d7a,#6a00b8,#0073b8,#005287);
+      background-size:300% 300%; animation:annbar-flow 8s ease infinite;
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+      transition:height .3s ease,opacity .3s ease;
+    }
+    html.annbar-off { --annbar-h:0px; }
+    html.annbar-off .announcement-bar { opacity:0; pointer-events:none; }
+    .announcement-content { display:flex; align-items:center; gap:12px; font-size:.8rem; font-weight:500; color:#fff; white-space:nowrap; padding:0 56px 0 16px; }
+    .announcement-badge { background:rgba(255,255,255,.22); border-radius:4px; padding:2px 8px; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; flex-shrink:0; }
+    .announcement-text { opacity:.92; }
+    .announcement-link { color:#fff; font-weight:600; font-size:.78rem; text-decoration:none; border:1.5px solid rgba(255,255,255,.55); border-radius:20px; padding:4px 14px; flex-shrink:0; transition:background .18s,border-color .18s; white-space:nowrap; }
+    .announcement-link:hover { background:rgba(255,255,255,.14); border-color:#fff; }
+    .announcement-close { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:rgba(255,255,255,.75); cursor:pointer; padding:5px 7px; border-radius:4px; display:flex; transition:color .15s,background .15s; }
+    .announcement-close:hover { color:#fff; background:rgba(255,255,255,.15); }
+
+    /* ── HEADER ── */
+    header {
+      position:fixed; top:var(--annbar-h); left:0; right:0; height:var(--header-h);
+      background:rgba(5,16,32,.18); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center;
+      padding:0 max(48px,calc((100vw - 1440px)/2 + 48px));
+      z-index:200; transition:background .35s,box-shadow .35s,border-color .35s,top .3s,height .3s;
+    }
+    [data-theme="dark"] header { background:rgba(4,8,18,.28); border-bottom-color:rgba(255,255,255,.04); }
+    header.scrolled {
+      background:var(--hdr-scrolled-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      box-shadow:var(--hdr-shadow); border-bottom-color:transparent; height:72px;
+    }
+
+        .logo { height:48px; display:flex; align-items:center; flex-shrink:0; cursor:pointer; user-select:none; text-decoration:none; }
+    .logo-h { height:38px; width:auto; display:block; filter:brightness(0) invert(1); transition:opacity .3s; }
+    header.scrolled .logo-h { display:none; }
+    .logo-i { display:none; }
+    .logo-i path { fill:#ffffff; transition:fill .35s; }
+    header.scrolled .logo-i { display:block; }
+    header.scrolled .logo-i path { fill:var(--primary); }
+    [data-theme="dark"] header.scrolled .logo-i path { fill:#ffffff; }
+
+    nav { display:flex; gap:36px; margin-left:44px; flex:1; align-items:center; }
+
+    /* Plain nav links */
+    nav > a {
+      text-decoration:none; font-size:1rem; font-weight:600;
+      color:var(--nav-hero); letter-spacing:.02em; transition:color .2s,opacity .2s;
+    }
+    nav > a:hover { color:var(--nav-hero-hover); }
+    nav > a.active { color:#ffffff; }
+    header.scrolled nav > a { color:var(--text); opacity:.72; }
+    header.scrolled nav > a:hover { opacity:1; color:var(--primary); }
+    header.scrolled nav > a.active { opacity:1; color:var(--primary); }
+
+    /* Dropdown nav item */
+    .nav-item { position:relative; display:flex; align-items:center; }
+    .nav-item::after { content:''; position:absolute; top:100%; left:-20px; right:-20px; height:22px; }
+    .nav-parent {
+      display:flex; align-items:center; gap:5px; text-decoration:none;
+      font-size:1rem; font-weight:600; color:var(--nav-hero);
+      letter-spacing:.02em; transition:color .2s; cursor:default;
+    }
+    .nav-parent.active { color:#ffffff; }
+    .nav-item:hover .nav-parent { color:var(--nav-hero-hover); }
+    header.scrolled .nav-parent { color:var(--text); opacity:.72; }
+    header.scrolled .nav-parent.active { color:var(--primary); opacity:1; }
+    header.scrolled .nav-item:hover .nav-parent { opacity:1; color:var(--primary); }
+
+    .nav-chevron { flex-shrink:0; transition:transform .2s; opacity:.7; }
+    .nav-item:hover .nav-chevron { transform:rotate(180deg); opacity:1; }
+
+    .nav-dropdown {
+      position:absolute; top:calc(100% + 14px); left:50%;
+      transform:translateX(-50%) translateY(-6px);
+      min-width:190px; background:var(--card-bg);
+      border:1px solid var(--card-border); border-radius:12px; padding:6px;
+      box-shadow:0 8px 32px rgba(0,0,0,.14),0 2px 8px rgba(0,0,0,.07);
+      opacity:0; pointer-events:none;
+      transition:opacity .18s ease,transform .18s ease;
+      z-index:500;
+    }
+    .nav-item:hover .nav-dropdown { opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+    .nav-dropdown::before {
+      content:''; position:absolute; top:-6px; left:50%; transform:translateX(-50%);
+      width:12px; height:6px; background:var(--card-bg);
+      clip-path:polygon(50% 0%,0% 100%,100% 100%);
+    }
+    .nav-dropdown a {
+      display:block; padding:10px 15px; border-radius:8px;
+      font-size:.88rem; font-weight:500; color:var(--text);
+      letter-spacing:0; white-space:nowrap; text-decoration:none;
+      transition:background .14s,color .14s; opacity:1 !important;
+    }
+    .nav-dropdown a:hover { background:var(--bg-alt); color:var(--primary); }
+    .nav-dropdown a.active { color:var(--primary); font-weight:600; }
+
+    /* Right side header */
+    .header-right { display:flex; align-items:center; gap:12px; }
+    .btn-pill { height:38px; padding:0 18px; border:1px solid var(--pill-hero-bd); border-radius:20px; background:var(--pill-hero-bg); font-family:var(--ff); font-size:.9rem; font-weight:500; color:var(--pill-hero-c); cursor:pointer; display:flex; align-items:center; gap:7px; transition:background .2s,border-color .2s,color .2s; }
+    .btn-pill:hover { filter:brightness(1.2); }
+    .btn-pill svg { width:15px; height:15px; opacity:.65; }
+    header.scrolled .btn-pill { border-color:var(--divider); background:transparent; color:var(--text); }
+    header.scrolled .btn-pill:hover { background:rgba(0,82,135,.07); border-color:rgba(0,82,135,.3); color:var(--primary); }
+    .btn-theme { padding:0 12px; gap:0; }
+    .icon-sun { display:none; }
+    [data-theme="dark"] .icon-sun { display:block; }
+    [data-theme="dark"] .icon-moon { display:none; }
+
+    .header-search { position:relative; display:flex; align-items:center; }
+    .header-search input { height:38px; width:240px; padding:0 38px 0 16px; border:1px solid var(--srch-hero-bd); border-radius:20px; background:var(--srch-hero-bg); font-family:var(--ff); font-size:.9rem; color:var(--srch-hero-c); outline:none; transition:width .25s,border-color .25s; }
+    .header-search input::placeholder { color:var(--srch-hero-ph); }
+    .header-search input:focus { width:300px; border-color:rgba(255,255,255,.5); }
+    .header-search .search-icon { position:absolute; right:13px; width:15px; height:15px; color:var(--srch-hero-ph); pointer-events:none; }
+    header.scrolled .header-search input { border-color:var(--divider); background:transparent; color:var(--text); }
+    header.scrolled .header-search input::placeholder { color:var(--muted); }
+    header.scrolled .header-search input:focus { border-color:var(--primary); }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hiw-hero {
+      background: linear-gradient(160deg, #050f20 0%, #071626 55%, #0a1e38 100%);
+      padding: calc(var(--annbar-h) + var(--header-h) + 88px) max(48px,calc((100vw - 1440px)/2 + 48px)) 96px;
+      position: relative; overflow: hidden;
+    }
+    .hiw-hero::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 65% 80% at 80% 30%, rgba(0,115,184,.2) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .hiw-hero-dots {
+      position:absolute; inset:0; pointer-events:none;
+      background-image: radial-gradient(circle, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(ellipse 70% 80% at 70% 40%, black 20%, transparent 80%);
+    }
+    .hiw-hero-inner { max-width: 760px; position:relative; z-index:1; }
+    .hiw-hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:5px 14px; border-radius:100px;
+      border:1px solid rgba(125,211,252,.28); background:rgba(0,115,184,.16);
+      color:#7dd3fc; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      margin-bottom:30px;
+    }
+    .hiw-hero-badge-dot { width:6px; height:6px; border-radius:50%; background:#7dd3fc; animation:bdot 2s ease infinite; }
+    @keyframes bdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.65)} }
+
+    .hiw-hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 700; line-height: 1.08; letter-spacing: -.025em;
+      color: #fff; margin-bottom: 26px;
+    }
+    .hiw-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, #93c5fd 0%, #7dd3fc 45%, #a5b4fc 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hiw-hero-sub {
+      font-size: 17px; line-height: 1.72; color: rgba(255,255,255,.56);
+      max-width: 620px; margin-bottom: 44px;
+    }
+    .hiw-hero-scroll {
+      display:inline-flex; align-items:center; gap:8px;
+      color:rgba(255,255,255,.42); font-size:.87rem; font-weight:500;
+      text-decoration:none; transition:color .2s;
+    }
+    .hiw-hero-scroll svg { transition:transform .2s; }
+    .hiw-hero-scroll:hover { color:rgba(255,255,255,.72); }
+    .hiw-hero-scroll:hover svg { transform:translateY(3px); }
+    @media(max-width:640px){ .hiw-hero { padding-left:24px; padding-right:24px; } .hiw-hero h1 { font-size:36px; } .hiw-hero-sub { font-size:15px; } }
+
+    /* ══════════════════════════════════════
+       SHARED SECTION UTILITIES
+    ══════════════════════════════════════ */
+    .hiw-section {
+      padding: 96px max(48px,calc((100vw - 1440px)/2 + 48px));
+    }
+    .hiw-section.bg-subtle { background: var(--bg-alt); }
+    .hiw-section.bg-dark   { background: #050f1e; }
+    [data-theme="dark"] .hiw-section.bg-subtle { background: rgba(255,255,255,.02); }
+    @media(max-width:900px){ .hiw-section { padding-left:24px; padding-right:24px; padding-top:64px; padding-bottom:64px; } }
+
+    .sec-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:.69rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--primary); margin-bottom:14px;
+    }
+    .sec-eyebrow::before { content:''; width:18px; height:2px; background:var(--primary); border-radius:1px; }
+    [data-theme="dark"] .sec-eyebrow { color:#7dd3fc; }
+    [data-theme="dark"] .sec-eyebrow::before { background:#7dd3fc; }
+    .hiw-section.bg-dark .sec-eyebrow { color:#7dd3fc; }
+    .hiw-section.bg-dark .sec-eyebrow::before { background:#7dd3fc; }
+
+    .sec-h2 {
+      font-size: clamp(24px, 2.6vw, 34px);
+      font-weight: 700; line-height: 1.2; letter-spacing: -.018em; margin-bottom: 14px;
+    }
+    .hiw-section.bg-dark .sec-h2 { color:#fff; }
+
+    .sec-p { font-size:15px; line-height:1.72; color:var(--muted); max-width:540px; }
+    .hiw-section.bg-dark .sec-p { color:rgba(255,255,255,.48); }
+
+    /* Reveal */
+    @keyframes revealUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    @keyframes revealLeft { from{opacity:0;transform:translateX(-22px)} to{opacity:1;transform:none} }
+    @keyframes revealRight { from{opacity:0;transform:translateX(22px)} to{opacity:1;transform:none} }
+    .reveal { opacity:0; }
+    .reveal.visible { animation:revealUp .55s ease forwards; }
+    .reveal-l { opacity:0; }
+    .reveal-l.visible { animation:revealLeft .55s ease forwards; }
+    .reveal-r { opacity:0; }
+    .reveal-r.visible { animation:revealRight .55s ease forwards; }
+
+    /* ══════════════════════════════════════
+       PLATFORM (AGSW) SECTION
+    ══════════════════════════════════════ */
+    .platform-wrap { max-width:1200px; margin:0 auto; }
+    .platform-top {
+      display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-bottom:52px;
+    }
+    @media(max-width:860px){ .platform-top { grid-template-columns:1fr; gap:40px; } }
+
+    .platform-text .sec-p { margin-bottom:24px; }
+    .platform-link {
+      display:inline-flex; align-items:center; gap:6px;
+      color:var(--primary); font-weight:600; font-size:.9rem; text-decoration:none;
+    }
+    .platform-link:hover { text-decoration:underline; }
+    [data-theme="dark"] .platform-link { color:#7dd3fc; }
+
+    .platform-arch { display:flex; flex-direction:column; gap:12px; }
+
+    .arch-hub {
+      display:flex; align-items:center; gap:16px; padding:18px 22px;
+      border-radius:16px;
+      background:linear-gradient(135deg, #005287 0%, #0073b8 100%);
+      color:#fff;
+    }
+    .arch-hub-icon {
+      width:42px; height:42px; border-radius:11px; background:rgba(255,255,255,.16);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .arch-hub-label { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; opacity:.65; margin-bottom:2px; }
+    .arch-hub-name { font-size:1.05rem; font-weight:800; letter-spacing:-.01em; }
+
+    .arch-products { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .arch-prod {
+      display:flex; align-items:flex-start; gap:12px; padding:14px 16px;
+      background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .arch-prod:hover { border-color:rgba(0,82,135,.25); box-shadow:0 4px 20px rgba(0,82,135,.08); }
+    .arch-prod-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .arch-prod-icon.blue   { background:#e8f5ff; }
+    .arch-prod-icon.teal   { background:#e6fffb; }
+    .arch-prod-icon.violet { background:#f9f0ff; }
+    .arch-prod-icon.orange { background:#fff7e6; }
+    .arch-prod-name { font-size:.88rem; font-weight:700; margin-bottom:2px; }
+    .arch-prod-desc { font-size:.75rem; line-height:1.5; color:var(--muted); }
+
+    .arch-cta { text-align:center; margin-top:4px; }
+    .btn-arch {
+      display:inline-flex; align-items:center; gap:8px; padding:11px 26px;
+      border-radius:10px; background:var(--primary); color:#fff;
+      font-family:var(--ff); font-size:.88rem; font-weight:600;
+      text-decoration:none; transition:background .2s,transform .18s,box-shadow .2s;
+    }
+    .btn-arch:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,82,135,.28); }
+
+    /* ══════════════════════════════════════
+       PROCESS FLOW
+    ══════════════════════════════════════ */
+    .flow-wrap { max-width:880px; margin:0 auto; }
+    .flow-header { margin-bottom:40px; }
+
+    .flow-tabs {
+      display:inline-flex; gap:3px; background:var(--card-bg);
+      border:1px solid var(--card-border); border-radius:10px; padding:3px;
+      margin-bottom:32px;
+    }
+    .flow-tab {
+      padding:7px 22px; border-radius:8px;
+      font-size:.85rem; font-weight:600; cursor:pointer;
+      border:none; background:transparent; color:var(--muted);
+      font-family:var(--ff); transition:background .18s,color .18s;
+    }
+    .flow-tab.active { background:var(--primary); color:#fff; }
+
+    .flow-steps { display:flex; flex-direction:column; gap:10px; }
+
+    .step-card {
+      background:var(--card-bg); border:1px solid var(--card-border);
+      border-radius:14px; padding:22px 24px;
+      border-left:3px solid transparent;
+      transition:border-color .2s,box-shadow .2s,transform .2s;
+    }
+    .step-card:hover {
+      border-left-color:var(--primary);
+      box-shadow:0 4px 24px rgba(0,82,135,.09);
+      transform:translateX(2px);
+    }
+    .step-head {
+      display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;
+    }
+    .step-num {
+      width:28px; height:28px; border-radius:50%;
+      background:var(--primary); color:#fff;
+      font-size:.72rem; font-weight:800; letter-spacing:0;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .step-title { font-size:15px; font-weight:700; }
+    .step-tags { display:flex; gap:5px; flex-wrap:wrap; margin-left:auto; }
+    .step-tag { font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:100px; }
+    .step-tag.blue   { background:rgba(0,82,135,.09);  color:var(--primary); }
+    .step-tag.teal   { background:rgba(19,194,150,.1); color:#0e7a4f; }
+    .step-tag.warn   { background:rgba(250,173,20,.1); color:#b37400; }
+    [data-theme="dark"] .step-tag.blue { background:rgba(0,82,135,.25); color:#7dd3fc; }
+    [data-theme="dark"] .step-tag.teal { background:rgba(19,194,150,.12); color:#6ee7b7; }
+
+    .step-desc { font-size:14px; line-height:1.67; color:var(--muted); margin-bottom:10px; }
+    .step-features { display:flex; flex-direction:column; gap:5px; }
+    .step-feature { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); }
+    .step-feature::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--primary); flex-shrink:0; }
+    [data-theme="dark"] .step-feature::before { background:#7dd3fc; }
+
+    .step-warn {
+      display:flex; align-items:flex-start; gap:8px; margin-top:10px;
+      padding:9px 13px; background:rgba(250,173,20,.06);
+      border:1px solid rgba(250,173,20,.22); border-radius:8px;
+      font-size:13px; color:#b37400; line-height:1.55;
+    }
+    [data-theme="dark"] .step-warn { color:#fbbf24; background:rgba(250,173,20,.05); border-color:rgba(250,173,20,.18); }
+    .step-warn svg { flex-shrink:0; margin-top:1px; }
+
+    /* ══════════════════════════════════════
+       POST-DECLARATION
+    ══════════════════════════════════════ */
+    .post-wrap { max-width:1160px; margin:0 auto; }
+    .post-header { margin-bottom:40px; }
+    .post-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media(max-width:680px){ .post-grid { grid-template-columns:1fr; } }
+
+    .post-card {
+      background:var(--card-bg); border:1px solid var(--card-border); border-radius:18px; padding:28px;
+      transition:box-shadow .2s,border-color .2s,transform .2s;
+    }
+    .post-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.07); border-color:rgba(0,82,135,.16); transform:translateY(-2px); }
+
+    .post-card.featured {
+      background:linear-gradient(145deg,#061724 0%,#0c2040 100%);
+      border-color:rgba(0,115,184,.28); color:#fff;
+      grid-column:span 2;
+      display:grid; grid-template-columns:1fr 1.1fr; gap:32px; align-items:center;
+    }
+    @media(max-width:680px){ .post-card.featured { grid-column:span 1; grid-template-columns:1fr; } }
+    .post-card.featured:hover { box-shadow:0 14px 50px rgba(0,82,135,.28); }
+
+    .post-tag { font-size:.67rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--primary); margin-bottom:10px; }
+    .post-card.featured .post-tag { color:rgba(125,211,252,.82); }
+    .post-card h3 { font-size:19px; font-weight:700; margin-bottom:10px; line-height:1.3; }
+    .post-card p { font-size:14px; line-height:1.68; color:var(--muted); }
+    .post-card.featured p { color:rgba(255,255,255,.48); }
+
+    .post-feat-list { margin-top:20px; display:flex; flex-direction:column; gap:9px; }
+    .post-feat { display:flex; align-items:center; gap:10px; font-size:13px; color:rgba(255,255,255,.72); }
+    .post-feat-icon { width:20px; height:20px; border-radius:5px; background:rgba(0,115,184,.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+    .post-visual {
+      background:rgba(0,82,135,.1); border-radius:14px; height:200px;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(0,115,184,.18); overflow:hidden;
+    }
+    .post-vis-bars { display:flex; flex-direction:column; gap:9px; width:100%; padding:20px; }
+    .post-vis-bar { height:8px; border-radius:4px; background:rgba(0,115,184,.3); animation:barpulse 2.8s ease infinite; }
+    .post-vis-bar:nth-child(1){width:78%;animation-delay:0s}
+    .post-vis-bar:nth-child(2){width:56%;animation-delay:.35s}
+    .post-vis-bar:nth-child(3){width:90%;animation-delay:.7s}
+    .post-vis-bar:nth-child(4){width:42%;animation-delay:1.05s}
+    @keyframes barpulse { 0%,100%{opacity:.28} 50%{opacity:.78} }
+
+    /* ══════════════════════════════════════
+       REPORTING (dark section)
+    ══════════════════════════════════════ */
+    .report-wrap {
+      max-width:1160px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1.15fr; gap:64px; align-items:center;
+    }
+    @media(max-width:800px){ .report-wrap { grid-template-columns:1fr; gap:44px; } }
+
+    .report-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
+    .report-stat {
+      padding:18px 20px; border-radius:12px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+    }
+    .stat-val { font-size:28px; font-weight:800; color:#7dd3fc; line-height:1; margin-bottom:5px; }
+    .stat-label { font-size:12px; color:rgba(255,255,255,.5); }
+
+    .report-visual {
+      border:1px solid rgba(255,255,255,.1); border-radius:16px; overflow:hidden;
+      background:rgba(255,255,255,.04);
+    }
+    .report-vis-head { padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; gap:7px; }
+    .rvd { width:9px; height:9px; border-radius:50%; }
+    .rvd:nth-child(1){background:#ff5f57} .rvd:nth-child(2){background:#febc2e} .rvd:nth-child(3){background:#28c840}
+    .report-vis-label { font-size:.75rem; font-weight:600; color:rgba(255,255,255,.35); margin:0 auto; }
+    .report-vis-body { padding:16px; }
+    .report-chart { display:flex; align-items:flex-end; gap:7px; height:90px; margin-bottom:14px; }
+    .rbar { flex:1; border-radius:3px 3px 0 0; background:rgba(0,115,184,.5); transform-origin:bottom; animation:growbar 1.2s ease-out forwards; }
+    .rbar:nth-child(1){height:60%;animation-delay:.1s;opacity:.32}
+    .rbar:nth-child(2){height:80%;animation-delay:.2s;opacity:.48}
+    .rbar:nth-child(3){height:55%;animation-delay:.3s;opacity:.36}
+    .rbar:nth-child(4){height:95%;animation-delay:.4s;opacity:.78}
+    .rbar:nth-child(5){height:70%;animation-delay:.5s;opacity:.48}
+    .rbar:nth-child(6){height:85%;animation-delay:.6s;opacity:.62}
+    .rbar:nth-child(7){height:78%;animation-delay:.7s;opacity:.52}
+    @keyframes growbar { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+    .report-rows { display:flex; flex-direction:column; gap:6px; }
+    .report-row { display:flex; justify-content:space-between; font-size:12px; padding:7px 10px; border-radius:7px; background:rgba(255,255,255,.04); color:rgba(255,255,255,.55); }
+    .report-row-val { font-weight:700; color:#7dd3fc; }
+
+    /* ══════════════════════════════════════
+       AI ASSISTANT
+    ══════════════════════════════════════ */
+    .ai-wrap {
+      max-width:1160px; margin:0 auto;
+      display:grid; grid-template-columns:1.05fr 1fr; gap:64px; align-items:center;
+    }
+    @media(max-width:800px){ .ai-wrap { grid-template-columns:1fr; gap:44px; } }
+
+    .ai-chat {
+      border:1px solid var(--card-border); border-radius:18px; overflow:hidden;
+      background:var(--card-bg); box-shadow:0 16px 56px rgba(0,0,0,.08);
+    }
+    .ai-chat-head {
+      padding:13px 17px; border-bottom:1px solid var(--divider);
+      display:flex; align-items:center; gap:9px; background:var(--bg-subtle);
+    }
+    .ai-online { width:8px; height:8px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.28} }
+    .ai-chat-title { font-size:.85rem; font-weight:600; }
+    .ai-chat-online-txt { font-size:.75rem; color:var(--muted); margin-left:auto; }
+    .ai-chat-body { padding:15px; display:flex; flex-direction:column; gap:10px; min-height:148px; }
+    .ai-msg { max-width:84%; padding:10px 14px; border-radius:12px; font-size:13.5px; line-height:1.55; }
+    .ai-msg.u { align-self:flex-end; background:var(--primary); color:#fff; border-radius:12px 12px 3px 12px; }
+    .ai-msg.b { align-self:flex-start; background:var(--bg-alt); border:1px solid var(--divider); border-radius:12px 12px 12px 3px; color:var(--text); }
+    .ai-typing { display:flex; gap:4px; align-items:center; }
+    .ai-typing span { width:6px; height:6px; border-radius:50%; background:var(--muted); animation:tdot .9s ease infinite; }
+    .ai-typing span:nth-child(2){animation-delay:.15s} .ai-typing span:nth-child(3){animation-delay:.3s}
+    @keyframes tdot { 0%,80%,100%{transform:scale(.8);opacity:.5} 40%{transform:scale(1);opacity:1} }
+    .ai-chat-input-row { padding:11px 15px; border-top:1px solid var(--divider); display:flex; gap:9px; align-items:center; }
+    .ai-chat-input-row input { flex:1; border:none; background:transparent; font-family:var(--ff); font-size:13px; color:var(--text); outline:none; }
+    .ai-chat-input-row input::placeholder { color:var(--muted); }
+    .ai-send-btn { width:30px; height:30px; border-radius:7px; background:var(--primary); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .ai-send-btn:hover { background:var(--primary-dark); }
+
+    .ai-text .sec-p { margin-bottom:20px; }
+    .ai-features { display:flex; flex-direction:column; gap:10px; margin-top:24px; }
+    .ai-feat {
+      display:flex; align-items:flex-start; gap:12px; padding:13px 15px;
+      border-radius:10px; background:var(--bg-alt); border:1px solid var(--section-border);
+      transition:border-color .2s,transform .2s;
+    }
+    [data-theme="dark"] .ai-feat { background:rgba(255,255,255,.03); border-color:var(--divider); }
+    .ai-feat:hover { border-color:rgba(0,82,135,.22); transform:translateX(3px); }
+    .ai-feat-icon { width:32px; height:32px; border-radius:8px; background:rgba(0,82,135,.09); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    [data-theme="dark"] .ai-feat-icon { background:rgba(0,82,135,.22); }
+    .ai-feat-title { font-size:13.5px; font-weight:600; margin-bottom:2px; }
+    .ai-feat-desc { font-size:13px; color:var(--muted); line-height:1.5; }
+
+    /* ══════════════════════════════════════
+       BOTTOM CTA
+    ══════════════════════════════════════ */
+    .hiw-cta {
+      padding:100px max(48px,calc((100vw - 1440px)/2 + 48px));
+      background:linear-gradient(150deg,#040f20 0%,#07182e 45%,#0a1e38 100%);
+      position:relative; overflow:hidden; text-align:center;
+    }
+    .hiw-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 85% at 50% 50%,rgba(0,115,184,.22) 0%,transparent 70%); pointer-events:none; }
+    .hiw-cta h2 { font-size:clamp(28px,4.2vw,42px); font-weight:700; color:#fff; margin-bottom:14px; position:relative; letter-spacing:-.015em; }
+    .hiw-cta p { font-size:16px; color:rgba(255,255,255,.52); max-width:480px; margin:0 auto 40px; line-height:1.72; position:relative; }
+    .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; }
+    .btn-cta-p {
+      display:inline-flex; align-items:center; gap:8px; padding:14px 30px;
+      border-radius:10px; background:var(--primary); color:#fff;
+      font-family:var(--ff); font-size:.95rem; font-weight:700;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s,transform .18s,box-shadow .2s;
+    }
+    .btn-cta-p:hover { background:#0066aa; transform:translateY(-2px); box-shadow:0 12px 36px rgba(0,82,135,.48); }
+    .btn-cta-s {
+      display:inline-flex; align-items:center; gap:8px; padding:13px 28px;
+      border-radius:10px; border:1.5px solid rgba(255,255,255,.22);
+      color:rgba(255,255,255,.82); font-family:var(--ff); font-size:.95rem; font-weight:600;
+      text-decoration:none; transition:border-color .2s,background .2s,transform .18s;
+    }
+    .btn-cta-s:hover { border-color:rgba(255,255,255,.45); background:rgba(255,255,255,.07); transform:translateY(-2px); }
+    @media(max-width:640px){ .hiw-cta { padding-left:24px; padding-right:24px; } }
+
+    /* ── FOOTER ── */
+    footer { background:var(--bg-alt); color:var(--text); padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px; border-top:1px solid var(--section-border); transition:background .35s; }
+    .footer-brand { margin-bottom:52px; }
+    .footer-tagline { font-size:clamp(2rem,4vw,3.2rem); font-weight:800; line-height:1.12; color:var(--text); letter-spacing:-.02em; margin-bottom:28px; }
+    .footer-socials { display:flex; gap:12px; }
+    .footer-social-btn { width:40px; height:40px; border-radius:50%; border:1.5px solid var(--card-border); display:flex; align-items:center; justify-content:center; color:var(--text); text-decoration:none; transition:border-color .18s,background .18s,color .18s; }
+    .footer-social-btn:hover { border-color:var(--primary); background:var(--primary); color:#fff; }
+    .footer-social-btn svg { width:17px; height:17px; }
+    .footer-divider { border:none; border-top:1px solid var(--divider); margin-bottom:48px; }
+    .footer-nav { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:60px; }
+    @media(max-width:900px){ .footer-nav { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:520px){ .footer-nav { grid-template-columns:1fr; } }
+    .footer-nav-col { display:flex; flex-direction:column; gap:24px; }
+    .footer-nav-group h4 { font-size:.82rem; font-weight:700; color:var(--text); letter-spacing:.01em; margin-bottom:14px; }
+    .footer-nav-group ul { list-style:none; display:flex; flex-direction:column; gap:11px; }
+    .footer-nav-group ul li a { text-decoration:none; font-size:.9rem; font-weight:400; color:var(--muted); transition:color .16s; }
+    .footer-nav-group ul li a:hover { color:var(--primary); }
+    .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:24px; border-top:1px solid var(--divider); flex-wrap:wrap; gap:12px; }
+    .footer-bottom-logo { display:flex; align-items:center; gap:10px; }
+    .footer-bottom-logo svg { width:28px; height:28px; }
+    .footer-bottom-logo span { font-size:.82rem; font-weight:600; color:var(--primary); }
+    .footer-copy { font-size:.78rem; color:var(--muted); opacity:.6; }
+
+    @media(max-width:900px){ header { padding-left:24px; padding-right:24px; } footer { padding-left:24px; padding-right:24px; } }
+    @media(max-width:640px){ .header-search,.btn-pill:not(.btn-theme) { display:none; } nav { gap:18px; margin-left:20px; } nav > a { font-size:.9rem; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-content">
+      <span class="announcement-badge">Yeni</span>
+      <span class="announcement-text">Webinar: AI ile Gümrük Otomasyonu — <strong>25 Ocak 2025, 14:00</strong></span>
+      <a href="#" class="announcement-link">Ücretsiz Kayıt Ol →</a>
+    </div>
+    <button class="announcement-close" id="announcement-close" aria-label="Kapat">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- HEADER -->
+  <header id="site-header">
+        <a href="index.html" class="logo" aria-label="ATEZ">
+      <img src="assets/logo-horizontal.svg" alt="ATEZ" class="logo-h">
+      <svg class="logo-i" width="44" height="44" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z"/>
+      </svg>
+    </a>
+    <nav>
+      <div class="nav-item">
+        <span class="nav-parent">
+          Çözümler
+          <svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+        <div class="nav-dropdown">
+          <a href="solutions.html">Çözümler</a>
+          <a href="nasil-calisir.html" class="active">Nasıl Çalışır</a>
+        </div>
+      </div>
+      <a href="#">Ürünler</a>
+      <a href="yapay-zeka.html">Yapay Zekâ</a>
+      <a href="blockchain.html">Blockchain</a>
+    </nav>
+    <div class="header-right">
+      <div class="header-search">
+        <input type="text" placeholder="Tüm ürünler, makaleler ve sayfalarda..">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <button class="btn-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        TR / EN
+      </button>
+      <button class="btn-pill btn-theme" id="theme-toggle" title="Temayı değiştir" aria-label="Temayı değiştir">
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── HERO ──────────────────────────────────────────── -->
+  <section class="hiw-hero">
+    <div class="hiw-hero-dots"></div>
+    <div class="hiw-hero-inner">
+      <div class="hiw-hero-badge">
+        <span class="hiw-hero-badge-dot"></span>
+        Platform Mimarisi
+      </div>
+      <h1>Platformumuz<br><em>Nasıl Çalışır</em></h1>
+      <p class="hiw-hero-sub">Güncel tarife seti ve mevzuat çerçevesinden beyan süreçleme, beyan sonrası denetimden yapay zekâ destekli süreç otomasyonu ve raporlamaya kadar uçtan uca entegre çalışan uyum platformu.</p>
+      <a href="#platform" class="hiw-hero-scroll">
+        Platformu keşfet
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── PLATFORM / AGSW ──────────────────────────────── -->
+  <section class="hiw-section" id="platform">
+    <div class="platform-wrap">
+      <div class="platform-top">
+
+        <div class="platform-text reveal">
+          <div class="sec-eyebrow">Merkezi Altyapı</div>
+          <h2 class="sec-h2">Otonom Global Tek Pencere — <em style="font-style:normal;color:var(--primary)">AGSW</em></h2>
+          <p class="sec-p">Tüm ATEZ ürünlerini tek bir akıllı omurgaya bağlayan entegrasyon katmanı. Her modül buradan veri alır, buraya veri yazar; süreçler arası geçiş insan müdahalesi olmadan gerçekleşir. Aşağıdaki ürünlerin tamamı AGSW üzerinden birbirine bağlıdır.</p>
+          <a href="#" class="platform-link" style="margin-top:8px">
+            AGSW'yi araştırın
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+
+        <div class="platform-arch reveal" style="animation-delay:.1s">
+          <div class="arch-hub">
+            <div class="arch-hub-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <div>
+              <div class="arch-hub-label">Platform Çekirdeği</div>
+              <div class="arch-hub-name">AGSW</div>
+            </div>
+          </div>
+          <div class="arch-products">
+            <div class="arch-prod">
+              <div class="arch-prod-icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#005287" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div>
+                <div class="arch-prod-name">CustomsFlow</div>
+                <div class="arch-prod-desc">Yapay zekâ destekli gümrük beyan otomasyonu</div>
+              </div>
+            </div>
+            <div class="arch-prod">
+              <div class="arch-prod-icon teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#13c296" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <div>
+                <div class="arch-prod-name">TarFit</div>
+                <div class="arch-prod-desc">GTİP sınıflandırması ve tarife optimizasyonu</div>
+              </div>
+            </div>
+            <div class="arch-prod">
+              <div class="arch-prod-icon violet"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#722ed1" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <div>
+                <div class="arch-prod-name">LogiCust</div>
+                <div class="arch-prod-desc">Lojistik ve gümrük süreç entegrasyonu</div>
+              </div>
+            </div>
+            <div class="arch-prod">
+              <div class="arch-prod-icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fa8c16" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div>
+                <div class="arch-prod-name">Greenpulse</div>
+                <div class="arch-prod-desc">AB Yeşil Mutabakatı ve CBAM uyumluluğu</div>
+              </div>
+            </div>
+          </div>
+          <div class="arch-cta">
+            <a href="solutions.html" class="btn-arch">
+              Tüm Ürünleri Keşfet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS FLOW ─────────────────────────────────── -->
+  <section class="hiw-section bg-subtle">
+    <div class="flow-wrap">
+
+      <div class="flow-header reveal">
+        <div class="sec-eyebrow">İş Akışı</div>
+        <h2 class="sec-h2">Uçtan Uca Süreç Akışı</h2>
+        <p class="sec-p">Bir ihracat siparişinden ithalat gümrüklenmesine kadar her adım otomatik, izlenebilir ve yapay zekâ desteklidir.</p>
+      </div>
+
+      <div class="flow-tabs reveal" style="animation-delay:.05s">
+        <button class="flow-tab active" data-flow="export">İhracat Akışı</button>
+        <button class="flow-tab" data-flow="import">İthalat Akışı</button>
+      </div>
+
+      <!-- EXPORT -->
+      <div class="flow-steps" id="flow-export">
+
+        <div class="step-card reveal">
+          <div class="step-head">
+            <div class="step-num">01</div>
+            <div class="step-title">İş Emri Alımı</div>
+            <div class="step-tags"><span class="step-tag teal">AGSW</span></div>
+          </div>
+          <p class="step-desc">Sipariş sisteminizden veya manuel girişten gelen ihracat talebi AGSW tarafından alınır. Ürün, miktar, hedef ülke ve taşıma bilgileri otomatik parse edilir.</p>
+          <div class="step-features">
+            <div class="step-feature">ERP / sipariş sistemi entegrasyonu</div>
+            <div class="step-feature">Otomatik iş emri oluşturma ve atama</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.05s">
+          <div class="step-head">
+            <div class="step-num">02</div>
+            <div class="step-title">Belge Zekâsı</div>
+            <div class="step-tags"><span class="step-tag blue">Entegrasyon</span></div>
+          </div>
+          <p class="step-desc">Fatura, konşimento, çeki listesi ve diğer yükleme belgeleri sisteme yüklenir. Yapay zekâ, belgelerdeki verileri otomatik çıkarır, çapraz doğrular ve eksik alanları tespit eder.</p>
+          <div class="step-features">
+            <div class="step-feature">OCR + LLM ile belge analizi</div>
+            <div class="step-feature">Tutarsızlık ve eksiklik tespiti</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.10s">
+          <div class="step-head">
+            <div class="step-num">03</div>
+            <div class="step-title">Veri Derleme &amp; GTİP Tayini</div>
+            <div class="step-tags"><span class="step-tag teal">TarFit</span></div>
+          </div>
+          <p class="step-desc">TarFit modülü ürün tanımına ve geçmiş beyan verilerine dayanarak GTİP kodu önerir. Tarife avantajları ve menşe ülke optimizasyonu hesaplanır.</p>
+          <div class="step-features">
+            <div class="step-feature">Otomatik GTİP sınıflandırması (%97+ doğruluk)</div>
+            <div class="step-feature">Tercihli tarife ve muafiyet kontrolü</div>
+            <div class="step-feature">Menşe şahadetnamesi gerekliliği analizi</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.15s">
+          <div class="step-head">
+            <div class="step-num">04</div>
+            <div class="step-title">Beyan Yazımına Aktarım</div>
+            <div class="step-tags"><span class="step-tag blue">CustomsFlow</span></div>
+          </div>
+          <p class="step-desc">Derlenen veri seti CustomsFlow beyan motoruna aktarılır. İhracat beyanı formu otomatik doldurulur; HS kodu, kıymet, menşe, navlun ve diğer zorunlu alanlar yerleştirilir.</p>
+          <div class="step-features">
+            <div class="step-feature">BİLGE / NCTS / AES entegrasyonu</div>
+            <div class="step-feature">Beyan taslağı anında hazır</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.20s">
+          <div class="step-head">
+            <div class="step-num">05</div>
+            <div class="step-title">Gönderim Öncesi Kontrol</div>
+            <div class="step-tags"><span class="step-tag warn">Risk Analizi</span></div>
+          </div>
+          <p class="step-desc">Beyan gümrük idaresine iletilmeden önce yapay zekâ tabanlı risk motoru devreye girer. Geçmiş denetimler, mevzuat güncellemeleri ve ülke bazlı kurallar karşılaştırılır.</p>
+          <div class="step-warn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Yüksek riskli kalemler işaretlenerek sorumlu kullanıcıya bildirim gönderilir.
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.25s">
+          <div class="step-head">
+            <div class="step-num">06</div>
+            <div class="step-title">Gümrük İdaresine İletim</div>
+            <div class="step-tags"><span class="step-tag teal">Sistem Entegreli</span></div>
+          </div>
+          <p class="step-desc">Onaylanan beyan, BİLGE sistemi üzerinden gümrük idaresine otomatik iletilir. Sistem yanıtı anlık izlenir; muayene kodu, hat bilgisi ve kapı ataması takip edilir.</p>
+          <div class="step-features">
+            <div class="step-feature">Anlık sistem yanıt takibi</div>
+            <div class="step-feature">Hat ve muayene kodu izleme</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.30s">
+          <div class="step-head">
+            <div class="step-num">07</div>
+            <div class="step-title">İthalat Tarafına Veri İletimi</div>
+            <div class="step-tags"><span class="step-tag blue">AGSW</span></div>
+          </div>
+          <p class="step-desc">İhracat beyanı onaylandığında AGSW, ithalat tarafına kapsamlı bir veri paketi otomatik gönderir. Alıcı ülkedeki gümrük sürecini başlatmak için gereken tüm veriler hazırlanır.</p>
+          <div class="step-features">
+            <div class="step-feature">Çok ülkeli eş zamanlı veri aktarımı</div>
+            <div class="step-feature">Şifreli, denetlenebilir veri kanalı</div>
+          </div>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.35s">
+          <div class="step-head">
+            <div class="step-num">08</div>
+            <div class="step-title">İthalat Tarafı Beyan Hazırlığı</div>
+            <div class="step-tags"><span class="step-tag blue">CustomsFlow</span><span class="step-tag teal">TarFit</span></div>
+          </div>
+          <p class="step-desc">Alıcı ülkedeki ATEZ modülü gelen veri paketiyle ithalat beyanını otomatik hazırlar. Yerel mevzuat kuralları, tarife ve vergi hesaplamaları uygulanır.</p>
+          <div class="step-features">
+            <div class="step-feature">Yerel gümrük sistemi entegrasyonu</div>
+            <div class="step-feature">Otomatik ithalat beyan taslağı</div>
+            <div class="step-feature">KDV, gümrük vergisi otomatik hesaplama</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- IMPORT -->
+      <div class="flow-steps" id="flow-import" style="display:none">
+
+        <div class="step-card reveal">
+          <div class="step-head">
+            <div class="step-num">01</div>
+            <div class="step-title">İthalat Talebinin Alınması</div>
+            <div class="step-tags"><span class="step-tag teal">AGSW</span></div>
+          </div>
+          <p class="step-desc">İhracatçı tarafından gönderilen veri paketi veya manuel girilen ithalat talebi AGSW tarafından işleme alınır.</p>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.05s">
+          <div class="step-head">
+            <div class="step-num">02</div>
+            <div class="step-title">Belge Kontrolü &amp; Doğrulama</div>
+            <div class="step-tags"><span class="step-tag blue">Entegrasyon</span></div>
+          </div>
+          <p class="step-desc">Gelen belgeler otomatik taranır; fatura, menşe belgesi ve sağlık sertifikası gibi zorunlu evrakların varlığı ve geçerliliği kontrol edilir.</p>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.10s">
+          <div class="step-head">
+            <div class="step-num">03</div>
+            <div class="step-title">GTİP &amp; Tarife Hesaplama</div>
+            <div class="step-tags"><span class="step-tag teal">TarFit</span></div>
+          </div>
+          <p class="step-desc">TarFit, ithal edilen ürünün GTİP kodunu belirler ve uygulanacak gümrük vergisi, KDV, ÖTV ile diğer ek yükleri otomatik hesaplar.</p>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.15s">
+          <div class="step-head">
+            <div class="step-num">04</div>
+            <div class="step-title">İthalat Beyanı Yazımı</div>
+            <div class="step-tags"><span class="step-tag blue">CustomsFlow</span></div>
+          </div>
+          <p class="step-desc">Beyan formu otomatik doldurulur. BİLGE sistemine elektronik olarak iletilmek üzere hazırlanır.</p>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.20s">
+          <div class="step-head">
+            <div class="step-num">05</div>
+            <div class="step-title">Gümrük İdaresine İletim &amp; Takip</div>
+            <div class="step-tags"><span class="step-tag teal">Sistem Entegreli</span></div>
+          </div>
+          <p class="step-desc">Beyan BİLGE'ye iletilir; hat, muayene türü ve tahakkuk durumu anlık izlenir. Tescil numarası otomatik kaydedilir.</p>
+        </div>
+
+        <div class="step-card reveal" style="animation-delay:.25s">
+          <div class="step-head">
+            <div class="step-num">06</div>
+            <div class="step-title">Teslimat &amp; Raporlama</div>
+            <div class="step-tags"><span class="step-tag blue">AGSW</span></div>
+          </div>
+          <p class="step-desc">Beyan onaylanınca lojistik tarafına otomatik bildirim gönderilir. Teslim belgesi ve vergi ödeme makbuzu sisteme işlenir.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BEYAN SONRASI ─────────────────────────────────── -->
+  <section class="hiw-section">
+    <div class="post-wrap">
+
+      <div class="post-header reveal">
+        <div class="sec-eyebrow">Beyan Sonrası Denetim</div>
+        <h2 class="sec-h2">Sonrası da Güvende</h2>
+        <p class="sec-p">Beyan onayı sürecin sonu değildir. ATEZ, beyan sonrası denetim ve uyumluluk süreçlerini de otomasyona taşır.</p>
+      </div>
+
+      <div class="post-grid">
+
+        <div class="post-card featured reveal">
+          <div>
+            <div class="post-tag">Öne Çıkan Ürün — Customs X-Ray</div>
+            <h3>Beyan Sonrası Denetim Merkezi</h3>
+            <p>Gümrük idaresinin geriye dönük denetimlerine karşı proaktif hazırlık. Tüm beyan ve destek belgelerini arşivler, eksiklikleri önceden tespit eder.</p>
+            <div class="post-feat-list">
+              <div class="post-feat">
+                <div class="post-feat-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                Otomatik arşivleme ve belge etiketleme
+              </div>
+              <div class="post-feat">
+                <div class="post-feat-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                Denetim uyarı sistemi ve risk skoru
+              </div>
+              <div class="post-feat">
+                <div class="post-feat-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+                5 yıllık saklama ve anlık erişim
+              </div>
+            </div>
+          </div>
+          <div class="post-visual">
+            <div class="post-vis-bars">
+              <div class="post-vis-bar"></div>
+              <div class="post-vis-bar"></div>
+              <div class="post-vis-bar"></div>
+              <div class="post-vis-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="post-card reveal" style="animation-delay:.1s">
+          <div class="post-tag">Uyumluluk — Customs Loupe</div>
+          <h3>Customs &amp; Göz</h3>
+          <p>Beyan edilen verilerle fiili çıkış verilerini karşılaştırır. Sapmaları anlık tespit eder, düzeltme beyanı gerekip gerekmediğini otomatik bildirir.</p>
+        </div>
+
+        <div class="post-card reveal" style="animation-delay:.15s">
+          <div class="post-tag">Mevzuat Takibi</div>
+          <h3>Otomatik Mevzuat İzleme</h3>
+          <p>Gümrük Yönetmeliği ve AB Gümrük Kodu güncellemelerini anlık izler; mevcut beyan süreçlerinize etkisini raporlar.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RAPORLAMA ─────────────────────────────────────── -->
+  <section class="hiw-section bg-dark">
+    <div class="report-wrap">
+
+      <div class="reveal-l">
+        <div class="sec-eyebrow">İş Zekâsı</div>
+        <h2 class="sec-h2">Raporlama &amp;<br>Kontrol Paneli</h2>
+        <p class="sec-p">Tüm süreçlerin anlık görünümü tek bir panelde. Beyan performansı, hata oranı, maliyet analizi ve trend raporları otomatik üretilir.</p>
+        <div class="report-stats">
+          <div class="report-stat">
+            <div class="stat-val" data-count="97" data-suffix="%">0%</div>
+            <div class="stat-label">Beyan doğruluk oranı</div>
+          </div>
+          <div class="report-stat">
+            <div class="stat-val" data-count="85" data-suffix="%">0%</div>
+            <div class="stat-label">Zaman tasarrufu</div>
+          </div>
+          <div class="report-stat">
+            <div class="stat-val" data-count="1200" data-suffix="+">0+</div>
+            <div class="stat-label">Aktif müşteri</div>
+          </div>
+          <div class="report-stat">
+            <div class="stat-val" data-count="48" data-suffix="s">0s</div>
+            <div class="stat-label">Ortalama beyan süresi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-visual reveal-r">
+        <div class="report-vis-head">
+          <div class="rvd"></div><div class="rvd"></div><div class="rvd"></div>
+          <span class="report-vis-label">Beyan Performans Paneli</span>
+        </div>
+        <div class="report-vis-body">
+          <div class="report-chart">
+            <div class="rbar"></div><div class="rbar"></div><div class="rbar"></div>
+            <div class="rbar"></div><div class="rbar"></div><div class="rbar"></div>
+            <div class="rbar"></div>
+          </div>
+          <div class="report-rows">
+            <div class="report-row"><span>Bu ay toplam beyan</span><span class="report-row-val">1.284</span></div>
+            <div class="report-row"><span>Ortalama işlem süresi</span><span class="report-row-val">48s</span></div>
+            <div class="report-row"><span>Hata oranı</span><span class="report-row-val">%0.3</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── AI ASISTAN ────────────────────────────────────── -->
+  <section class="hiw-section">
+    <div class="ai-wrap">
+
+      <div class="ai-chat reveal-l">
+        <div class="ai-chat-head">
+          <div class="ai-online"></div>
+          <span class="ai-chat-title">GTİP &amp; Mevzuat AI Asistanı</span>
+          <span class="ai-chat-online-txt">Çevrimiçi</span>
+        </div>
+        <div class="ai-chat-body">
+          <div class="ai-msg u">GTİP 8471.30 için AB'ye ihraçta KDV muafiyeti var mı?</div>
+          <div class="ai-msg b" id="bot-msg"><div class="ai-typing"><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="ai-chat-input-row">
+          <input type="text" placeholder="GTİP, mevzuat veya gümrük sorunuzu sorun…">
+          <button class="ai-send-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="ai-text reveal-r">
+        <div class="sec-eyebrow">Yapay Zekâ Destekli Sorgu</div>
+        <h2 class="sec-h2">GTİP &amp; Mevzuata Uyum Sohbeti</h2>
+        <p class="sec-p">ATEZ'in yapay zekâ asistanı, gümrük müşavirleriniz kadar bilgili — 7/24, anında yanıt verir.</p>
+        <div class="ai-features">
+          <div class="ai-feat">
+            <div class="ai-feat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005287" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <div class="ai-feat-title">GTİP Sınıflandırma Desteği</div>
+              <div class="ai-feat-desc">Ürün tanımından GTİP kodu önerir, gerekçesini açıklar.</div>
+            </div>
+          </div>
+          <div class="ai-feat">
+            <div class="ai-feat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005287" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="ai-feat-title">Mevzuat Sorguları</div>
+              <div class="ai-feat-desc">Güncel gümrük mevzuatını ve AB direktiflerini anlık yanıtlar.</div>
+            </div>
+          </div>
+          <div class="ai-feat">
+            <div class="ai-feat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#005287" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="ai-feat-title">Risk &amp; Uyumluluk Analizi</div>
+              <div class="ai-feat-desc">Planladığınız işlemi anlatın; yapay zekâ potansiyel riskleri listeler.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── BOTTOM CTA ────────────────────────────────────── -->
+  <section class="hiw-cta">
+    <h2 class="reveal">Platformu Canlı Tanıyın</h2>
+    <p class="reveal" style="animation-delay:.07s">ATEZ uzmanlarıyla birebir demo alın; kendi süreçleriniz üzerinden platformun nasıl çalıştığını görün.</p>
+    <div class="cta-btns reveal" style="animation-delay:.14s">
+      <a href="#" class="btn-cta-p">
+        Demo Talep Et
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="solutions.html" class="btn-cta-s">Ürünleri Keşfet</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-brand">
+      <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="footer-social-btn" aria-label="X / Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#">Ürünler</a></li>
+            <li><a href="solutions.html">Çözümler</a></li>
+            <li><a href="nasil-calisir.html">Nasıl Çalışır</a></li>
+            <li><a href="yapay-zeka.html">Yapay Zekâ</a></li>
+            <li><a href="blockchain.html">Blockchain</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Şirket</h4>
+          <ul>
+            <li><a href="#">İletişim</a></li>
+            <li><a href="#">Haberler</a></li>
+            <li><a href="#">Basın Bültenleri</a></li>
+            <li><a href="#">Etkinlikler</a></li>
+            <li><a href="yatirimcilar.html">Yatırımcılar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Kurumsal Sorumluluk</h4>
+          <ul>
+            <li><a href="#">Şirket Politikası</a></li>
+            <li><a href="#">BT Güvenliği Taahhüdü</a></li>
+            <li><a href="#">Davranış Kuralları</a></li>
+            <li><a href="#">Karbon Emisyon Raporu</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-group">
+          <h4>Hukuki</h4>
+          <ul>
+            <li><a href="#">Hizmet Koşulları</a></li>
+            <li><a href="#">Gizlilik Politikası</a></li>
+            <li><a href="#">Çerez Politikası</a></li>
+            <li><a href="#">Çerez Tercihleri</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-logo">
+        <svg viewBox="0 0 54 54" fill="none"><path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="#005287"/></svg>
+        <span>ATEZ Yazılım A.Ş.</span>
+      </div>
+      <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Announcement bar ── */
+    (function(){
+      const bar=document.getElementById('announcement-bar'),btn=document.getElementById('announcement-close');
+      if(!bar)return;
+      if(localStorage.getItem('annbar-v1')==='dismissed'){document.documentElement.classList.add('annbar-off');return;}
+      btn.addEventListener('click',()=>{document.documentElement.classList.add('annbar-off');localStorage.setItem('annbar-v1','dismissed');});
+    })();
+
+    /* ── Theme toggle ── */
+    (function(){
+      const html=document.documentElement,btn=document.getElementById('theme-toggle'),stored=localStorage.getItem('atez-theme');
+      if(stored)html.setAttribute('data-theme',stored);
+      btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('atez-theme',next);});
+    })();
+
+    /* ── Header scroll ── */
+    const headerEl=document.getElementById('site-header');
+    function updateHeader(){headerEl.classList.toggle('scrolled',window.scrollY>60);}
+    window.addEventListener('scroll',updateHeader,{passive:true});
+    updateHeader();
+
+    /* ── Scroll reveal ── */
+    const revealEls=document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+      },{threshold:0.07,rootMargin:'0px 0px -24px 0px'});
+      revealEls.forEach(el=>io.observe(el));
+    } else {
+      revealEls.forEach(el=>el.classList.add('visible'));
+    }
+
+    /* ── Flow tabs ── */
+    const exportFlow=document.getElementById('flow-export');
+    const importFlow=document.getElementById('flow-import');
+    document.querySelectorAll('.flow-tab').forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        document.querySelectorAll('.flow-tab').forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        if(tab.dataset.flow==='export'){
+          exportFlow.style.display='flex'; importFlow.style.display='none';
+        } else {
+          exportFlow.style.display='none'; importFlow.style.display='flex';
+          importFlow.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'));
+        }
+      });
+    });
+
+    /* ── Counter animation ── */
+    const statEls=document.querySelectorAll('[data-count]');
+    const statObs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting)return;
+        const el=e.target,target=parseInt(el.dataset.count),suffix=el.dataset.suffix||'';
+        let val=0;const step=target/55;
+        const t=setInterval(()=>{val=Math.min(val+step,target);el.textContent=Math.round(val)+suffix;if(val>=target)clearInterval(t);},16);
+        statObs.unobserve(el);
+      });
+    },{threshold:.5});
+    statEls.forEach(el=>statObs.observe(el));
+
+    /* ── AI typing animation ── */
+    setTimeout(()=>{
+      const bot=document.getElementById('bot-msg');
+      if(!bot)return;
+      bot.style.transition='opacity .3s';bot.style.opacity='0';
+      setTimeout(()=>{
+        bot.innerHTML='Evet, 8471.30 (dizüstü bilgisayarlar) AB\'ye ihraçta KDV\'den muaf. Türkiye-AB STA kapsamında tercihli tarife de uygulanabilir. Menşe şahadetnamenizi hazırlamamı ister misiniz?';
+        bot.style.opacity='1';
+      },300);
+    },2800);
+  </script>
+</body>
+</html>
