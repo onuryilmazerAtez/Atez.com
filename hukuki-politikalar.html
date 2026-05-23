@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yasal Politikalar — ATEZ Yazılım Teknolojileri</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="shortcut icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{--primary:#005287;--primary-dark:#003d66;--annbar-h:50px;--header-h:96px;--ff:'Inter','Segoe UI',Arial,sans-serif;--ff-head:'Inter','Segoe UI',Arial,sans-serif;--bg:#ffffff;--bg-alt:#f5f5f5;--text:rgba(0,0,0,.88);--muted:rgba(0,0,0,.65);--divider:#d9d9d9;--section-border:#f0f0f0;--card-bg:#ffffff;--card-border:#d9d9d9;--mono-bg:#e8f5ff;--hdr-scrolled-bg:rgba(255,255,255,.94);--hdr-shadow:0 1px 0 rgba(0,0,0,.06);--nav-hero:rgba(0,0,0,.72);--nav-hero-hover:rgba(0,0,0,.88);--pill-hero-c:rgba(0,0,0,.65);--pill-hero-bd:rgba(0,0,0,.15);--pill-hero-bg:rgba(0,0,0,.04);--hero-bg:#e8f5ff;}
+    [data-theme="dark"]{--bg:#141414;--bg-alt:#1f1f1f;--text:rgba(255,255,255,.85);--muted:rgba(255,255,255,.65);--divider:#303030;--section-border:#303030;--card-bg:#1f1f1f;--card-border:#424242;--mono-bg:rgba(0,130,220,.14);--hdr-scrolled-bg:rgba(20,20,20,.94);--hdr-shadow:0 1px 0 rgba(0,0,0,.3);--nav-hero:rgba(255,255,255,.85);--nav-hero-hover:#ffffff;--pill-hero-c:rgba(255,255,255,.85);--pill-hero-bd:rgba(255,255,255,.22);--pill-hero-bg:rgba(255,255,255,.08);--hero-bg:#0a0f19;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);font-family:var(--ff);color:var(--text);overflow-x:hidden;transition:background .35s,color .35s;}
+    h1,h2,h3,h4{font-family:var(--ff-head);}
+    a{text-decoration:none;}
+    @keyframes annbar-flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .announcement-bar{position:fixed;top:0;left:0;right:0;height:var(--annbar-h);z-index:300;background:linear-gradient(120deg,#003d66,#005287,#0073b8,#0a3d7a,#6a00b8,#0073b8,#005287);background-size:300% 300%;animation:annbar-flow 8s ease infinite;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:height .3s ease,opacity .3s ease;}
+    html.annbar-off{--annbar-h:0px;}
+    html.annbar-off .announcement-bar{opacity:0;pointer-events:none;}
+    .announcement-content{display:flex;align-items:center;gap:12px;font-size:.8rem;font-weight:500;color:#fff;white-space:nowrap;padding:0 56px 0 16px;}
+    .announcement-badge{background:rgba(255,255,255,.22);border-radius:4px;padding:2px 8px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;}
+    .announcement-link{color:#fff;font-weight:600;font-size:.78rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.55);border-radius:20px;padding:4px 14px;flex-shrink:0;transition:background .18s,border-color .18s;}
+    .announcement-link:hover{background:rgba(255,255,255,.14);border-color:#fff;}
+    .announcement-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.75);cursor:pointer;padding:5px 7px;border-radius:4px;display:flex;transition:color .15s,background .15s;}
+    .announcement-close:hover{color:#fff;background:rgba(255,255,255,.15);}
+    header{position:fixed;top:var(--annbar-h);left:0;right:0;height:var(--header-h);background:rgba(240,247,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,82,135,.07);display:flex;align-items:center;padding:0 max(48px,calc((100vw - 1440px)/2 + 48px));z-index:200;transition:background .35s,box-shadow .35s,border-color .35s,top .3s ease,height .3s ease;}
+    [data-theme="dark"] header{background:rgba(7,13,31,.28);border-bottom-color:rgba(100,150,255,.08);}
+    header.scrolled{background:var(--hdr-scrolled-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--hdr-shadow);border-bottom-color:transparent;height:72px;}
+    .logo{height:52px;display:flex;align-items:center;flex-shrink:0;cursor:pointer;user-select:none;text-decoration:none;}
+    .logo-h{height:48px;width:auto;display:block;}
+    header.scrolled .logo-h{display:none;}
+    .logo-i{display:none;width:44px;height:44px;}
+    .logo-i path{fill:var(--primary);transition:fill .35s;}
+    header.scrolled .logo-i{display:block;}
+    [data-theme="dark"] header.scrolled .logo-i path{fill:#ffffff;}
+    nav{display:flex;gap:40px;margin-left:44px;flex:1;}
+    nav a{text-decoration:none;font-size:1rem;font-weight:600;color:var(--nav-hero);letter-spacing:.02em;transition:color .2s,opacity .2s;}
+    nav a:hover{color:var(--nav-hero-hover);}
+    header.scrolled nav a{color:var(--text);opacity:.75;}
+    header.scrolled nav a:hover{opacity:1;color:var(--primary);}
+    .header-right{display:flex;align-items:center;gap:12px;}
+    .btn-pill{height:38px;padding:0 18px;border:1px solid var(--pill-hero-bd);border-radius:20px;background:var(--pill-hero-bg);font-family:var(--ff);font-size:.9rem;font-weight:500;color:var(--pill-hero-c);cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .2s,border-color .2s,color .2s;}
+    .btn-pill:hover{filter:brightness(1.15);}
+    header.scrolled .btn-pill{border-color:var(--divider);background:transparent;color:var(--text);}
+    header.scrolled .btn-pill:hover{background:rgba(0,82,135,.07);border-color:rgba(0,82,135,.3);color:var(--primary);}
+    .btn-theme{padding:0 12px;}
+    .icon-sun{display:none;}
+    [data-theme="dark"] .icon-sun{display:block;}
+    [data-theme="dark"] .icon-moon{display:none;}
+    .nav-item{position:relative;display:flex;align-items:center;}
+    .nav-item::before{content:'';display:block;position:absolute;top:100%;left:-8px;right:-8px;height:20px;}
+    .nav-parent{display:flex;align-items:center;gap:5px;font-size:1rem;font-weight:600;color:var(--nav-hero);letter-spacing:.02em;transition:color .2s;cursor:default;}
+    .nav-item:hover .nav-parent{color:var(--nav-hero-hover);}
+    header.scrolled .nav-parent{color:var(--text);opacity:.75;}
+    header.scrolled .nav-item:hover .nav-parent{opacity:1;color:var(--primary);}
+    .nav-chevron{transition:transform .2s;}
+    .nav-item:hover .nav-chevron{transform:rotate(180deg);}
+    .nav-dropdown{position:absolute;top:calc(100% + 20px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:8px;min-width:200px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;box-shadow:0 8px 32px rgba(0,0,0,.10);z-index:100;}
+    .nav-item:hover .nav-dropdown{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;}
+    .nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;background:var(--card-bg);border-left:1px solid var(--card-border);border-top:1px solid var(--card-border);transform:translateX(-50%) rotate(45deg);}
+    .nav-dropdown a{display:block;padding:10px 15px;border-radius:8px;font-size:.88rem;font-weight:500;color:var(--text);letter-spacing:0;white-space:nowrap;text-decoration:none;transition:background .14s,color .14s;opacity:1!important;}
+    .nav-dropdown a:hover{background:var(--bg-alt);color:var(--primary);}
+    .nav-dropdown a.active{color:var(--primary);font-weight:600;}
+    .nav-dropdown-products{min-width:840px;left:0;transform:translateY(-6px);padding:12px 8px 8px;}
+    .nav-item:hover .nav-dropdown-products{transform:translateY(0);}
+    .nav-dropdown-products::before{left:60px;transform:none;}
+    .nav-dd-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;}
+    .nav-dd-grid .nav-dd-item{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:10px;text-decoration:none;transition:background .14s;color:var(--text);}
+    .nav-dd-grid .nav-dd-item:hover{background:var(--bg-alt);color:var(--text);}
+    .nav-dd-icon-wrap{width:48px;height:48px;border-radius:14px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    [data-theme="dark"] .nav-dd-icon-wrap{border-color:rgba(126,201,247,.12);}
+    .nav-dd-icon-wrap img,.nav-dd-icon-wrap svg{width:30px;height:30px;}
+    .nav-dd-name{font-size:.9rem;font-weight:500;color:var(--text);line-height:1.25;}
+    .nav-dd-desc{font-size:.73rem;color:var(--muted);margin-top:3px;line-height:1.3;}
+    .nav-dd-footer{padding:6px 8px 4px;margin-top:2px;display:flex;align-items:center;justify-content:flex-end;}
+    .nav-dd-all-btn{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:opacity .15s;}
+    .nav-dd-all-btn:hover{opacity:.65;}
+
+    /* ─── HERO ─── */
+    .legal-hero{padding:calc(var(--header-h) + var(--annbar-h) + 52px) max(64px,calc((100vw - 1440px)/2 + 64px)) 48px;background:var(--hero-bg);border-bottom:1px solid var(--section-border);}
+    .legal-hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;}
+    .legal-hero-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.025em;color:var(--text);line-height:1.1;margin-bottom:12px;}
+    .legal-hero-sub{font-size:.97rem;color:var(--muted);line-height:1.65;max-width:560px;}
+
+    /* ─── LAYOUT ─── */
+    .legal-wrap{display:grid;grid-template-columns:288px 1fr;max-width:1240px;margin:0 auto;padding:56px max(48px,calc((100vw - 1240px)/2 + 48px)) 96px;gap:0;align-items:start;}
+    @media(max-width:900px){.legal-wrap{grid-template-columns:1fr;}}
+
+    /* ─── STEPPER NAV ─── */
+    .legal-nav{position:sticky;top:calc(var(--header-h) + var(--annbar-h) + 32px);padding-right:36px;}
+    @media(max-width:900px){.legal-nav{position:static;padding-right:0;padding-bottom:40px;}}
+    .legal-nav-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-bottom:20px;padding-left:4px;}
+    .legal-stepper{display:flex;flex-direction:column;}
+    .legal-step{display:flex;gap:16px;cursor:pointer;padding-bottom:4px;}
+    .legal-step-track{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px;}
+    .legal-step-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--divider);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--muted);background:var(--bg);transition:all .22s;flex-shrink:0;position:relative;z-index:1;}
+    .legal-step.active .legal-step-circle{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 0 0 4px rgba(0,82,135,.12);}
+    .legal-step-line{width:2px;flex:1;min-height:20px;background:var(--divider);margin:4px 0;}
+    .legal-step:last-child .legal-step-line{display:none;}
+    .legal-step-body{padding:6px 0 28px;}
+    .legal-step:last-child .legal-step-body{padding-bottom:0;}
+    .legal-step-title{font-size:.9rem;font-weight:600;color:var(--muted);line-height:1.3;transition:color .2s;}
+    .legal-step.active .legal-step-title{color:var(--primary);}
+    .legal-step:hover:not(.active) .legal-step-title{color:var(--text);}
+    .legal-step-date{font-size:.72rem;color:var(--muted);opacity:.6;margin-top:4px;}
+    .legal-step.active .legal-step-date{opacity:.8;color:var(--primary);}
+
+    /* ─── CONTENT ─── */
+    .legal-content{border-left:1px solid var(--section-border);padding-left:48px;}
+    @media(max-width:900px){.legal-content{border-left:none;padding-left:0;border-top:1px solid var(--section-border);padding-top:40px;}}
+    .legal-panel{display:none;}
+    .legal-panel.active{display:block;}
+    .policy-topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--section-border);}
+    .policy-title{font-size:1.55rem;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+    .policy-date-badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg-alt);border:1px solid var(--divider);border-radius:20px;padding:5px 14px;font-size:.74rem;font-weight:500;color:var(--muted);white-space:nowrap;}
+    .policy-date-badge svg{width:12px;height:12px;flex-shrink:0;}
+    .policy-intro{font-size:.95rem;color:var(--text);line-height:1.8;margin-bottom:28px;padding:20px 24px;background:var(--mono-bg);border-radius:12px;border:1px solid rgba(0,82,135,.1);}
+    .policy-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:32px 0 10px;display:flex;align-items:center;gap:10px;}
+    .policy-body h2::before{content:'';display:inline-block;width:3px;height:16px;background:var(--primary);border-radius:2px;flex-shrink:0;}
+    .policy-body h3{font-size:.92rem;font-weight:700;color:var(--primary);margin:20px 0 8px;}
+    .policy-body p{font-size:.9rem;color:var(--text);line-height:1.8;margin-bottom:10px;}
+    .policy-body ul,.policy-body ol{padding-left:18px;margin-bottom:12px;}
+    .policy-body li{font-size:.9rem;color:var(--text);line-height:1.75;margin-bottom:5px;}
+    .policy-body ul li{list-style:none;position:relative;padding-left:14px;}
+    .policy-body ul li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--primary);opacity:.5;}
+    .policy-sites{background:var(--bg-alt);border:1px solid var(--section-border);border-radius:10px;padding:14px 18px;margin-bottom:20px;}
+    .policy-sites li{list-style:decimal;list-style-position:inside;font-size:.88rem;color:var(--muted);}
+    .policy-contact-block{margin-top:28px;padding:20px 24px;background:var(--bg-alt);border-radius:12px;border:1px solid var(--section-border);}
+    .policy-contact-block p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.7;}
+    .policy-contact-block a{color:var(--primary);font-weight:500;}
+
+    /* ─── Footer ─── */
+    footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;position:relative;overflow:hidden;}
+    .footer-wm{position:absolute;right:-120px;bottom:-120px;width:560px;height:560px;opacity:.04;transform:rotate(-18deg);pointer-events:none;user-select:none;}
+    .footer-wm svg{width:100%;height:100%;}
+    .footer-brand{margin-bottom:52px;}
+    .footer-tagline{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.12;color:var(--text);letter-spacing:-.02em;margin-bottom:28px;}
+    .footer-socials{display:flex;gap:12px;}
+    .footer-social-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text);text-decoration:none;transition:border-color .18s,background .18s,color .18s;}
+    .footer-social-btn:hover{border-color:var(--primary);background:var(--primary);color:#fff;}
+    .footer-social-btn svg{width:17px;height:17px;}
+    .footer-divider{border:none;border-top:1px solid var(--divider);margin-bottom:48px;}
+    .footer-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;margin-bottom:60px;}
+    @media(max-width:900px){.footer-nav{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:520px){.footer-nav{grid-template-columns:1fr;}}
+    .footer-nav-col{display:flex;flex-direction:column;gap:24px;}
+    .footer-nav-group h4{font-size:.82rem;font-weight:700;color:var(--text);letter-spacing:.01em;margin-bottom:14px;}
+    .footer-nav-group ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+    .footer-nav-group ul li a{text-decoration:none;font-size:.9rem;color:var(--muted);transition:color .16s;}
+    .footer-nav-group ul li a:hover{color:var(--primary);}
+    .footer-nav-group ul li a.active{color:var(--primary);font-weight:600;}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--divider);flex-wrap:wrap;gap:12px;}
+    .footer-bottom-logo{display:flex;align-items:center;gap:10px;}
+    .footer-bottom-logo svg{width:28px;height:28px;}
+    .footer-bottom-logo span{font-size:.82rem;font-weight:600;color:var(--primary);}
+    .footer-copy{font-size:.78rem;color:var(--muted);opacity:.6;}
+  </style>
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-content">
+      <span class="announcement-badge">Yeni</span>
+      <span class="announcement-text">Webinar: AI ile Gümrük Otomasyonu — <strong>25 Ocak 2025, 14:00</strong></span>
+      <a href="#" class="announcement-link">Ücretsiz Kayıt Ol →</a>
+    </div>
+    <button class="announcement-close" id="announcement-close" aria-label="Kapat">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <header id="site-header">
+    <a href="index.html" class="logo" aria-label="ATEZ">
+      <img src="assets/logo-horizontal.svg" alt="ATEZ" class="logo-h">
+      <svg class="logo-i" width="44" height="44" viewBox="0 0 54 54" fill="none"><path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z"/></svg>
+    </a>
+    <nav>
+      <div class="nav-item">
+        <span class="nav-parent">Çözümler<svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        <div class="nav-dropdown">
+          <a href="solutions.html">Çözümler</a>
+          <a href="nasil-calisir.html">Nasıl Çalışır</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-parent">Ürünler<svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        <div class="nav-dropdown nav-dropdown-products">
+          <div class="nav-dd-grid">
+            <a href="declarant.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Declarant.svg" alt="Declarant"></div><div><div class="nav-dd-name">Declarant</div><div class="nav-dd-desc">Gümrük beyannamesi yönetimi</div></div></a>
+            <a href="declarantai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"></div><div><div class="nav-dd-name">DeclarantAI</div><div class="nav-dd-desc">AI destekli beyan otomasyonu ve IDP</div></div></a>
+            <a href="transcode.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransCode.svg" alt="Transcode"></div><div><div class="nav-dd-name">Transcode</div><div class="nav-dd-desc">Transit beyan yönetim sistemi</div></div></a>
+            <a href="transitai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransitAI.svg" alt="TransitAI"></div><div><div class="nav-dd-name">TransitAI</div><div class="nav-dd-desc">AI ile transit belge işleme</div></div></a>
+            <a href="tariff.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="Tariff"></div><div><div class="nav-dd-name">Tariff</div><div class="nav-dd-desc">GTİP ve tarife veri platformu</div></div></a>
+            <a href="tariffai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TariffAI.svg" alt="TariffAI"></div><div><div class="nav-dd-name">TariffAI</div><div class="nav-dd-desc">AI ile GTİP sınıflandırma yardımcısı</div></div></a>
+            <a href="logicust.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Logicust.svg" alt="Logicust"></div><div><div class="nav-dd-name">Logicust</div><div class="nav-dd-desc">Merkezi ürün gümrük uyum yönetimi</div></div></a>
+            <a href="customs-shield.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomShield.svg" alt="Customs Shield"></div><div><div class="nav-dd-name">Customs Shield</div><div class="nav-dd-desc">Beyan öncesi mevzuat uyum kontrolü</div></div></a>
+            <a href="customs-xray.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/XrayAI.svg" alt="Customs X-Ray"></div><div><div class="nav-dd-name">Customs X-Ray</div><div class="nav-dd-desc">AI ile beyan sonrası uyum kontrolü</div></div></a>
+            <a href="customs-loupe.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomsLoupe.svg" alt="Customs Loupe"></div><div><div class="nav-dd-name">Customs Loupe</div><div class="nav-dd-desc">Gümrük iş zekası ve analitik çözümü</div></div></a>
+            <a href="greenpulse.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/greenpulse.svg" alt="Greenpulse"></div><div><div class="nav-dd-name">Greenpulse</div><div class="nav-dd-desc">CBAM ve sürdürülebilirlik raporlaması</div></div></a>
+          </div>
+          <div class="nav-dd-footer"><a href="solutions.html" class="nav-dd-all-btn">Tüm Ürünleri Gör<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a></div>
+        </div>
+      </div>
+      <a href="yapay-zeka.html">Yapay Zekâ</a>
+      <a href="blockchain.html">Blockchain</a>
+    </nav>
+    <div class="header-right">
+      <button class="btn-pill btn-theme" id="theme-toggle" aria-label="Temayı değiştir">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="legal-hero-eyebrow">Hukuki</div>
+    <h1 class="legal-hero-title">Yasal Politikalar</h1>
+    <p class="legal-hero-sub">Verilerinizin korunması, hizmetlerimizin kapsamı ve kurumsal uyum taahhütlerimize ilişkin yasal düzenlemelerimiz.</p>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="legal-wrap">
+
+    <!-- STEPPER NAV -->
+    <aside class="legal-nav" aria-label="Politika seçimi">
+      <div class="legal-nav-label">Politikalar</div>
+      <div class="legal-stepper">
+
+        <div class="legal-step active" data-tab="hizmet-kosullari">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">1</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Hizmet Koşulları</div>
+            <div class="legal-step-date">Güncelleme: 08 Haz 2025</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="gizlilik-politikasi">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">2</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Gizlilik Politikası</div>
+            <div class="legal-step-date">Güncelleme: 24 Mar 2026</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="cerez-politikasi">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">3</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Çerez Politikası</div>
+            <div class="legal-step-date">Güncelleme: 08 Haz 2025</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="uyum-politikasi">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">4</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Uyum Politikası</div>
+            <div class="legal-step-date">Güncelleme: 30 Tem 2025</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="webinar-gizlilik">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">5</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Webinar Gizlilik Bildirimi</div>
+            <div class="legal-step-date">Güncelleme: 24 Mar 2026</div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- POLICY PANELS -->
+    <main class="legal-content">
+
+      <!-- 1. Hizmet Koşulları -->
+      <article id="hizmet-kosullari" class="legal-panel active">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Hizmet Koşulları</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 08 Haziran 2025</span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">Sevgili ziyaretçimiz; aşağıda listelenen web sitelerimizi ziyaret etmeden önce işbu Hizmet Koşulları (Kullanım Koşulları) sözleşmesini dikkatlice okuyunuz. Web sitelerimize ve buralarda sunulan hizmetlere erişiminiz tamamen bu sözleşmeyi kabulünüze ve bu sözleşme ile belirlenen şartlara uymanıza bağlıdır. Şayet bu sözleşmede yazan herhangi bir koşulu kabul etmiyorsanız, lütfen sitelerimize erişiminizi sonlandırınız.</p>
+          <p>Web sitelerimiz:</p>
+          <ol class="policy-sites">
+            <li>singlewindow.io</li>
+            <li>atez.com</li>
+            <li>atez.com.tr</li>
+          </ol>
+          <p>Yukarıda listelenen web siteleri Atez Yazılım Teknolojileri A.Ş. tarafından yönetilmekte olup, bundan sonra "Web sitesi veya Web Siteleri" olarak anılacaktır. İşbu siteye ilişkin Kullanım Koşulları, yayın tarihi itibarı ile geçerlidir. Değişiklik yapma hakkı tamamen Atez Yazılım Teknolojileri A.Ş.'ne aittir.</p>
+
+          <h2>1. Gizlilik</h2>
+          <p>Gizlilik ile ilgili koşullar, ayrı bir politika olarak ("Gizlilik Politikası"), kişisel verilerinizin tarafımızca işlenmesinin esaslarını düzenlemek üzere mevcuttur. Web sitelerimizi kullanarak, kişisel verilerinizin gizlilik politikasına uygun şekilde işlendiğini kabul etmiş olursunuz.</p>
+
+          <h2>2. Hizmet Kapsamı</h2>
+          <p>Atez Yazılım Teknolojileri A.Ş., sunacağımız hizmetlerin kapsam ve niteliğini yasalar çerçevesinde web sitelerimiz üzerinde yayınlayarak yürürlüğe girişini belirlemekte tamamen serbest olup; hizmetlere ilişkin yapacağımız değişiklikler ile ilgili haklarımız saklıdır.</p>
+
+          <h2>3. Telif Hakları</h2>
+          <p>Web sitelerimizde yayınlanan tüm metin, kod, grafik, logo, resim, ses dosyaları ve hizmet olarak sunulan yazılımların sahibi Atez Yazılım Teknolojileri A.Ş.'de olup, tüm hakları saklıdır. Yazılı izin olmaksızın site içeriğinin çoğaltılması veya kopyalanması kesinlikle yasaktır.</p>
+
+          <h2>4. Genel Hükümler</h2>
+          <ol>
+            <li>Kullanıcıların tamamı, web sitelerimizi yalnızca hukuka uygun ve şahsi amaçlarla kullanacaklarını ve üçüncü kişilerin haklarına tecavüz teşkil edecek nitelikteki herhangi bir faaliyette bulunmayacaklarını taahhüt eder.</li>
+            <li>Web sitelerimizde mevcut bilgilerin doğruluk ve güncelliğini sağlamak için elimizden geleni yapmaktayız. Ancak gösterdiğimiz çabaya rağmen, bu bilgiler, fiili değişikliklerin gerisinde kalabilir, birtakım farklılıklar olabilir.</li>
+            <li>Web sitelerimizde üçüncü şahıslar tarafından işletilen ve içerikleri tarafımızca bilinmeyen diğer web sitelerine, uygulamalara ve platformlara bağlantılar bulunabilir. Bu içeriklerden dolayı ATEZ Yazılım Teknolojileri A.Ş.'ne hiçbir sorumluluk yüklenemez.</li>
+            <li>Web sitelerimizi virüs ve benzeri zararlı yazılımlardan arındırılmış tutmak konusunda elimizden geleni yapmaktayız; ancak bu konuda kesin taahhüt vermemekteyiz. ATEZ Yazılım Teknolojileri A.Ş.'ne virüs vb. kötü amaçlı programlardan kaynaklanabilecek zararlardan dolayı sorumluluk yüklenemez.</li>
+            <li>Web sitelerimizde sunulan hizmetlerde hiçbir kusur veya hata olmayacağına ya da kesintisiz hizmet verileceğine dair taahhüt vermemekteyiz. ATEZ Yazılım Teknolojileri'nin gerektiği hallerde kullanıcıların hizmetlere erişimini önceden bildirmeksizin herhangi bir zamanda sonlandırma hakkı saklıdır.</li>
+          </ol>
+
+          <h2>5. Sorumluluğun Sınırlandırılması</h2>
+          <p>Web sitelerimizin kullanımından doğan zararlara ilişkin sorumluluğumuz, kast ve ağır ihmal ile sınırlıdır. Sözleşmenin ihlalinden doğan zararlarda, talep edilebilecek toplam tazminat, öngörülebilir hasarlar ile sınırlıdır. Hukuken mücbir sebep sayılan tüm durumlarda, gecikme, ifa etmeme veya temerrütten dolayı herhangi bir tazminat yükümlülüğümüz doğmayacaktır.</p>
+
+          <h2>6. Uyuşmazlıkların Çözümü</h2>
+          <p>İşbu Sözleşme'nin uygulanmasından veya yorumlanmasından doğacak her türlü uyuşmazlığın çözümünde, Türkiye Cumhuriyeti yasaları uygulanır.</p>
+        </div>
+      </article>
+
+      <!-- 2. Gizlilik Politikası -->
+      <article id="gizlilik-politikasi" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Gizlilik Politikası</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 24 Mart 2026</span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ Yazılım Teknolojileri A.Ş. ("ATEZ" veya "Şirket"), internet sitesi ziyaretçilerinin, müşterilerinin, webinar katılımcılarının ve iş ortaklarının kişisel verilerinin korunmasına önem vermektedir.</p>
+
+          <h2>1. Veri Sorumlusu</h2>
+          <p>ATEZ Yazılım Teknolojileri A.Ş.<br>Huzur Mah. Azerbaycan Cad. Skyland D Blok No:4D/3, Sarıyer – İstanbul</p>
+
+          <h2>2. İşlenen Kişisel Veriler</h2>
+          <ul>
+            <li>Kimlik ve iletişim bilgileri</li>
+            <li>Mesleki ve şirket bilgileri</li>
+            <li>Webinar katılım bilgileri</li>
+            <li>Görsel ve işitsel veriler (açık rıza halinde)</li>
+            <li>Web sitesi kullanım verileri ve çerezler</li>
+            <li>İletişim kayıtları</li>
+          </ul>
+
+          <h2>3. İşleme Amaçları</h2>
+          <ul>
+            <li>Yazılım ürün ve hizmetlerinin sunulması</li>
+            <li>Müşteri ilişkilerinin yürütülmesi</li>
+            <li>Talep ve başvuruların yönetimi</li>
+            <li>Webinar ve etkinlik organizasyonu</li>
+            <li>Webinar kayıtlarının işlenmesi ve paylaşılması (açık rıza ile)</li>
+            <li>Tanıtım ve pazarlama iletişimlerinin gönderilmesi (açık rıza ile)</li>
+            <li>Bilgi güvenliği süreçlerinin yürütülmesi</li>
+            <li>Hukuki yükümlülüklerin yerine getirilmesi</li>
+          </ul>
+
+          <h2>4. Hukuki Sebepler</h2>
+          <p>Kişisel veriler aşağıdaki hukuki sebeplere dayanılarak işlenebilir:</p>
+          <ul>
+            <li>Sözleşmenin kurulması ve ifası</li>
+            <li>Şirketin meşru menfaatleri</li>
+            <li>Hukuki yükümlülüklerin yerine getirilmesi</li>
+            <li>Açık rıza</li>
+          </ul>
+          <p>Görüntü ve ses kayıtları, yurtdışı veri aktarımı ve ticari ileti gönderimi yalnızca açık rıza ile gerçekleştirilir.</p>
+
+          <h2>5. Veri Aktarımı</h2>
+          <p>Kişisel veriler aşağıdaki taraflarla paylaşılabilir:</p>
+          <ul>
+            <li>Webinar platform sağlayıcıları</li>
+            <li>Bulut ve IT hizmet sağlayıcıları</li>
+            <li>E-posta servis sağlayıcıları</li>
+            <li>İş ortakları</li>
+            <li>Yetkili kamu kurumları</li>
+          </ul>
+          <p>Dijital hizmetlerin doğası gereği veriler yurtdışına aktarılabilir.</p>
+
+          <h2>6. Saklama Süresi</h2>
+          <p>Kişisel veriler işleme amacının gerektirdiği süre boyunca saklanır. Webinar kayıtları sınırlı süreyle saklanır.</p>
+
+          <h2>7. İlgili Kişi Hakları</h2>
+          <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+          <ul>
+            <li>Bilgi talep etme</li>
+            <li>Düzeltme</li>
+            <li>Silme</li>
+            <li>İşlemeye itiraz</li>
+            <li>Zarara uğranması halinde tazminat</li>
+          </ul>
+
+          <h2>8. Ticari İletişim</h2>
+          <p>Ticari elektronik iletiler yalnızca açık rıza ile gönderilir.</p>
+
+          <h2>9. İletişim</h2>
+          <div class="policy-contact-block">
+            <p>Gizlilikle ilgili talepleriniz için: <a href="mailto:info@atez.com">info@atez.com</a></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Çerez Politikası -->
+      <article id="cerez-politikasi" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Çerez Politikası</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 08 Haziran 2025</span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">Bu Çerez Politikası, ATEZ Yazılım Teknolojileri A.Ş.'nin çerezleri ve benzer teknolojileri nasıl kullandığını açıklamaktadır. Aşağıda listelenen alanlara ziyaret ettiğinizde sizi tanımak için çerezleri ve benzer teknolojileri nasıl kullandığımızı; bu teknolojilerin ne olduğunu ve bunları neden kullandığımızı, ayrıca bunları kullanımımızı kontrol etme haklarınızı da açıklamaktadır.</p>
+
+          <h2>1. Giriş</h2>
+          <p>Web sitelerimiz:</p>
+          <ol class="policy-sites">
+            <li>singlewindow.io</li>
+            <li>atez.com</li>
+            <li>atez.com.tr</li>
+          </ol>
+          <p>çerez ve benzeri teknolojiler kullanmaktadır. Çerezler web sitelerimizde bazı fonksiyonları etkin kılabilmek adına 3. taraflarca da kullanılabilmektedir.</p>
+
+          <h2>2. Çerezler Nedir?</h2>
+          <p>Çerezler, bir web sitesini ziyaret ettiğinizde bilgisayarınıza veya mobil cihazınıza yerleştirilen küçük veri dosyalarıdır. Çerezler, web sitesi sahipleri tarafından web sitelerinin çalışmasını veya daha verimli çalışmasını sağlamak ve ayrıca raporlama bilgileri sağlamak için yaygın olarak kullanılmaktadır.</p>
+          <p>Web sitesi sahibi tarafından belirlenen çerezler "birinci taraf çerezleri" olarak adlandırılır. Web sitesi sahibi dışındaki taraflarca belirlenen çerezler ise "üçüncü taraf çerezleri" olarak adlandırılır.</p>
+
+          <h2>3. Neden Çerez Kullanıyoruz?</h2>
+          <p>Birinci ve üçüncü taraf çerezlerini çeşitli nedenlerle kullanıyoruz. Bazı çerezler, Web Sitemizin çalışması için teknik nedenlerle gereklidir ve bunları "temel" veya "kesinlikle gerekli" çerezler olarak adlandırıyoruz. Diğer çerezler kullanıcılarımızın ilgi alanlarını izlememizi ve deneyimi geliştirmemizi sağlamaktadır.</p>
+
+          <h2>4. Çerezleri Nasıl Kontrol Edebilirim?</h2>
+          <p>Çerezleri kabul etme veya reddetme konusunda karar verme hakkına sahipsiniz. Çerez banner'ı üzerinden zorunlu olmayan çerezleri kabul edebilir veya reddedebilirsiniz. Zorunlu çerezler hizmetin çalışması için gereklidir ve kapatılamaz. Analitik çerezler yalnızca kabul ettiğinizde etkinleştirilir.</p>
+
+          <h2>5. Analitik ve Özelleştirme Çerezleri</h2>
+          <p>Bu çerezler, Web Sitemizin nasıl kullanıldığını anlamamıza veya pazarlama kampanyalarımızın etkinliğini ölçmemize yardımcı olmak amacıyla kullanılır.</p>
+          <ul>
+            <li><strong>İsim:</strong> İsteğe Bağlı Analitik Çerezi</li>
+            <li><strong>Amaç:</strong> Yalnızca isteğe bağlı analitik onayı verildiğinde çalışır; genel sayfa kullanımını toplu düzeyde ölçmek için kullanılır.</li>
+            <li><strong>Sağlayıcı:</strong> ATEZ Yazılım Teknolojileri</li>
+            <li><strong>Tür:</strong> http_cookie</li>
+            <li><strong>Geçerlik süresi:</strong> 30 Gün</li>
+          </ul>
+
+          <h2>6. Tarayıcımdaki Çerezleri Nasıl Kontrol Edebilirim?</h2>
+          <p>Web tarayıcı kontrolleriniz aracılığıyla çerezleri reddedebilirsiniz. Aşağıda, en popüler tarayıcılarda çerezlerin nasıl yönetileceğine ilişkin bilgiler yer almaktadır:</p>
+          <ol>
+            <li>Chrome</li>
+            <li>Internet Explorer</li>
+            <li>Firefox</li>
+            <li>Edge</li>
+            <li>Safari</li>
+            <li>Opera</li>
+          </ol>
+
+          <h2>7. Flash Çerezleri Veya Yerel Paylaşılan Nesneleri Kullanıyor Musunuz?</h2>
+          <p>Web siteleri, hizmetlerimizi kullanımınız hakkında bilgi toplamak ve saklamak, dolandırıcılığı önlemek ve diğer site işlemleri için "Flash Çerezleri" kullanabilir. Flash Çerezlerin bilgisayarınızda depolanmasını istemiyorsanız, Flash oynatıcınızın ayarlarını değiştirerek depolanmasını engelleyebilirsiniz.</p>
+
+          <h2>8. Hedefli Reklamlar Sunuyor Musunuz?</h2>
+          <p>Üçüncü taraflar, Web Sitemiz aracılığıyla reklam sunmak için bilgisayarınızda veya mobil cihazınızda çerezler sunabilir. Bu şirketler, ilginizi çekebilecek mal ve hizmetler hakkında alakalı reklamlar sunmak için bu ve diğer web sitelerine yaptığınız ziyaretler hakkındaki bilgileri kullanabilir.</p>
+
+          <h2>9. Analitik ve Bülten Tercih Kontrolü</h2>
+          <p>Web sitemizde analitik ölçüm, tercih bazlı çalışır: yalnızca çerez izni verdiğinizde analitik olaylar gönderilir. Reddettiğinizde zorunlu olmayan izleme yapılmaz.</p>
+          <p>Bülten aboneliklerinde verileriniz açık rızanıza dayanarak işlenir ve Mailchimp veri işleyen olarak kullanılır. Her e-postadaki abonelikten ayrıl bağlantısı ile onayınızı geri çekebilirsiniz.</p>
+
+          <h2>10. Bu Çerez Politikasını Ne Sıklıkla Güncelleyeceksiniz?</h2>
+          <p>Bu Çerez Politikasını, örneğin kullandığımız çerezlerdeki değişiklikleri yansıtmak için veya diğer operasyonel, yasal veya düzenleyici nedenlerle zaman zaman güncelleyebiliriz. Bu Çerez Politikasının üst bölümünde politikanın en son ne zaman güncellendiğini görebilirsiniz.</p>
+
+          <h2>11. Nereden Daha Fazla Bilgi Alabilirim?</h2>
+          <div class="policy-contact-block">
+            <p>ATEZ Yazılım Teknolojileri<br>
+            <a href="mailto:info@atez.com">info@atez.com</a><br>
+            Adres: Huzur Mh. Azerbaycan Cd. Skyland D Blok No:4D/3 34485 Sarıyer İstanbul Türkiye<br>
+            Tel: +90 850 393 4141 &nbsp;|&nbsp; Fax: +90 212 630 4044</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Uyum Politikası -->
+      <article id="uyum-politikasi" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Uyum Politikası</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 30 Temmuz 2025</span>
+        </div>
+        <div class="policy-body">
+          <h2>1. Amaç</h2>
+          <p>ATEZ, tüm iş süreçlerini ISO 9001:2015 Kalite Yönetim Sistemi, ISO 27001 Bilgi Güvenliği Yönetim Sistemi, ISO 45001:2018 İş Sağlığı ve Güvenliği Yönetim Sistemi ve ISO 37301:2021 Uyum Yönetim Sistemi standartlarına uygun şekilde yürütmeyi amaçlar ve taahhüt eder. Bu politika, ATEZ'in yasal düzenlemelere ve etik standartlara uygun hareket etme taahhüdünü ortaya koyar.</p>
+          <p>Amacımız, iş süreçlerimizde uyumu teşvik ederek şirketimizin itibarını ve sürdürülebilirliğini korumak, iş verimliliğini ve güvenilirliği artırmak ve uyum risklerini minimize etmektir.</p>
+
+          <h2>2. Kapsam</h2>
+          <p>Bu politika, pozisyonlarına veya şirket içindeki rollerine bakılmaksızın Şirketin yurtiçi ve yurtdışı ofislerindeki tüm ATEZ çalışanları, yüklenicileri, danışmanları, temsilcileri ve üçüncü tarafları için geçerlidir. Kamu görevlileri, özel sektör ortakları ve diğer paydaşlarla ilişkiler de dahil olmak üzere tüm iş faaliyetlerini kapsar.</p>
+
+          <h2>3. Tanımlar</h2>
+          <p><strong>Entegre Yönetim Sistemleri (EYS):</strong> ATEZ bünyesinde ISO 9001, ISO 27001, ISO 45001 ve ISO 37301 standartlarının takip edildiği yönetim sistemidir.</p>
+          <p><strong>Uyum:</strong> Bir kurumun tüm paydaşları ve kamu ile ilişkilerindeki temel kural ve ilkelerin düzenlenmesi ve bu kural ve ilkelere uygun hareket edilip edilmediğinin takip edilmesidir.</p>
+          <p><strong>Uyum Fonksiyonu:</strong> Şirket içinde Uyum Yönetim Sisteminin işlerliği için sorumluluk ve yetkiye sahip olan kişi veya ekibi ifade eder.</p>
+          <p><strong>Uyum Yükümlülükleri:</strong> Şirketin tabi olduğu yasal düzenlemeler, standartlar ve şirket tarafından gönüllü olarak benimsenmiş etik kuralların tümünü kapsar.</p>
+          <p><strong>Uyum Kültürü:</strong> Şirketin tüm kademelerinde uyumu destekleyen etik değerler ve davranışlar bütünüdür.</p>
+
+          <h2>4. Uyum Yükümlülükleri</h2>
+          <p>ATEZ, yasal düzenlemelere, endüstri standartlarına, Şirketin İş Etiği İlkelerine ve politikalarına uyumu taahhüt eder. Uyum yükümlülüklerinin sistematik bir şekilde belirlenmesi ve değerlendirilmesi amacıyla bir Uyum Yönetim Sistemi oluşturulmuştur.</p>
+
+          <h2>5. Rol ve Sorumluluklar</h2>
+          <h3>5.1 Üst Yönetim</h3>
+          <ul>
+            <li>Şirketin uyum politikasını belirlemek ve stratejik yönüne uygun olmasını sağlamak</li>
+            <li>Politikanın uygulanabilirliğini desteklemek için gerekli kaynakları tahsis etmek</li>
+            <li>Şirket içinde uyum kültürünün gelişimini teşvik etmek ve liderlik göstermek</li>
+            <li>Uyum performansını sürekli olarak gözden geçirmek ve gerektiğinde iyileştirmeler yapmak</li>
+            <li>Uyum fonksiyonuyla doğrudan iletişim kurarak düzenli raporlar almak</li>
+          </ul>
+          <h3>5.2 Uyum Fonksiyonu</h3>
+          <ul>
+            <li>Günlük operasyonlarda uyum yönetimini yürütmek</li>
+            <li>Uyum politikalarını oluşturmak ve düzenli aralıklarla gözden geçirmek</li>
+            <li>Uyum risk değerlendirmelerini yapmak ve gerekli kontrolleri tasarlayarak uygulanmasını sağlamak</li>
+            <li>Uyum eğitimlerini planlamak</li>
+            <li>Uyum ihlal bildirimlerini ele almak ve gerekli düzeltici aksiyonları planlamak</li>
+          </ul>
+          <h3>5.3 Yöneticiler</h3>
+          <ul>
+            <li>Kendi sorumluluk alanlarında uyumu sağlamak için gereken aksiyonları almak</li>
+            <li>Birimlerine ait uyum risklerini düzenli olarak izlemek ve analiz etmek</li>
+            <li>Çalışanların uyum eğitimlerine katılımını desteklemek ve liderlik etmek</li>
+          </ul>
+          <h3>5.4 Çalışanlar</h3>
+          <ul>
+            <li>Şirketin uyum politikalarına, prosedürlerine ve belirlenmiş uyum yükümlülüklerine uygun hareket etmek</li>
+            <li>Uyum ihlallerini veya potansiyel ihlalleri belirlenmiş kanallar aracılığıyla bildirmek</li>
+            <li>Uyum konularında düzenli eğitimlere katılım sağlamak</li>
+          </ul>
+
+          <h2>6. Sürekli İyileştirme</h2>
+          <p>ATEZ, uyum yönetimi süreçlerini ve uyuma ilişkin uygulamalarını sürekli olarak geliştirmeyi taahhüt eder. Bu, işbu Politikanın düzenli olarak gözden geçirilmesi ve güncellenmesinin yanı sıra endüstri grupları, STK'lar ve diğer kuruluşlarla birlikte çalışmayı da içerir.</p>
+
+          <h2>7. Eğitim ve Farkındalık</h2>
+          <p>ATEZ, işbu Politika kapsamında şirketin ihtiyaçları doğrultusunda uyum yükümlülüklerine ve süreçlerine ilişkin eğitim ve farkındalık çalışmaları planlar ve uygular. Bu eğitimlerin tasarlanmasında farklı çalışan ve paydaş gruplarının ihtiyaçları ve farklı iş süreçlerinin taşıdığı uyum riskleri değerlendirilir.</p>
+
+          <h2>8. İzleme ve Uyum</h2>
+          <p>ATEZ, bu politikaya uyumu izlemek ve iyileştirme alanlarını belirlemek için düzenli denetimler ve değerlendirmeler yapacaktır. Bu politikaya uyuma yönelik değerlendirme, düzenli uyum raporlamalarının bir parçasıdır.</p>
+
+          <h2>9. Politikaya Aykırılık</h2>
+          <p>Bu politikaya uyulmaması, istihdamın veya iş ilişkisini doğuran sözleşmelerin feshine kadar varabilecek ciddi yaptırımlarla sonuçlanabilir. ATEZ, olayın ciddiyetine ve durumun gereklerine göre yasal işlem de başlatabilir.</p>
+
+          <h2>10. Bildirim ve Bildirimde Bulunanın Korunması</h2>
+          <p>ATEZ, çalışanların, tedarikçilerin ve diğer paydaşların endişelerini gizlilik içinde ve misilleme korkusu olmadan bildirmeleri için gerekli mekanizmaları sağlar. Bildirimler Uyum Fonksiyonuna <a href="mailto:etik@atez.com">etik@atez.com</a> adresinden veya yüz yüze yapılabilir. ATEZ çalışanlarına kimliklerini açıklamadan da bildirimde bulunma hakkı tanır ve anonim bildirimleri de aynı ciddiyetle ele alır.</p>
+          <p>ATEZ, insan hakları ihlallerine ilişkin tüm bildirimleri derhal ve adil bir şekilde soruşturmayı taahhüt eder.</p>
+
+          <h2>11. Gözden Geçirme ve Revizyon</h2>
+          <p>Bu politika yerel ve uluslararası hukuka uygunluk bakımından, yürürlüğe girişinden itibaren yılda bir kez Şirket Uyum Fonksiyonu koordinasyonunda gözden geçirilecek ve gerektiğinde güncellenecektir.</p>
+        </div>
+      </article>
+
+      <!-- 5. Webinar Gizlilik Bildirimi -->
+      <article id="webinar-gizlilik" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Webinar Gizlilik Bildirimi</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 24 Mart 2026</span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ Yazılım Teknolojileri A.Ş. ("Şirket"), webinar katılımcılarına ait kişisel verilerin korunmasına önem vermektedir.</p>
+
+          <h2>1. Veri Sorumlusu</h2>
+          <p>ATEZ Yazılım Teknolojileri A.Ş.<br>Sarıyer – İstanbul<br><a href="mailto:info@atez.com">info@atez.com</a></p>
+
+          <h2>2. Veri Toplama Yöntemi</h2>
+          <p>Kişisel veriler aşağıdaki kanallar vasıtasıyla elektronik ortamda toplanabilir:</p>
+          <ul>
+            <li>Webinar kayıt formları</li>
+            <li>E-posta iletişimi</li>
+            <li>Webinar platformları (Zoom, Microsoft Teams, Google Meet vb.)</li>
+            <li>Web sitesi araçları</li>
+          </ul>
+
+          <h2>3. İşlenen Veri Kategorileri</h2>
+          <ul>
+            <li>Kimlik ve iletişim bilgileri (ad, soyad, şirket, unvan, e-posta, telefon)</li>
+            <li>Webinar katılım bilgileri</li>
+            <li>Teknik erişim verileri (IP adresi, bağlantı kayıtları)</li>
+            <li>Görsel ve işitsel kayıtlar (açık rıza halinde)</li>
+          </ul>
+
+          <h2>4. İşleme Amaçları</h2>
+          <ul>
+            <li>Webinar katılım kayıtlarının oluşturulması</li>
+            <li>Hatırlatma ve teknik bilgilendirme gönderimi</li>
+            <li>Webinar altyapısının ve teknik desteğin sağlanması</li>
+            <li>Katılım belgelerinin hazırlanması</li>
+            <li>Webinar kayıtlarının eğitim, arşivleme ve tanıtım amaçlarıyla kullanılması (açık rıza ile)</li>
+            <li>Gelecek etkinlik ve hizmetler hakkında bilgilendirme (açık rıza ile)</li>
+            <li>Bilgi güvenliği süreçlerinin yürütülmesi</li>
+            <li>Hukuki yükümlülüklerin yerine getirilmesi</li>
+          </ul>
+
+          <h2>5. Hukuki Sebepler</h2>
+          <p>Kişisel veriler aşağıdaki hukuki sebeplere dayanılarak işlenebilir:</p>
+          <ul>
+            <li>Sözleşmenin kurulması veya ifası için gereklilik</li>
+            <li>Şirketin meşru menfaatleri</li>
+            <li>Hukuki yükümlülüklerin yerine getirilmesi</li>
+            <li>Açık rıza (kayıt, yurtdışı aktarım ve pazarlama iletişimi için)</li>
+          </ul>
+
+          <h2>6. Veri Aktarımı</h2>
+          <p>Kişisel veriler aşağıdaki taraflarla paylaşılabilir:</p>
+          <ul>
+            <li>Webinar platform sağlayıcıları</li>
+            <li>Bulut ve IT hizmet sağlayıcıları</li>
+            <li>E-posta servis sağlayıcıları</li>
+            <li>İş ortakları ve tedarikçiler</li>
+            <li>Yetkili kamu kurumları</li>
+          </ul>
+          <p>Dijital sistemlerin doğası gereği kişisel veriler, yürürlükteki mevzuata uygun şekilde yurtdışına aktarılabilir.</p>
+
+          <h2>7. Saklama Süresi</h2>
+          <p>Kişisel veriler, işleme amacının gerektirdiği süre boyunca saklanır. Webinar kayıtları sınırlı süreyle muhafaza edilerek silinir, anonim hale getirilir veya arşivlenir.</p>
+
+          <h2>8. İlgili Kişi Hakları</h2>
+          <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+          <ul>
+            <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+            <li>Erişim, düzeltme veya silme talep etme</li>
+            <li>Açık rızanızı istediğiniz zaman geri alma</li>
+            <li>İşlemeye itiraz etme</li>
+            <li>Hukuka aykırı işleme halinde tazminat talep etme</li>
+          </ul>
+
+          <h2>9. İletişim</h2>
+          <div class="policy-contact-block">
+            <p>Gizlilikle ilgili talepleriniz için: <a href="mailto:info@atez.com">info@atez.com</a></p>
+          </div>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-wm" aria-hidden="true">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="currentColor"/></svg>
+    </div>
+    <div class="footer-brand">
+      <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="footer-social-btn" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-nav">
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Platform</h4><ul><li><a href="index.html">Ürünler</a></li><li><a href="solutions.html">Çözümler</a></li><li><a href="nasil-calisir.html">Nasıl Çalışır</a></li><li><a href="yapay-zeka.html">Yapay Zekâ</a></li><li><a href="blockchain.html">Blockchain</a></li></ul></div></div>
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Şirket</h4><ul><li><a href="hakkimizda.html">Hakkımızda</a></li><li><a href="iletisim.html">İletişim</a></li><li><a href="haberler.html">Haberler</a></li><li><a href="basin-bultenleri.html">Basın Bültenleri</a></li><li><a href="#">Etkinlikler</a></li><li><a href="yatirimcilar.html">Yatırımcılar</a></li></ul></div></div>
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Kurumsal Sorumluluk</h4><ul><li><a href="#">Şirket Politikası</a></li><li><a href="#">BT Güvenliği Taahhüdü</a></li><li><a href="#">Davranış Kuralları</a></li><li><a href="#">Karbon Emisyon Raporu</a></li><li><a href="#">Etik İhlali Bildirimi</a></li></ul></div></div>
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Hukuki</h4><ul><li><a href="hukuki-politikalar.html#hizmet-kosullari" class="active">Hizmet Koşulları</a></li><li><a href="hukuki-politikalar.html#gizlilik-politikasi" class="active">Gizlilik Politikası</a></li><li><a href="hukuki-politikalar.html#cerez-politikasi" class="active">Çerez Politikası</a></li><li><a href="#">Çerez Tercihleri</a></li><li><a href="hukuki-politikalar.html#uyum-politikasi" class="active">Uyum Politikası</a></li><li><a href="hukuki-politikalar.html#webinar-gizlilik" class="active">Webinar Gizlilik Bildirimi</a></li></ul></div></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-logo">
+        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="#005287"/></svg>
+        <span>ATEZ Yazılım A.Ş.</span>
+      </div>
+      <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function(){const bar=document.getElementById('announcement-bar');const btn=document.getElementById('announcement-close');if(!bar)return;if(localStorage.getItem('annbar-v1')==='dismissed'){document.documentElement.classList.add('annbar-off');return;}btn.addEventListener('click',()=>{document.documentElement.classList.add('annbar-off');localStorage.setItem('annbar-v1','dismissed');});})();
+    (function(){const html=document.documentElement;const btn=document.getElementById('theme-toggle');const stored=localStorage.getItem('atez-theme');if(stored)html.setAttribute('data-theme',stored);btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('atez-theme',next);});})();
+    const headerEl=document.getElementById('site-header');function updateHeader(){headerEl.classList.toggle('scrolled',window.scrollY>60);}window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
+
+    /* ─── STEPPER TAB LOGIC ─── */
+    function switchTab(id){
+      document.querySelectorAll('.legal-step').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.legal-panel').forEach(el=>el.classList.remove('active'));
+      const step=document.querySelector(`.legal-step[data-tab="${id}"]`);
+      const panel=document.getElementById(id);
+      if(step)step.classList.add('active');
+      if(panel)panel.classList.add('active');
+      history.replaceState(null,'','#'+id);
+    }
+
+    document.querySelectorAll('.legal-step').forEach(item=>{
+      item.addEventListener('click',()=>switchTab(item.dataset.tab));
+    });
+
+    const hash=location.hash.slice(1);
+    const valid=['hizmet-kosullari','gizlilik-politikasi','cerez-politikasi','uyum-politikasi','webinar-gizlilik'];
+    if(hash&&valid.includes(hash))switchTab(hash);
+  </script>
+</body>
+</html>
