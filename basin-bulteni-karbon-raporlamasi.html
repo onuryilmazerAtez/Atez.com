@@ -64,6 +64,7 @@
     .nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;background:var(--card-bg);border-left:1px solid var(--card-border);border-top:1px solid var(--card-border);transform:translateX(-50%) rotate(45deg);}
     .nav-dropdown a{display:block;padding:10px 15px;border-radius:8px;font-size:.88rem;font-weight:500;color:var(--text);letter-spacing:0;white-space:nowrap;text-decoration:none;transition:background .14s,color .14s;opacity:1!important;}
     .nav-dropdown a:hover{background:var(--bg-alt);color:var(--primary);}
+    .nav-dropdown a.active{color:var(--primary);font-weight:600;}
     .nav-dropdown-products{min-width:840px;left:0;transform:translateY(-6px);padding:12px 8px 8px;}
     .nav-item:hover .nav-dropdown-products{transform:translateY(0);}
     .nav-dropdown-products::before{left:60px;transform:none;}
@@ -80,32 +81,139 @@
     .nav-dd-all-btn:hover{opacity:.65;}
 
     /* ─── ARTICLE PAGE ─── */
-    .article-wrap{padding:calc(var(--header-h) + var(--annbar-h) + 64px) max(48px,calc((100vw - 1440px)/2 + 48px)) 96px;max-width:calc(800px + 2 * max(48px,calc((100vw - 1440px)/2 + 48px)));}
-    .article-breadcrumb{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);margin-bottom:32px;}
-    .article-breadcrumb a{color:var(--primary);font-weight:500;}
+    .article-page{
+      padding-top:calc(var(--header-h) + var(--annbar-h));
+    }
+
+    /* Top bar: back + breadcrumb + share */
+    .article-topbar{
+      padding:20px max(48px,calc((100vw - 1440px)/2 + 48px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid var(--section-border);
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .article-breadcrumb{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);}
+    .article-breadcrumb a{color:var(--primary);font-weight:500;display:inline-flex;align-items:center;gap:6px;}
     .article-breadcrumb a:hover{text-decoration:underline;}
-    .article-breadcrumb svg{width:12px;height:12px;color:var(--muted);}
-    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
-    .article-badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:4px;background:rgba(0,82,135,.08);color:var(--primary);}
+    .article-breadcrumb a svg{width:13px;height:13px;}
+    .article-breadcrumb .sep{color:var(--divider);}
+    .article-breadcrumb .crumb-cat{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,82,135,.08);color:var(--primary);padding:3px 10px;border-radius:4px;}
+    .share-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--muted);border:1.5px solid var(--card-border);border-radius:20px;padding:7px 16px;cursor:pointer;background:none;font-family:var(--ff);transition:border-color .15s,color .15s;}
+    .share-btn:hover{border-color:var(--primary);color:var(--primary);}
+    .share-btn svg{width:14px;height:14px;}
+
+    /* Article header — centered */
+    .article-header{
+      padding:56px 24px 48px;
+      text-align:center;
+      max-width:760px;
+      margin:0 auto;
+    }
+    .article-meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
     .article-date{font-size:.82rem;color:var(--muted);}
     .article-readtime{font-size:.82rem;color:var(--muted);}
-    .article-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:var(--text);margin-bottom:16px;max-width:720px;}
-    .article-lead{font-size:1.05rem;color:var(--primary);font-weight:600;line-height:1.65;margin-bottom:36px;max-width:680px;border-left:3px solid var(--primary);padding-left:18px;}
-    .article-divider{border:none;border-top:1px solid var(--section-border);margin:36px 0;}
-    .article-author{display:flex;align-items:center;gap:12px;margin-bottom:48px;}
+    .article-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--divider);}
+    .article-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;color:var(--text);margin-bottom:32px;}
+
+    /* Lead quote — centered, highlighted */
+    .article-lead-wrap{
+      max-width:720px;
+      margin:0 auto 52px;
+      padding:0 24px;
+    }
+    .article-lead{
+      background:var(--mono-bg);
+      border:1px solid rgba(0,82,135,.12);
+      border-radius:16px;
+      padding:28px 32px;
+      font-size:1.05rem;
+      font-weight:500;
+      color:var(--text);
+      line-height:1.7;
+      text-align:center;
+      position:relative;
+    }
+    [data-theme="dark"] .article-lead{border-color:rgba(126,201,247,.15);}
+    .article-lead::before{content:'\201C';position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:3rem;color:var(--primary);opacity:.3;line-height:1;font-family:Georgia,serif;}
+
+    /* Author row */
+    .article-author-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:0 24px 40px;
+      border-bottom:1px solid var(--section-border);
+      max-width:720px;
+      margin:0 auto;
+    }
     .article-author-avatar{width:40px;height:40px;border-radius:50%;background:var(--mono-bg);border:1px solid rgba(0,82,135,.15);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--primary);flex-shrink:0;}
-    .article-author-info{font-size:.84rem;}
-    .article-author-name{font-weight:600;color:var(--text);}
-    .article-author-role{color:var(--muted);}
-    .article-body{max-width:720px;}
-    .article-body p{font-size:1rem;color:var(--text);line-height:1.8;margin-bottom:24px;}
-    .article-body h2{font-size:1.25rem;font-weight:700;color:var(--text);margin:40px 0 16px;line-height:1.3;}
-    .article-body blockquote{border-left:3px solid var(--primary);padding:16px 20px;margin:32px 0;background:var(--mono-bg);border-radius:0 12px 12px 0;}
-    .article-body blockquote p{color:var(--primary);font-style:italic;font-weight:500;margin-bottom:8px;}
-    .article-body blockquote cite{font-size:.82rem;color:var(--muted);font-style:normal;}
-    .article-back{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;font-weight:600;color:var(--primary);border:1.5px solid rgba(0,82,135,.2);border-radius:20px;padding:9px 18px;margin-top:48px;transition:background .15s,color .15s,border-color .15s;}
+    .article-author-name{font-size:.88rem;font-weight:600;color:var(--text);}
+    .article-author-role{font-size:.78rem;color:var(--muted);}
+
+    /* Body — centered, max-width */
+    .article-body{
+      max-width:720px;
+      margin:0 auto;
+      padding:48px 24px 0;
+    }
+    .article-body p{font-size:1rem;color:var(--text);line-height:1.85;margin-bottom:22px;}
+    .article-body h2{font-size:1.25rem;font-weight:700;color:var(--text);margin:44px 0 18px;line-height:1.3;position:relative;padding-bottom:12px;}
+    .article-body h2::after{content:'';position:absolute;bottom:0;left:0;width:40px;height:2px;background:var(--primary);border-radius:2px;}
+    .article-body blockquote{border-left:3px solid var(--primary);padding:20px 24px;margin:36px 0;background:var(--mono-bg);border-radius:0 14px 14px 0;}
+    .article-body blockquote p{color:var(--primary);font-style:italic;font-weight:500;font-size:.98rem;line-height:1.7;margin-bottom:10px;}
+    .article-body blockquote cite{font-size:.8rem;color:var(--muted);font-style:normal;font-weight:600;}
+
+    /* Bottom actions */
+    .article-actions{
+      max-width:720px;
+      margin:56px auto 0;
+      padding:32px 24px;
+      border-top:1px solid var(--section-border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .article-back{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--primary);border:1.5px solid rgba(0,82,135,.2);border-radius:20px;padding:9px 18px;transition:background .15s,color .15s,border-color .15s;}
     .article-back:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
     .article-back svg{width:14px;height:14px;}
+    .article-share{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--muted);border:1.5px solid var(--card-border);border-radius:20px;padding:9px 18px;cursor:pointer;background:none;font-family:var(--ff);transition:border-color .15s,color .15s;}
+    .article-share:hover{border-color:var(--primary);color:var(--primary);}
+    .article-share svg{width:14px;height:14px;}
+
+    /* Related articles */
+    .related-section{
+      padding:72px max(48px,calc((100vw - 1440px)/2 + 48px)) 80px;
+      background:var(--bg-alt);
+      border-top:1px solid var(--section-border);
+      margin-top:72px;
+    }
+    .related-inner{max-width:1040px;margin:0 auto;}
+    .related-header{display:flex;align-items:baseline;gap:12px;margin-bottom:36px;}
+    .related-title{font-size:1.2rem;font-weight:700;color:var(--text);}
+    .related-count{font-size:.82rem;color:var(--muted);}
+    .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+    @media(max-width:720px){.related-grid{grid-template-columns:1fr;}}
+    .related-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .18s,transform .18s;cursor:pointer;}
+    .related-card:hover{box-shadow:0 6px 24px rgba(0,82,135,.09);transform:translateY(-2px);}
+    .related-card-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .related-tag{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(0,82,135,.07);color:var(--primary);}
+    .related-card h3{font-size:.97rem;font-weight:700;color:var(--text);line-height:1.4;}
+    .related-card p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1;}
+    .related-card-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .related-author{display:flex;align-items:center;gap:8px;}
+    .related-author-avatar{width:28px;height:28px;border-radius:50%;background:var(--mono-bg);border:1px solid rgba(0,82,135,.12);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--primary);flex-shrink:0;}
+    .related-author-info{font-size:.75rem;color:var(--muted);}
+    .related-author-name{font-weight:600;color:var(--text);font-size:.78rem;}
+    .related-read-link{font-size:.78rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+    .related-read-link svg{width:11px;height:11px;transition:transform .15s;}
+    .related-card:hover .related-read-link svg{transform:translateX(3px);}
+    .related-more{text-align:center;margin-top:28px;font-size:.84rem;color:var(--muted);}
 
     /* Footer */
     footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;}
@@ -188,77 +296,178 @@
     </div>
   </header>
 
-  <div class="article-wrap">
+  <main class="article-page">
 
-    <!-- Breadcrumb -->
-    <nav class="article-breadcrumb">
-      <a href="basin-bultenleri.html">Basın Bültenleri</a>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      <span>Karbon Raporlaması</span>
-    </nav>
-
-    <!-- Meta -->
-    <div class="article-meta">
-      <span class="article-badge">Basın Bülteni</span>
-      <span class="article-date">16 Ekim 2025</span>
-      <span class="article-readtime">· 2 dk okuma</span>
+    <!-- Top bar: back + breadcrumb + share -->
+    <div class="article-topbar">
+      <div class="article-breadcrumb">
+        <a href="basin-bultenleri.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Geri
+        </a>
+        <span class="sep">·</span>
+        <a href="basin-bultenleri.html">Basın Bültenleri</a>
+        <span class="sep">/</span>
+        <span class="crumb-cat">Şirket Haberleri</span>
+      </div>
+      <button class="share-btn" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Paylaş
+      </button>
     </div>
 
-    <!-- Title -->
-    <h1 class="article-title">ATEZ, Karbon Raporlaması ve Piyasa Yönetimini Tek Platformda Birleştirdi</h1>
+    <!-- Article header — centered -->
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-date">16.10.2025</span>
+        <span class="article-meta-dot"></span>
+        <span class="article-readtime">2 dk okuma</span>
+      </div>
+      <h1 class="article-title">ATEZ, Karbon Raporlaması ve Piyasa Yönetimini Tek Platformda Birleştirdi</h1>
+    </div>
 
-    <!-- Lead quote -->
-    <p class="article-lead">Kenan Güler, "Doğrulanmış emisyon verisi, otomatik raporlama ve karbon piyasasına doğrudan erişimi tek platformda birleştirerek işletmelerin sadece yasal gereklilikleri karşılamasına değil, rekabet avantajı kazanmasına da olanak sağlıyoruz" dedi.</p>
+    <!-- Lead quote — centered, highlighted -->
+    <div class="article-lead-wrap">
+      <div class="article-lead">
+        Kenan Güler, "Doğrulanmış emisyon verisi, otomatik raporlama ve karbon piyasasına doğrudan erişimi tek platformda birleştirerek işletmelerin sadece yasal gereklilikleri karşılamasına değil, rekabet avantajı kazanmasına da olanak sağlıyoruz" dedi.
+      </div>
+    </div>
 
     <!-- Author -->
-    <div class="article-author">
+    <div class="article-author-row">
       <div class="article-author-avatar">CY</div>
-      <div class="article-author-info">
+      <div>
         <div class="article-author-name">Cüneyt Yetgin</div>
         <div class="article-author-role">ATEZ Yazılım Teknolojileri</div>
       </div>
     </div>
 
-    <hr class="article-divider">
-
     <!-- Body -->
     <div class="article-body">
       <p>İSTANBUL (AA) - ATEZ Yazılım Teknolojileri, Avrupa Birliği'nin Karbon Sınır Düzenleme Mekanizması (CBAM) kapsamında, Sustrack ve EUCarbonMarkets işbirliğinde uçtan uca karbon yönetimi sağlayan bütünleşik platform geliştirdi.</p>
-
       <p>Şirketten yapılan açıklamaya göre, ATEZ'in Greenpulse teknolojisiyle güçlendirilen bu platform, karbon verisi toplama, yasal raporlama ve karbon piyasası işlemlerini tek sistemde birleştirerek uluslararası ticarette karbon yönetimini kolaylaştırmayı hedefliyor.</p>
-
       <p>Sustrack ile sağlanan veri doğrulama özelliği sayesinde, üretici ve tedarikçiler kaynakta topladıkları ürün bazlı karbon emisyon verilerini Greenpulse'a aktarabiliyor. Platform bu verileri ithalat beyannamesi ile entegre ederek Avrupa Birliği CBAM kurallarına uygun karbondioksit emisyon değerlerini hesaplıyor ve raporluyor.</p>
 
       <h2>Uyumdan Karbon Piyasasında Stratejik Avantaja</h2>
-
       <p>Greenpulse yalnızca raporlama süreçlerini değil, aynı zamanda EUCarbonMarkets üzerinden karbon kredisi alımı, riskten korunma ve maliyet optimizasyonu gibi işlemleri de içeriyor. Bu sayede CBAM uyumu, stratejik bir fırsat alanı haline geliyor.</p>
-
       <p>AB Emisyon Ticaret Sistemi'ne (EU ETS) paralel olarak şekillenecek CBAM sertifika fiyatları henüz belirlenmemiş olsa da, platform kullanıcılarına gelecekteki mali yükümlülüklerini önceden fiyat dalgalanmalarına karşı güvence altına alma imkânı sunuluyor.</p>
-
       <p>AB'nin yeni düzenlemesi, ithal edilen ürünlerin üretiminde oluşan karbon salınımını fiyatlandırarak ticaret süreçlerinde yeni yükümlülükler getiriyor. ATEZ'in platformunu erkenden kullanan işletmeler doğru emisyon raporlaması, maliyet yönetimi ve karbon piyasasına hızlı erişim avantajı elde edebilecek.</p>
 
       <h2>Verileri Doğruluyor ve İzlenebilir Hale Getiriyor</h2>
-
       <p>Platformun temel bileşenlerini emisyon ölçümü ve veri yönetimi, otomatik CBAM raporlaması ve karbon piyasası entegrasyonu oluşturuyor. Buna göre, Sustrack üretici ve tedarikçilerden gelen ürün bazlı karbon emisyon verilerini standartlaştırarak doğruluyor ve izlenebilir hale getiriyor.</p>
-
       <p>Greenpulse, ihracat süreçlerinde oluşturulan ithalat beyannamesi verilerini doğru ve eksiksiz karbon raporlarına dönüştürerek süreci otomatikleştiriyor.</p>
-
       <p>EUCarbonMarkets bağlantısı ise anlık EUA fiyat takibi, karbon kredisi tedariki ve maliyet riskinden korunma olanağı sağlıyor.</p>
+      <p>Açıklamada görüşlerine yer verilen ATEZ Üst Yöneticisi (CEO) Kenan Güler, bu işbirliğinin karbon uyumunu hem sorunsuz hem de stratejik bir hale getirdiğini belirtti.</p>
 
       <blockquote>
         <p>"Doğrulanmış emisyon verisi, otomatik raporlama ve karbon piyasasına doğrudan erişimi tek platformda birleştirerek işletmelerin sadece yasal gereklilikleri karşılamasına değil, rekabet avantajı kazanmasına da olanak sağlıyoruz."</p>
         <cite>— Kenan Güler, CEO, ATEZ Yazılım Teknolojileri</cite>
       </blockquote>
-
-      <p>Açıklamada görüşlerine yer verilen ATEZ Üst Yöneticisi (CEO) Kenan Güler, bu işbirliğinin karbon uyumunu hem sorunsuz hem de stratejik bir hale getirdiğini belirtti.</p>
     </div>
 
-    <a href="basin-bultenleri.html" class="article-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      Tüm Basın Bültenlerine Dön
-    </a>
+    <!-- Bottom actions -->
+    <div class="article-actions">
+      <a href="basin-bultenleri.html" class="article-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Haberlere Dön
+      </a>
+      <button class="article-share" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Paylaş
+      </button>
+    </div>
 
-  </div>
+    <!-- Related articles -->
+    <section class="related-section">
+      <div class="related-inner">
+        <div class="related-header">
+          <span class="related-title">İlgili Yazılar</span>
+          <span class="related-count">Benzer konuda 8 yazı</span>
+        </div>
+        <div class="related-grid">
+
+          <div class="related-card">
+            <div class="related-card-tags">
+              <span class="related-tag">Logicust</span>
+              <span class="related-tag">Greenpulse</span>
+              <span class="related-tag">Tariff</span>
+              <span class="related-tag">+1</span>
+            </div>
+            <h3>Dijital Ürün Pasaportu: Küresel Ticarette Ürün Bazlı Uyum Dönemi</h3>
+            <p>Dijital Ürün Pasaportu, ürünlerin yönetilme ve ticaret biçimini kökten değiştiriyor. AB'nin veri odaklı uyum modeline geçişi ile birlikte şirketlerin belge bazlı süreçlerden ürün bazlı veri sistemlerine geçmesi gerekiyor.</p>
+            <div class="related-card-meta">
+              <div class="related-author">
+                <div class="related-author-avatar">CY</div>
+                <div>
+                  <div class="related-author-name">Cüneyt Yetgin</div>
+                  <div class="related-author-info">30 gün önce</div>
+                </div>
+              </div>
+              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="related-card">
+            <div class="related-card-tags">
+              <span class="related-tag">Yenilik</span>
+              <span class="related-tag">Yapay Zeka</span>
+            </div>
+            <h3>Lojistikte Dijital Dönüşüme Doğru Güçlü Bir Adım: ATEZ Yazılım Teknolojileri × SİBER Yazılım</h3>
+            <p>ATEZ Software Technologies ve SİBER Yazılım, lojistik sektöründe dijital dönüşümü hızlandırmak için güçlerini birleştiriyor; böylece daha akıllı otomasyon, daha yüksek verimlilik ve sürdürülebilir operasyonlar sağlanıyor.</p>
+            <div class="related-card-meta">
+              <div class="related-author">
+                <div class="related-author-avatar">Sİ</div>
+                <div>
+                  <div class="related-author-name">Sena İmamoğlu</div>
+                  <div class="related-author-info">3 ay önce</div>
+                </div>
+              </div>
+              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="related-card">
+            <div class="related-card-tags">
+              <span class="related-tag">Greenpulse</span>
+            </div>
+            <h3>CBAM: Mevzuattan Operasyonel Gerçekliğe</h3>
+            <p>CBAM, 1 Ocak 2026 itibarıyla yalnızca bir mevzuat başlığı olmaktan çıkıp şirketler için gerçek bir operasyonel ve finansal yönetim alanına dönüşüyor. Bu geçişte fark yaratan unsur, uyumun ötesine geçerek maliyetleri öngörülebilir ve yönetilebilir hale getirmek.</p>
+            <div class="related-card-meta">
+              <div class="related-author">
+                <div class="related-author-avatar">Sİ</div>
+                <div>
+                  <div class="related-author-name">Sena İmamoğlu</div>
+                  <div class="related-author-info">4 ay önce</div>
+                </div>
+              </div>
+              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="related-card">
+            <div class="related-card-tags">
+              <span class="related-tag">Greenpulse</span>
+            </div>
+            <h3>CBAM Kesin Uygulama Aşamasına Giriyor: Greenpulse ile Maliyetleri Kontrol Edin ve Riski Azaltın</h3>
+            <p>1 Ocak 2026 itibarıyla kesin döneme geçişle birlikte, CBAM artık sadece bir raporlama yükümlülüğü değil, doğrudan bir operasyonel ve finansal risk haline geliyor. Greenpulse'ın bu geçiş sürecini güvenle yönetmenize nasıl yardımcı olduğunu keşfedin.</p>
+            <div class="related-card-meta">
+              <div class="related-author">
+                <div class="related-author-avatar">Sİ</div>
+                <div>
+                  <div class="related-author-name">Sena İmamoğlu</div>
+                  <div class="related-author-info">4 ay önce</div>
+                </div>
+              </div>
+              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+            </div>
+          </div>
+
+        </div>
+        <p class="related-more">Toplam 8 yazıdan 4'ü gösteriliyor</p>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     <div class="footer-brand">
