@@ -42,8 +42,8 @@
       --bg:               #ffffff;
       --bg-alt:           #f5f5f5;
       --text:             rgba(0,0,0,.88);
-      --text-secondary:   rgba(0,0,0,.45);
-      --muted:            rgba(0,0,0,.45);
+      --text-secondary:   rgba(0,0,0,.65);
+      --muted:            rgba(0,0,0,.65);
       --text-disabled:    rgba(0,0,0,.25);
       --divider:          #d9d9d9;
       --section-border:   #f0f0f0;
@@ -88,8 +88,8 @@
       --bg:               #141414;
       --bg-alt:           #1f1f1f;
       --text:             rgba(255,255,255,.85);
-      --text-secondary:   rgba(255,255,255,.45);
-      --muted:            rgba(255,255,255,.45);
+      --text-secondary:   rgba(255,255,255,.65);
+      --muted:            rgba(255,255,255,.65);
       --text-disabled:    rgba(255,255,255,.25);
       --divider:          #303030;
       --section-border:   #303030;
@@ -251,13 +251,16 @@
     }
 
     .logo {
-      width: 52px; height: 52px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; cursor: pointer; user-select: none;
+      height: 52px;
+      display: flex; align-items: center;
+      flex-shrink: 0; cursor: pointer; user-select: none; text-decoration: none;
     }
-    .logo svg { width: 52px; height: 52px; display: block; }
-    .logo svg path { transition: fill .35s; }
-    header:not(.scrolled) .logo svg path { fill: var(--logo-hero); }
+    .logo-h { height: 48px; width: auto; display: block; transition: opacity .3s; }
+    header.scrolled .logo-h { display: none; }
+    .logo-i { display: none; width: 44px; height: 44px; }
+    .logo-i path { fill: var(--primary); transition: fill .35s; }
+    header.scrolled .logo-i { display: block; }
+    [data-theme="dark"] header.scrolled .logo-i path { fill: #ffffff; }
 
     nav { display:flex; gap:40px; margin-left:44px; flex:1; }
 
@@ -417,10 +420,10 @@
     }
     .h1-main {
       display: block;
-      font-size: 38px;
-      font-weight: 600;
-      letter-spacing: -.01em;
-      line-height: 1.2105;
+      font-size: clamp(34px, 4.5vw, 58px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.15;
       color: var(--h1-main-c);
       transition: color .35s;
     }
@@ -817,12 +820,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: .72rem;
+      font-size: 12px;
+      line-height: 20px;
       background: rgba(0,82,135,.08);
       border: 1px solid rgba(0,82,135,.15);
-      border-radius: 100px;
-      padding: 5px 16px;
-      letter-spacing: .1em;
+      border-radius: 4px;
+      padding: 2px 8px;
+      letter-spacing: .08em;
       text-transform: uppercase;
       color: var(--primary);
       margin-bottom: 0;
@@ -1466,11 +1470,14 @@
 
     .pc-icon {
       width: 48px; height: 48px;
-      border-radius: 14px;
+      border-radius: 12px;
+      background: var(--mono-bg) !important;
+      border: 1px solid rgba(0,82,135,.1);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1), background .35s, border-color .35s;
     }
+    [data-theme="dark"] .pc-icon { border-color: rgba(126,201,247,.12); }
     .product-card:hover .pc-icon { transform: rotate(-9deg) scale(1.14); }
     .pc-icon img { width: 28px; height: 28px; display: block; }
 
@@ -2028,6 +2035,7 @@
 
     /* ── NAV DROPDOWN ── */
     .nav-item { position: relative; display: flex; align-items: center; }
+    .nav-item::before{content:'';display:block;position:absolute;top:100%;left:-8px;right:-8px;height:20px;}
     .nav-parent {
       display: flex; align-items: center; gap: 5px; text-decoration: none;
       font-size: 1rem; font-weight: 600; color: var(--nav-hero);
@@ -2064,6 +2072,17 @@
     }
     .nav-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
     .nav-dropdown a.active { color: var(--primary); font-weight: 600; }
+    .nav-dropdown-products{min-width:600px;left:0;transform:translateY(-6px);padding:8px;}
+    .nav-item:hover .nav-dropdown-products{transform:translateY(0);}
+    .nav-dropdown-products::before{left:60px;transform:none;}
+    .nav-dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+    .nav-dd-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;transition:background .14s;opacity:1!important;}
+    .nav-dd-item:hover{background:var(--bg-alt);}
+    .nav-dd-icon-wrap{width:34px;height:34px;border-radius:9px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    [data-theme="dark"] .nav-dd-icon-wrap{border-color:rgba(126,201,247,.12);}
+    .nav-dd-icon-wrap img,.nav-dd-icon-wrap svg{width:20px;height:20px;}
+    .nav-dd-name{font-size:.84rem;font-weight:600;color:var(--text);line-height:1.3;}
+    .nav-dd-desc{font-size:.72rem;color:var(--muted);margin-top:1px;line-height:1.3;}
   </style>
 </head>
 <body>
@@ -2082,11 +2101,12 @@
 
   <!-- HEADER -->
   <header>
-    <div class="logo">
-      <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="#005287"/>
+    <a href="index.html" class="logo" aria-label="ATEZ">
+      <img src="assets/logo-horizontal.svg" alt="ATEZ" class="logo-h">
+      <svg class="logo-i" width="44" height="44" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z"/>
       </svg>
-    </div>
+    </a>
     <nav>
       <div class="nav-item">
         <span class="nav-parent">
@@ -2098,7 +2118,24 @@
           <a href="nasil-calisir.html">Nasıl Çalışır</a>
         </div>
       </div>
-      <a href="#">Ürünler</a>
+      <div class="nav-item">
+        <span class="nav-parent">Ürünler<svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        <div class="nav-dropdown nav-dropdown-products">
+          <div class="nav-dd-grid">
+            <a href="declarant.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Declarant.svg" alt="Declarant"></div><div><div class="nav-dd-name">Declarant</div><div class="nav-dd-desc">Gümrük beyannamesi yönetimi</div></div></a>
+            <a href="declarantai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"></div><div><div class="nav-dd-name">DeclarantAI</div><div class="nav-dd-desc">AI destekli beyan otomasyonu ve IDP</div></div></a>
+            <a href="transcode.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransCode.svg" alt="Transcode"></div><div><div class="nav-dd-name">Transcode</div><div class="nav-dd-desc">Transit beyan yönetim sistemi</div></div></a>
+            <a href="transitai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransitAI.svg" alt="TransitAI"></div><div><div class="nav-dd-name">TransitAI</div><div class="nav-dd-desc">AI ile transit belge işleme</div></div></a>
+            <a href="tariff.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="Tariff"></div><div><div class="nav-dd-name">Tariff</div><div class="nav-dd-desc">GTİP ve tarife veri platformu</div></div></a>
+            <a href="tariffai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="TariffAI"></div><div><div class="nav-dd-name">TariffAI</div><div class="nav-dd-desc">AI ile GTİP sınıflandırma yardımcısı</div></div></a>
+            <a href="logicust.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Logicust.svg" alt="Logicust"></div><div><div class="nav-dd-name">Logicust</div><div class="nav-dd-desc">Merkezi ürün gümrük uyum yönetimi</div></div></a>
+            <a href="customs-shield.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomShield.svg" alt="Customs Shield"></div><div><div class="nav-dd-name">Customs Shield</div><div class="nav-dd-desc">Beyan öncesi mevzuat uyum kontrolü</div></div></a>
+            <a href="customs-xray.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/XrayAI.svg" alt="Customs X-Ray"></div><div><div class="nav-dd-name">Customs X-Ray</div><div class="nav-dd-desc">AI ile beyan sonrası uyum kontrolü</div></div></a>
+            <a href="customs-loupe.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomsLoupe.svg" alt="Customs Loupe"></div><div><div class="nav-dd-name">Customs Loupe</div><div class="nav-dd-desc">Gümrük iş zekası ve analitik çözümü</div></div></a>
+            <a href="greenpulse.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/greenpulse.svg" alt="Greenpulse"></div><div><div class="nav-dd-name">Greenpulse</div><div class="nav-dd-desc">CBAM ve sürdürülebilirlik raporlaması</div></div></a>
+          </div>
+        </div>
+      </div>
       <a href="yapay-zeka.html">Yapay Zekâ</a>
       <a href="blockchain.html">Blockchain</a>
     </nav>
@@ -2738,7 +2775,8 @@
         <div class="footer-nav-group">
           <h4>Şirket</h4>
           <ul>
-            <li><a href="#">İletişim</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+<li><a href="#">İletişim</a></li>
             <li><a href="#">Haberler</a></li>
             <li><a href="#">Basın Bültenleri</a></li>
             <li><a href="#">Etkinlikler</a></li>
@@ -2980,7 +3018,19 @@
     document.querySelectorAll('.product-card').forEach(card => {
       const body = card.querySelector('.pc-body');
       if (body) body.style.height = card.classList.contains('is-open') ? 'auto' : '0';
-      card.addEventListener('click', () => toggleCard(card));
+      card.addEventListener('click', (e) => {
+        // Keşfet linkine tıklandığında kartın kapanmasını engelle
+        if (e.target.closest('.pc-link')) return;
+        toggleCard(card);
+      });
+    });
+
+    // Keşfet linkleri: href="#" sayfayı başa kaydırmasın ve kart toggle tetiklenmesin
+    document.querySelectorAll('.pc-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
     });
 
     const pcObs = new IntersectionObserver(entries => {

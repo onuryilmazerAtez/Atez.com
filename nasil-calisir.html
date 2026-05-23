@@ -25,7 +25,8 @@
       --bg-alt:          #f5f7fa;
       --bg-subtle:       #fafafa;
       --text:            rgba(0,0,0,.88);
-      --muted:           rgba(0,0,0,.55);
+      --muted:           rgba(0,0,0,.65);
+      --text-secondary:  rgba(0,0,0,.65);
       --divider:         #e8e8e8;
       --section-border:  #f0f0f0;
       --card-bg:         #ffffff;
@@ -48,8 +49,9 @@
       --bg:              #111318;
       --bg-alt:          #17191f;
       --bg-subtle:       #141618;
-      --text:            rgba(255,255,255,.87);
-      --muted:           rgba(255,255,255,.52);
+      --text:            rgba(255,255,255,.85);
+      --muted:           rgba(255,255,255,.65);
+      --text-secondary:  rgba(255,255,255,.65);
       --divider:         #252730;
       --section-border:  #252730;
       --card-bg:         #1c1e26;
@@ -84,25 +86,24 @@
     /* ── HEADER ── */
     header {
       position:fixed; top:var(--annbar-h); left:0; right:0; height:var(--header-h);
-      background:rgba(5,16,32,.18); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      background:rgba(240,247,255,.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,82,135,.07);
       display:flex; align-items:center;
       padding:0 max(48px,calc((100vw - 1440px)/2 + 48px));
-      z-index:200; transition:background .35s,box-shadow .35s,border-color .35s,top .3s,height .3s;
+      z-index:200; transition:background .35s,box-shadow .35s,border-color .35s,top .3s ease,height .3s ease;
     }
-    [data-theme="dark"] header { background:rgba(4,8,18,.28); border-bottom-color:rgba(255,255,255,.04); }
+    [data-theme="dark"] header { background:rgba(7,13,31,.28); border-bottom-color:rgba(100,150,255,.08); }
     header.scrolled {
-      background:var(--hdr-scrolled-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      background:var(--hdr-scrolled-bg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
       box-shadow:var(--hdr-shadow); border-bottom-color:transparent; height:72px;
     }
 
-        .logo { height:48px; display:flex; align-items:center; flex-shrink:0; cursor:pointer; user-select:none; text-decoration:none; }
-    .logo-h { height:38px; width:auto; display:block; filter:brightness(0) invert(1); transition:opacity .3s; }
+    .logo { height:52px; display:flex; align-items:center; flex-shrink:0; cursor:pointer; user-select:none; text-decoration:none; }
+    .logo-h { height:48px; width:auto; display:block; filter:brightness(0) invert(1); transition:opacity .3s; }
     header.scrolled .logo-h { display:none; }
-    .logo-i { display:none; }
-    .logo-i path { fill:#ffffff; transition:fill .35s; }
+    .logo-i { display:none; width:44px; height:44px; }
+    .logo-i path { fill:var(--primary); transition:fill .35s; }
     header.scrolled .logo-i { display:block; }
-    header.scrolled .logo-i path { fill:var(--primary); }
     [data-theme="dark"] header.scrolled .logo-i path { fill:#ffffff; }
 
     nav { display:flex; gap:36px; margin-left:44px; flex:1; align-items:center; }
@@ -120,6 +121,7 @@
 
     /* Dropdown nav item */
     .nav-item { position:relative; display:flex; align-items:center; }
+    .nav-item::before{content:'';display:block;position:absolute;top:100%;left:-8px;right:-8px;height:20px;}
     .nav-item::after { content:''; position:absolute; top:100%; left:-20px; right:-20px; height:22px; }
     .nav-parent {
       display:flex; align-items:center; gap:5px; text-decoration:none;
@@ -159,6 +161,17 @@
     }
     .nav-dropdown a:hover { background:var(--bg-alt); color:var(--primary); }
     .nav-dropdown a.active { color:var(--primary); font-weight:600; }
+    .nav-dropdown-products{min-width:600px;left:0;transform:translateY(-6px);padding:8px;}
+    .nav-item:hover .nav-dropdown-products{transform:translateY(0);}
+    .nav-dropdown-products::before{left:60px;transform:none;}
+    .nav-dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+    .nav-dd-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;transition:background .14s;opacity:1!important;}
+    .nav-dd-item:hover{background:var(--bg-alt);}
+    .nav-dd-icon-wrap{width:34px;height:34px;border-radius:9px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    [data-theme="dark"] .nav-dd-icon-wrap{border-color:rgba(126,201,247,.12);}
+    .nav-dd-icon-wrap img,.nav-dd-icon-wrap svg{width:20px;height:20px;}
+    .nav-dd-name{font-size:.84rem;font-weight:600;color:var(--text);line-height:1.3;}
+    .nav-dd-desc{font-size:.72rem;color:var(--muted);margin-top:1px;line-height:1.3;}
 
     /* Right side header */
     .header-right { display:flex; align-items:center; gap:12px; }
@@ -202,10 +215,10 @@
     }
     .hiw-hero-inner { max-width: 760px; position:relative; z-index:1; }
     .hiw-hero-badge {
-      display:inline-flex; align-items:center; gap:8px;
-      padding:5px 14px; border-radius:100px;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:2px 8px; border-radius:4px;
       border:1px solid rgba(125,211,252,.28); background:rgba(0,115,184,.16);
-      color:#7dd3fc; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:#7dd3fc; font-size:12px; line-height:20px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
       margin-bottom:30px;
     }
     .hiw-hero-badge-dot { width:6px; height:6px; border-radius:50%; background:#7dd3fc; animation:bdot 2s ease infinite; }
@@ -213,7 +226,7 @@
 
     .hiw-hero h1 {
       font-size: clamp(40px, 6vw, 68px);
-      font-weight: 700; line-height: 1.08; letter-spacing: -.025em;
+      font-weight: 700; line-height: 1.15; letter-spacing: -.02em;
       color: #fff; margin-bottom: 26px;
     }
     .hiw-hero h1 em {
@@ -623,7 +636,24 @@
           <a href="nasil-calisir.html" class="active">Nasıl Çalışır</a>
         </div>
       </div>
-      <a href="#">Ürünler</a>
+            <div class="nav-item">
+        <span class="nav-parent">Ürünler<svg class="nav-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        <div class="nav-dropdown nav-dropdown-products">
+          <div class="nav-dd-grid">
+            <a href="declarant.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Declarant.svg" alt="Declarant"></div><div><div class="nav-dd-name">Declarant</div><div class="nav-dd-desc">Gümrük beyannamesi yönetimi</div></div></a>
+            <a href="declarantai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"></div><div><div class="nav-dd-name">DeclarantAI</div><div class="nav-dd-desc">AI destekli beyan otomasyonu ve IDP</div></div></a>
+            <a href="transcode.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransCode.svg" alt="Transcode"></div><div><div class="nav-dd-name">Transcode</div><div class="nav-dd-desc">Transit beyan yönetim sistemi</div></div></a>
+            <a href="transitai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransitAI.svg" alt="TransitAI"></div><div><div class="nav-dd-name">TransitAI</div><div class="nav-dd-desc">AI ile transit belge işleme</div></div></a>
+            <a href="tariff.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="Tariff"></div><div><div class="nav-dd-name">Tariff</div><div class="nav-dd-desc">GTİP ve tarife veri platformu</div></div></a>
+            <a href="tariffai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="TariffAI"></div><div><div class="nav-dd-name">TariffAI</div><div class="nav-dd-desc">AI ile GTİP sınıflandırma yardımcısı</div></div></a>
+            <a href="logicust.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Logicust.svg" alt="Logicust"></div><div><div class="nav-dd-name">Logicust</div><div class="nav-dd-desc">Merkezi ürün gümrük uyum yönetimi</div></div></a>
+            <a href="customs-shield.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomShield.svg" alt="Customs Shield"></div><div><div class="nav-dd-name">Customs Shield</div><div class="nav-dd-desc">Beyan öncesi mevzuat uyum kontrolü</div></div></a>
+            <a href="customs-xray.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/XrayAI.svg" alt="Customs X-Ray"></div><div><div class="nav-dd-name">Customs X-Ray</div><div class="nav-dd-desc">AI ile beyan sonrası uyum kontrolü</div></div></a>
+            <a href="customs-loupe.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomsLoupe.svg" alt="Customs Loupe"></div><div><div class="nav-dd-name">Customs Loupe</div><div class="nav-dd-desc">Gümrük iş zekası ve analitik çözümü</div></div></a>
+            <a href="greenpulse.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/greenpulse.svg" alt="Greenpulse"></div><div><div class="nav-dd-name">Greenpulse</div><div class="nav-dd-desc">CBAM ve sürdürülebilirlik raporlaması</div></div></a>
+          </div>
+        </div>
+      </div>
       <a href="yapay-zeka.html">Yapay Zekâ</a>
       <a href="blockchain.html">Blockchain</a>
     </nav>
@@ -1123,7 +1153,8 @@
         <div class="footer-nav-group">
           <h4>Şirket</h4>
           <ul>
-            <li><a href="#">İletişim</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+<li><a href="#">İletişim</a></li>
             <li><a href="#">Haberler</a></li>
             <li><a href="#">Basın Bültenleri</a></li>
             <li><a href="#">Etkinlikler</a></li>
