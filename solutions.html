@@ -117,48 +117,76 @@
     h1,h2,h3,h4 { font-family: var(--ff-head); }
 
     /* ── ANNOUNCEMENT BAR ──────────────────────────────── */
-    @keyframes annbar-flow {
-      0%   { background-position: 0% 50%;   }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%;   }
-    }
-    .announcement-bar {
+        .announcement-bar {
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--annbar-h);
       z-index: 300;
-      background: linear-gradient(120deg, #003d66, #005287, #0073b8, #0a3d7a, #6a00b8, #0073b8, #005287);
-      background-size: 300% 300%;
-      animation: annbar-flow 8s ease infinite;
+      background: #fff;
+      border-bottom: 1px solid var(--section-border);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       transition: height .3s ease, opacity .3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    [data-theme="dark"] .announcement-bar {
+      background: #141414;
+      border-bottom-color: var(--divider);
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
     }
     html.annbar-off { --annbar-h: 0px; }
     html.annbar-off .announcement-bar { opacity: 0; pointer-events: none; }
     .announcement-content {
-      display: flex; align-items: center; gap: 12px;
-      font-size: .8rem; font-weight: 500; color: #fff;
-      white-space: nowrap; padding: 0 56px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      padding: 0 56px;
     }
-    .announcement-badge {display:inline-flex;align-items:center;padding:0 7px;font-size:12px;line-height:20px;border-radius:4px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:500;white-space:nowrap;}
-    .announcement-text { opacity: .92; }
+    .announcement-badge {display:inline-flex;align-items:center;padding:0 7px;font-size:12px;line-height:20px;border-radius:4px;background:rgba(0,82,135,.06);border:1px solid rgba(0,82,135,.22);color:var(--primary);font-weight:500;white-space:nowrap;}
+    [data-theme="dark"] .announcement-badge {background:rgba(126,201,247,.06);border-color:rgba(126,201,247,.22);color:#7ec9f7;}
+    .announcement-text { opacity: .78; }
+    [data-theme="dark"] .announcement-text { opacity: .65; }
+    .announcement-sep { width:1px; height:16px; background:var(--divider); flex-shrink:0; }
     .announcement-link {
-      color: #fff; font-weight: 600; font-size: .78rem;
-      text-decoration: none; border: 1.5px solid rgba(255,255,255,.55);
-      border-radius: 20px; padding: 4px 14px; flex-shrink: 0;
-      transition: background .18s, border-color .18s; white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: .8rem;
+      text-decoration: none;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      padding: 0 12px;
+      height: 26px;
+      flex-shrink: 0;
+      background: transparent;
+      white-space: nowrap;
+      transition: background .18s, color .18s, border-color .18s;
+      box-shadow: 0 1px 0 rgba(0,82,135,.04);
     }
-    .announcement-link:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+    .announcement-link:hover { background: rgba(0,82,135,.06); border-color: var(--primary-dark); color: var(--primary-dark); }
+    [data-theme="dark"] .announcement-link { color:#7ec9f7; border-color:rgba(126,201,247,.45); }
+    [data-theme="dark"] .announcement-link:hover { background:rgba(126,201,247,.08); }
     .announcement-close {
-      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; color: rgba(255,255,255,.75);
-      cursor: pointer; padding: 5px 7px; border-radius: 4px;
-      display: flex; transition: color .15s, background .15s;
+      position: absolute;
+      right: 14px;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 5px 7px;
+      border-radius: 4px;
+      display: flex;
+      transition: color .15s, background .15s;
     }
-    .announcement-close:hover { color: #fff; background: rgba(255,255,255,.15); }
+    .announcement-close:hover { color: var(--text); background: var(--bg-alt); }
 
     /* ── HEADER ────────────────────────────────────────── */
     header {
@@ -1041,7 +1069,6 @@
     <!-- ── SECTION 1: Mevzuata Uyum ──────────────────── -->
     <section class="prod-group" id="section-1">
       <div class="prod-group-header">
-        <div class="prod-group-number">01</div>
         <h2 class="prod-group-title">Gümrük ve Dış Ticaret Mevzuatına<br>Uyum Çözümleri</h2>
       </div>
       <hr class="prod-group-divider">
@@ -1062,7 +1089,7 @@
                 <span class="prod-tag">Tarife &amp; GTİP</span>
               </div>
             </div>
-            <p class="prod-desc">Yapay zeka destekli tarife sınıflandırma ve gümrük tarife veritabanı çözümü. GTİP kodlarını saniyeler içinde belirleyin, ülke bazlı vergi oranlarına ve yürürlükteki gümrük mevzuatına anında erişin.</p>
+            <p class="prod-desc">Doğru GTİP sınıflandırması ve gümrük mevzuatına uyum için güncel veri bankası.</p>
             <div class="prod-card-footer">
               <a href="tariffai.html" class="prod-link">
                 Keşfet
@@ -1083,7 +1110,7 @@
                 <span class="prod-tag">Eşya Kataloğu</span>
               </div>
             </div>
-            <p class="prod-desc">Kapsamlı eşya kataloğu ve lojistik yönetim platformu. Eşyalarınızı kayıt altına alın, GTİP kodlarıyla ilişkilendirin; depo, taşıma ve gümrük süreçlerinizi tek ekrandan uçtan uca yönetin.</p>
+            <p class="prod-desc">Ürün ve gümrük mevzuatına eşya bazlı uyum için merkezi yönetim sistemi.</p>
             <div class="prod-card-footer">
               <a href="logicust.html" class="prod-link">
                 Keşfet
@@ -1112,7 +1139,7 @@
                 <span class="prod-tag">Uyumluluk &amp; Risk</span>
               </div>
             </div>
-            <p class="prod-desc">Yapay zeka ile güçlendirilmiş gümrük mevzuatı uyumluluk koruma sistemi. Değişen mevzuatları otomatik takip edin, uyumsuzluk risklerini gerçek zamanlı tespit edin ve işlem öncesinde uyarılar alın.</p>
+            <p class="prod-desc">Beyan öncesi veri kontrolü için yapay zeka destekli risk tespiti ve uyum aracı.</p>
             <div class="prod-card-footer">
               <a href="customs-shield.html" class="prod-link">
                 Keşfet
@@ -1133,7 +1160,7 @@
                 <span class="prod-tag">AI Analiz</span>
               </div>
             </div>
-            <p class="prod-desc">Yapay zeka destekli eşya ve belge analiz aracı. Beyan edilen eşyalar ile fiili içerik arasındaki tutarsızlıkları otomatik tespit ederek gümrük denetim süreçlerinizi hızlandırın ve hata oranını sıfıra indirin.</p>
+            <p class="prod-desc">Yapay zeka ile beyan sonrası kontrol ve anomali tespiti aracı.</p>
             <div class="prod-card-footer">
               <a href="customs-xray.html" class="prod-link">
                 Keşfet
@@ -1150,7 +1177,6 @@
     <!-- ── SECTION 2: Beyanname ──────────────────────── -->
     <section class="prod-group" id="section-2">
       <div class="prod-group-header">
-        <div class="prod-group-number">02</div>
         <h2 class="prod-group-title">Gümrük ve Transit Beyannamesi<br>Oluşturma Çözümleri</h2>
       </div>
       <hr class="prod-group-divider">
@@ -1170,7 +1196,7 @@
                 <span class="prod-tag">Kod Dönüşümü</span>
               </div>
             </div>
-            <p class="prod-desc">Uluslararası ticaret kodları ve HS harmonize sistem kod dönüşüm motoru. Farklı ülkelerin tarife sistemleri arasında doğru eşleştirme yapın, kod hatalarından kaynaklanan gecikmeleri ve cezaları minimize edin.</p>
+            <p class="prod-desc">Yapay zeka destekli transit beyanı hazırlama ve sunma sistemi.</p>
             <div class="prod-card-footer">
               <a href="transcode.html" class="prod-link">
                 Keşfet
@@ -1191,7 +1217,7 @@
                 <span class="prod-tag">Beyanname</span>
               </div>
             </div>
-            <p class="prod-desc">Gümrük ve transit beyanname hazırlama sistemi. Karmaşık beyanname süreçlerini otomatikleştirin, yerleşik doğrulama kurallarıyla hata oranını minimize edin; beyannameleri doğrudan gümrük sistemlerine gönderin.</p>
+            <p class="prod-desc">Yapay zeka destekli gümrük beyan verisi hazırlama ve iletme sistemi.</p>
             <div class="prod-card-footer">
               <a href="declarant.html" class="prod-link">
                 Keşfet
@@ -1208,7 +1234,6 @@
     <!-- ── SECTION 3: AI Belge İşleme ───────────────── -->
     <section class="prod-group" id="section-3">
       <div class="prod-group-header">
-        <div class="prod-group-number">03</div>
         <h2 class="prod-group-title">Yapay Zeka İle Belge İşleme</h2>
       </div>
       <hr class="prod-group-divider">
@@ -1228,7 +1253,7 @@
                 <span class="prod-tag">AI &amp; Transit</span>
               </div>
             </div>
-            <p class="prod-desc">Yapay zeka ile transit belge işleme motoru. Transit belgelerini saniyeler içinde dijitalleştirin, analiz edin ve ilgili gümrük sistemlerine entegre edin; manuel veri girişini tamamen ortadan kaldırın.</p>
+            <p class="prod-desc">Transit beyanları için AI-destekli belge işleme sistemi.</p>
             <div class="prod-card-footer">
               <a href="transitai.html" class="prod-link">
                 Keşfet
@@ -1249,7 +1274,7 @@
                 <span class="prod-tag">AI &amp; Beyanname</span>
               </div>
             </div>
-            <p class="prod-desc">Yapay zeka destekli beyanname belge işleme motoru. Yükleme belgeleri, faturalar ve diğer ticaret belgelerini otomatik olarak okuyun, yorumlayın ve hazır beyanname verilerine dönüştürün.</p>
+            <p class="prod-desc">Gümrük beyanları için AI-destekli belge işleme sistemi.</p>
             <div class="prod-card-footer">
               <a href="declarantai.html" class="prod-link">
                 Keşfet
@@ -1266,7 +1291,6 @@
     <!-- ── SECTION 4: Yeşil Mutabakat ───────────────── -->
     <section class="prod-group" id="section-4">
       <div class="prod-group-header">
-        <div class="prod-group-number">04</div>
         <h2 class="prod-group-title">Yeşil Mutabakat Çözümleri</h2>
       </div>
       <hr class="prod-group-divider">
@@ -1284,7 +1308,7 @@
               <span class="prod-tag green">Yeşil Mutabakat</span>
             </div>
           </div>
-          <p class="prod-desc">AB Yeşil Mutabakatı ve CBAM (Sınırda Karbon Düzenleme Mekanizması) uyumluluk yönetimi platformu. İthalat edilen ürünlerin karbon ayak izini izleyin, raporlayın ve AB düzenleyici otoritelerine otomatik bildirin.</p>
+          <p class="prod-desc">CBAM raporlaması ve sürdürülebilirlik uyum yönetimi aracı.</p>
           <div class="prod-card-footer">
             <a href="greenpulse.html" class="prod-link">
               Keşfet
@@ -1300,7 +1324,6 @@
     <!-- ── SECTION 5: İş Zekası ──────────────────────── -->
     <section class="prod-group" id="section-5">
       <div class="prod-group-header">
-        <div class="prod-group-number">05</div>
         <h2 class="prod-group-title">İş Zekası ve Analitik Çözümleri</h2>
       </div>
       <hr class="prod-group-divider">
@@ -1318,30 +1341,9 @@
               <span class="prod-tag">İş Zekası</span>
             </div>
           </div>
-          <p class="prod-desc">Gümrük ve dış ticaret iş zekası platformu. İthalat/ihracat verilerinizi görselleştirin, trend analizleri yapın, sapmaları anında tespit edin ve tüm stratejik kararlarınızı gerçek zamanlı veriye dayandırın.</p>
+          <p class="prod-desc">Gümrük beyanları için iş zekası ve analitik çözümü.</p>
           <div class="prod-card-footer">
             <a href="customs-loupe.html" class="prod-link">
-              Keşfet
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-            <span class="prod-status">Aktif</span>
-          </div>
-        </div>
-
-        <!-- AGSW placeholder -->
-        <div class="prod-card">
-          <div class="prod-card-top">
-            <div class="prod-icon-wrap">
-              <img src="assets/icons/AGSW.svg" alt="AGSW">
-            </div>
-            <div class="prod-card-meta">
-              <div class="prod-name">AGSW</div>
-              <span class="prod-tag">Entegrasyon</span>
-            </div>
-          </div>
-          <p class="prod-desc">Gümrük tek pencere sistemleri ve devlet yazılım altyapılarıyla sorunsuz entegrasyon katmanı. ATEZ çözümlerini ulusal ve uluslararası gümrük ağlarına bağlayarak veri akışını otomatikleştirin.</p>
-          <div class="prod-card-footer">
-            <a href="#" class="prod-link">
               Keşfet
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>

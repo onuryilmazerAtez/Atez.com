@@ -68,23 +68,76 @@
     a { text-decoration:none; }
 
     /* ── ANNOUNCEMENT BAR ── */
-    @keyframes annbar-flow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-    .announcement-bar {
-      position:fixed; top:0; left:0; right:0; height:var(--annbar-h); z-index:300;
-      background:linear-gradient(120deg,#003d66,#005287,#b45309,#d97706,#005287,#003d66,#b45309);
-      background-size:300% 300%; animation:annbar-flow 9s ease infinite;
-      display:flex; align-items:center; justify-content:center; overflow:hidden;
-      transition:height .3s ease,opacity .3s ease;
+        .announcement-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--annbar-h);
+      z-index: 300;
+      background: #fff;
+      border-bottom: 1px solid var(--section-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: height .3s ease, opacity .3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
     }
-    html.annbar-off { --annbar-h:0px; }
-    html.annbar-off .announcement-bar { opacity:0; pointer-events:none; }
-    .announcement-content { display:flex; align-items:center; gap:12px; font-size:.8rem; font-weight:500; color:#fff; white-space:nowrap; padding:0 56px 0 16px; }
-    .announcement-badge {display:inline-flex;align-items:center;padding:0 7px;font-size:12px;line-height:20px;border-radius:4px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:500;white-space:nowrap;}
-    .announcement-text { opacity:.92; }
-    .announcement-link { color:#fff; font-weight:600; font-size:.78rem; text-decoration:none; border:1.5px solid rgba(255,255,255,.55); border-radius:20px; padding:4px 14px; flex-shrink:0; transition:background .18s,border-color .18s; white-space:nowrap; }
-    .announcement-link:hover { background:rgba(255,255,255,.14); border-color:#fff; }
-    .announcement-close { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:rgba(255,255,255,.75); cursor:pointer; padding:5px 7px; border-radius:4px; display:flex; transition:color .15s,background .15s; }
-    .announcement-close:hover { color:#fff; background:rgba(255,255,255,.15); }
+    [data-theme="dark"] .announcement-bar {
+      background: #141414;
+      border-bottom-color: var(--divider);
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    html.annbar-off { --annbar-h: 0px; }
+    html.annbar-off .announcement-bar { opacity: 0; pointer-events: none; }
+    .announcement-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      padding: 0 56px;
+    }
+    .announcement-badge {display:inline-flex;align-items:center;padding:0 7px;font-size:12px;line-height:20px;border-radius:4px;background:rgba(0,82,135,.06);border:1px solid rgba(0,82,135,.22);color:var(--primary);font-weight:500;white-space:nowrap;}
+    [data-theme="dark"] .announcement-badge {background:rgba(126,201,247,.06);border-color:rgba(126,201,247,.22);color:#7ec9f7;}
+    .announcement-text { opacity: .78; }
+    [data-theme="dark"] .announcement-text { opacity: .65; }
+    .announcement-sep { width:1px; height:16px; background:var(--divider); flex-shrink:0; }
+    .announcement-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: .8rem;
+      text-decoration: none;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      padding: 0 12px;
+      height: 26px;
+      flex-shrink: 0;
+      background: transparent;
+      white-space: nowrap;
+      transition: background .18s, color .18s, border-color .18s;
+      box-shadow: 0 1px 0 rgba(0,82,135,.04);
+    }
+    .announcement-link:hover { background: rgba(0,82,135,.06); border-color: var(--primary-dark); color: var(--primary-dark); }
+    [data-theme="dark"] .announcement-link { color:#7ec9f7; border-color:rgba(126,201,247,.45); }
+    [data-theme="dark"] .announcement-link:hover { background:rgba(126,201,247,.08); }
+    .announcement-close {
+      position: absolute;
+      right: 14px;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 5px 7px;
+      border-radius: 4px;
+      display: flex;
+      transition: color .15s, background .15s;
+    }
+    .announcement-close:hover { color: var(--text); background: var(--bg-alt); }
 
     /* ── HEADER ── */
     header {
