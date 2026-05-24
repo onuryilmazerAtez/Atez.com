@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ATEZ, Karbon Raporlaması ve Piyasa Yönetimini Tek Platformda Birleştirdi — ATEZ</title>
+  <title>Kurumsal Sorumluluk — ATEZ Yazılım Teknolojileri</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="shortcut icon" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,143 +80,77 @@
     .nav-dd-all-btn{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:opacity .15s;}
     .nav-dd-all-btn:hover{opacity:.65;}
 
-    /* ─── ARTICLE PAGE ─── */
-    .article-page{
-      padding-top:calc(var(--header-h) + var(--annbar-h));
-    }
+    /* ─── HERO ─── */
+    .legal-hero{padding:calc(var(--header-h) + var(--annbar-h) + 52px) max(64px,calc((100vw - 1440px)/2 + 64px)) 48px;background:var(--hero-bg);border-bottom:1px solid var(--section-border);}
+    .legal-hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;}
+    .legal-hero-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.025em;color:var(--text);line-height:1.1;margin-bottom:12px;}
+    .legal-hero-sub{font-size:.97rem;color:var(--muted);line-height:1.65;max-width:560px;}
 
-    /* Top bar: back + breadcrumb + share */
-    .article-topbar{
-      padding:20px max(48px,calc((100vw - 1440px)/2 + 48px));
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--section-border);
-      gap:16px;
-      flex-wrap:wrap;
-    }
-    .article-breadcrumb{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);}
-    .article-breadcrumb a{color:var(--primary);font-weight:500;display:inline-flex;align-items:center;gap:6px;}
-    .article-breadcrumb a:hover{text-decoration:underline;}
-    .article-breadcrumb a svg{width:13px;height:13px;}
-    .article-breadcrumb .sep{color:var(--divider);}
-    .article-breadcrumb .crumb-cat{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,82,135,.08);color:var(--primary);padding:3px 10px;border-radius:4px;}
-    .share-btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--muted);border:1.5px solid var(--card-border);border-radius:20px;padding:7px 16px;cursor:pointer;background:none;font-family:var(--ff);transition:border-color .15s,color .15s;}
-    .share-btn:hover{border-color:var(--primary);color:var(--primary);}
-    .share-btn svg{width:14px;height:14px;}
+    /* ─── LAYOUT ─── */
+    .legal-wrap{display:grid;grid-template-columns:288px 1fr;max-width:1240px;margin:0 auto;padding:56px max(48px,calc((100vw - 1240px)/2 + 48px)) 96px;gap:0;align-items:start;}
+    @media(max-width:900px){.legal-wrap{grid-template-columns:1fr;}}
 
-    /* Article header — centered */
-    .article-header{
-      padding:56px 24px 48px;
-      text-align:center;
-      max-width:760px;
-      margin:0 auto;
-    }
-    .article-meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
-    .article-date{font-size:.82rem;color:var(--muted);}
-    .article-readtime{font-size:.82rem;color:var(--muted);}
-    .article-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--divider);}
-    .article-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;color:var(--text);margin-bottom:32px;}
+    /* ─── STEPPER NAV ─── */
+    .legal-nav{position:sticky;top:calc(var(--header-h) + var(--annbar-h) + 32px);padding-right:36px;}
+    @media(max-width:900px){.legal-nav{position:static;padding-right:0;padding-bottom:40px;}}
+    .legal-nav-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.6;margin-bottom:20px;padding-left:4px;}
+    .legal-stepper{display:flex;flex-direction:column;}
+    .legal-step{display:flex;gap:16px;cursor:pointer;padding-bottom:4px;}
+    .legal-step-track{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px;}
+    .legal-step-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--divider);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--muted);background:var(--bg);transition:all .22s;flex-shrink:0;position:relative;z-index:1;}
+    .legal-step.active .legal-step-circle{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 0 0 4px rgba(0,82,135,.12);}
+    .legal-step-line{width:2px;flex:1;min-height:20px;background:var(--divider);margin:4px 0;}
+    .legal-step:last-child .legal-step-line{display:none;}
+    .legal-step-body{padding:6px 0 28px;}
+    .legal-step:last-child .legal-step-body{padding-bottom:0;}
+    .legal-step-title{font-size:.9rem;font-weight:600;color:var(--muted);line-height:1.3;transition:color .2s;}
+    .legal-step.active .legal-step-title{color:var(--primary);}
+    .legal-step:hover:not(.active) .legal-step-title{color:var(--text);}
+    .legal-step-date{font-size:.72rem;color:var(--muted);opacity:.6;margin-top:4px;}
+    .legal-step.active .legal-step-date{opacity:.8;color:var(--primary);}
+    .step-form-chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:var(--primary);margin-top:5px;opacity:.75;transition:opacity .2s;}
+    .legal-step.active .step-form-chip{opacity:1;}
+    .legal-step:hover:not(.active) .step-form-chip{opacity:.9;}
+    .step-form-chip svg{width:11px;height:11px;flex-shrink:0;}
 
-    /* Lead quote — centered, highlighted */
-    .article-lead-wrap{
-      max-width:720px;
-      margin:0 auto 52px;
-      padding:0 24px;
-    }
-    .article-lead{
-      background:var(--mono-bg);
-      border:1px solid rgba(0,82,135,.12);
-      border-radius:16px;
-      padding:28px 32px;
-      font-size:1.05rem;
-      font-weight:500;
-      color:var(--text);
-      line-height:1.7;
-      text-align:center;
-      position:relative;
-    }
-    [data-theme="dark"] .article-lead{border-color:rgba(126,201,247,.15);}
-    .article-lead::before{content:'\201C';position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:3rem;color:var(--primary);opacity:.3;line-height:1;font-family:Georgia,serif;}
+    /* ─── CONTENT ─── */
+    .legal-content{border-left:1px solid var(--section-border);padding-left:48px;}
+    @media(max-width:900px){.legal-content{border-left:none;padding-left:0;border-top:1px solid var(--section-border);padding-top:40px;}}
+    .legal-panel{display:none;}
+    .legal-panel.active{display:block;}
+    .policy-topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--section-border);}
+    .policy-title{font-size:1.55rem;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+    .policy-date-badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg-alt);border:1px solid var(--divider);border-radius:20px;padding:5px 14px;font-size:.74rem;font-weight:500;color:var(--muted);white-space:nowrap;}
+    .policy-date-badge svg{width:12px;height:12px;flex-shrink:0;}
+    .policy-intro{font-size:.95rem;color:var(--text);line-height:1.8;margin-bottom:28px;padding:20px 24px;background:var(--mono-bg);border-radius:12px;border:1px solid rgba(0,82,135,.1);}
+    .policy-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:32px 0 10px;display:flex;align-items:center;gap:10px;}
+    .policy-body h2::before{content:'';display:inline-block;width:3px;height:16px;background:var(--primary);border-radius:2px;flex-shrink:0;}
+    .policy-body h3{font-size:.92rem;font-weight:700;color:var(--primary);margin:20px 0 8px;}
+    .policy-body p{font-size:.9rem;color:var(--text);line-height:1.8;margin-bottom:10px;}
+    .policy-body ul,.policy-body ol{padding-left:18px;margin-bottom:12px;}
+    .policy-body li{font-size:.9rem;color:var(--text);line-height:1.75;margin-bottom:5px;}
+    .policy-body ul li{list-style:none;position:relative;padding-left:14px;}
+    .policy-body ul li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--primary);opacity:.5;}
+    .policy-contact-block{margin-top:28px;padding:20px 24px;background:var(--bg-alt);border-radius:12px;border:1px solid var(--section-border);}
+    .policy-contact-block p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.7;}
+    .policy-contact-block a{color:var(--primary);font-weight:500;}
 
-    /* Author row */
-    .article-author-row{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      padding:0 24px 40px;
-      border-bottom:1px solid var(--section-border);
-      max-width:720px;
-      margin:0 auto;
-    }
-    .article-author-avatar{width:40px;height:40px;border-radius:50%;background:var(--mono-bg);border:1px solid rgba(0,82,135,.15);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--primary);flex-shrink:0;}
-    .article-author-name{font-size:.88rem;font-weight:600;color:var(--text);}
-    .article-author-role{font-size:.78rem;color:var(--muted);}
+    /* ─── ETİK İHLALİ FORM BLOCK ─── */
+    .etik-form-block{margin-top:12px;padding:32px;background:var(--mono-bg);border-radius:16px;border:1px solid rgba(0,82,135,.12);display:flex;flex-direction:column;gap:20px;}
+    .etik-form-title{font-size:1.05rem;font-weight:700;color:var(--text);}
+    .etik-form-desc{font-size:.9rem;color:var(--muted);line-height:1.75;}
+    .etik-form-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;}
+    .btn-etik-primary{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 22px;background:var(--primary);color:#fff;border-radius:10px;font-size:.9rem;font-weight:600;text-decoration:none;transition:background .18s;}
+    .btn-etik-primary:hover{background:var(--primary-dark);}
+    .btn-etik-secondary{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 22px;background:transparent;color:var(--primary);border:1.5px solid var(--primary);border-radius:10px;font-size:.9rem;font-weight:600;text-decoration:none;transition:background .18s,color .18s;}
+    .btn-etik-secondary:hover{background:rgba(0,82,135,.07);}
+    .etik-guarantee{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);padding-top:4px;}
+    .etik-guarantee svg{width:14px;height:14px;flex-shrink:0;color:var(--primary);}
 
-    /* Body — centered, max-width */
-    .article-body{
-      max-width:720px;
-      margin:0 auto;
-      padding:48px 24px 0;
-    }
-    .article-body p{font-size:1rem;color:var(--text);line-height:1.85;margin-bottom:22px;}
-    .article-body h2{font-size:1.25rem;font-weight:700;color:var(--text);margin:44px 0 18px;line-height:1.3;position:relative;padding-bottom:12px;}
-    .article-body h2::after{content:'';position:absolute;bottom:0;left:0;width:40px;height:2px;background:var(--primary);border-radius:2px;}
-    .article-body blockquote{border-left:3px solid var(--primary);padding:20px 24px;margin:36px 0;background:var(--mono-bg);border-radius:0 14px 14px 0;}
-    .article-body blockquote p{color:var(--primary);font-style:italic;font-weight:500;font-size:.98rem;line-height:1.7;margin-bottom:10px;}
-    .article-body blockquote cite{font-size:.8rem;color:var(--muted);font-style:normal;font-weight:600;}
-
-    /* Bottom actions */
-    .article-actions{
-      max-width:720px;
-      margin:56px auto 0;
-      padding:32px 24px;
-      border-top:1px solid var(--section-border);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-    .article-back{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--primary);border:1.5px solid rgba(0,82,135,.2);border-radius:20px;padding:9px 18px;transition:background .15s,color .15s,border-color .15s;}
-    .article-back:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
-    .article-back svg{width:14px;height:14px;}
-    .article-share{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--muted);border:1.5px solid var(--card-border);border-radius:20px;padding:9px 18px;cursor:pointer;background:none;font-family:var(--ff);transition:border-color .15s,color .15s;}
-    .article-share:hover{border-color:var(--primary);color:var(--primary);}
-    .article-share svg{width:14px;height:14px;}
-
-    /* Related articles */
-    .related-section{
-      padding:72px max(48px,calc((100vw - 1440px)/2 + 48px)) 80px;
-      background:var(--bg-alt);
-      border-top:1px solid var(--section-border);
-      margin-top:72px;
-    }
-    .related-inner{max-width:1040px;margin:0 auto;}
-    .related-header{display:flex;align-items:baseline;gap:12px;margin-bottom:36px;}
-    .related-title{font-size:1.2rem;font-weight:700;color:var(--text);}
-    .related-count{font-size:.82rem;color:var(--muted);}
-    .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-    @media(max-width:720px){.related-grid{grid-template-columns:1fr;}}
-    .related-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .18s,transform .18s;cursor:pointer;}
-    .related-card:hover{box-shadow:0 6px 24px rgba(0,82,135,.09);transform:translateY(-2px);}
-    .related-card-tags{display:flex;flex-wrap:wrap;gap:6px;}
-    .related-tag{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(0,82,135,.07);color:var(--primary);}
-    .related-card h3{font-size:.97rem;font-weight:700;color:var(--text);line-height:1.4;}
-    .related-card p{font-size:.84rem;color:var(--muted);line-height:1.6;flex:1;}
-    .related-card-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:4px;}
-    .related-author{display:flex;align-items:center;gap:8px;}
-    .related-author-avatar{width:28px;height:28px;border-radius:50%;background:var(--mono-bg);border:1px solid rgba(0,82,135,.12);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--primary);flex-shrink:0;}
-    .related-author-info{font-size:.75rem;color:var(--muted);}
-    .related-author-name{font-weight:600;color:var(--text);font-size:.78rem;}
-    .related-read-link{font-size:.78rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
-    .related-read-link svg{width:11px;height:11px;transition:transform .15s;}
-    .related-card:hover .related-read-link svg{transform:translateX(3px);}
-    .related-more{text-align:center;margin-top:28px;font-size:.84rem;color:var(--muted);}
-
-    /* Footer */
-    footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;}
+    /* ─── Footer ─── */
+    footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;position:relative;overflow:hidden;}
+    .footer-wm{position:absolute;right:-120px;bottom:-120px;width:560px;height:560px;opacity:.04;transform:rotate(-18deg);pointer-events:none;user-select:none;}
+    .footer-wm svg{width:100%;height:100%;}
     .footer-brand{margin-bottom:52px;}
     .footer-tagline{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.12;color:var(--text);letter-spacing:-.02em;margin-bottom:28px;}
     .footer-socials{display:flex;gap:12px;}
@@ -296,180 +230,177 @@
     </div>
   </header>
 
-  <main class="article-page">
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="legal-hero-eyebrow">Şirket</div>
+    <h1 class="legal-hero-title">Kurumsal Sorumluluk</h1>
+    <p class="legal-hero-sub">Kurumsal yönetim taahhütlerimiz, etik iş ilkelerimiz ve sürdürülebilirlik hedeflerimize ilişkin politika ve raporlarımız.</p>
+  </section>
 
-    <!-- Top bar: back + breadcrumb + share -->
-    <div class="article-topbar">
-      <div class="article-breadcrumb">
-        <a href="basin-bultenleri.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          Geri
-        </a>
-        <span class="sep">·</span>
-        <a href="basin-bultenleri.html">Basın Bültenleri</a>
-        <span class="sep">/</span>
-        <span class="crumb-cat">Şirket Haberleri</span>
-      </div>
-      <button class="share-btn" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        Paylaş
-      </button>
-    </div>
+  <!-- MAIN CONTENT -->
+  <div class="legal-wrap">
 
-    <!-- Article header — centered -->
-    <div class="article-header">
-      <div class="article-meta">
-        <span class="article-date">16.10.2025</span>
-        <span class="article-meta-dot"></span>
-        <span class="article-readtime">2 dk okuma</span>
-      </div>
-      <h1 class="article-title">ATEZ, Karbon Raporlaması ve Piyasa Yönetimini Tek Platformda Birleştirdi</h1>
-    </div>
+    <!-- STEPPER NAV -->
+    <aside class="legal-nav" aria-label="Bölüm seçimi">
+      <div class="legal-nav-label">Raporlar ve Taahhütler</div>
+      <div class="legal-stepper">
 
-    <!-- Lead quote — centered, highlighted -->
-    <div class="article-lead-wrap">
-      <div class="article-lead">
-        Kenan Güler, "Doğrulanmış emisyon verisi, otomatik raporlama ve karbon piyasasına doğrudan erişimi tek platformda birleştirerek işletmelerin sadece yasal gereklilikleri karşılamasına değil, rekabet avantajı kazanmasına da olanak sağlıyoruz" dedi.
-      </div>
-    </div>
-
-    <!-- Author -->
-    <div class="article-author-row">
-      <div class="article-author-avatar">CY</div>
-      <div>
-        <div class="article-author-name">Cüneyt Yetgin</div>
-        <div class="article-author-role">ATEZ Yazılım Teknolojileri</div>
-      </div>
-    </div>
-
-    <!-- Body -->
-    <div class="article-body">
-      <p>İSTANBUL (AA) - ATEZ Yazılım Teknolojileri, Avrupa Birliği'nin Karbon Sınır Düzenleme Mekanizması (CBAM) kapsamında, Sustrack ve EUCarbonMarkets işbirliğinde uçtan uca karbon yönetimi sağlayan bütünleşik platform geliştirdi.</p>
-      <p>Şirketten yapılan açıklamaya göre, ATEZ'in Greenpulse teknolojisiyle güçlendirilen bu platform, karbon verisi toplama, yasal raporlama ve karbon piyasası işlemlerini tek sistemde birleştirerek uluslararası ticarette karbon yönetimini kolaylaştırmayı hedefliyor.</p>
-      <p>Sustrack ile sağlanan veri doğrulama özelliği sayesinde, üretici ve tedarikçiler kaynakta topladıkları ürün bazlı karbon emisyon verilerini Greenpulse'a aktarabiliyor. Platform bu verileri ithalat beyannamesi ile entegre ederek Avrupa Birliği CBAM kurallarına uygun karbondioksit emisyon değerlerini hesaplıyor ve raporluyor.</p>
-
-      <h2>Uyumdan Karbon Piyasasında Stratejik Avantaja</h2>
-      <p>Greenpulse yalnızca raporlama süreçlerini değil, aynı zamanda EUCarbonMarkets üzerinden karbon kredisi alımı, riskten korunma ve maliyet optimizasyonu gibi işlemleri de içeriyor. Bu sayede CBAM uyumu, stratejik bir fırsat alanı haline geliyor.</p>
-      <p>AB Emisyon Ticaret Sistemi'ne (EU ETS) paralel olarak şekillenecek CBAM sertifika fiyatları henüz belirlenmemiş olsa da, platform kullanıcılarına gelecekteki mali yükümlülüklerini önceden fiyat dalgalanmalarına karşı güvence altına alma imkânı sunuluyor.</p>
-      <p>AB'nin yeni düzenlemesi, ithal edilen ürünlerin üretiminde oluşan karbon salınımını fiyatlandırarak ticaret süreçlerinde yeni yükümlülükler getiriyor. ATEZ'in platformunu erkenden kullanan işletmeler doğru emisyon raporlaması, maliyet yönetimi ve karbon piyasasına hızlı erişim avantajı elde edebilecek.</p>
-
-      <h2>Verileri Doğruluyor ve İzlenebilir Hale Getiriyor</h2>
-      <p>Platformun temel bileşenlerini emisyon ölçümü ve veri yönetimi, otomatik CBAM raporlaması ve karbon piyasası entegrasyonu oluşturuyor. Buna göre, Sustrack üretici ve tedarikçilerden gelen ürün bazlı karbon emisyon verilerini standartlaştırarak doğruluyor ve izlenebilir hale getiriyor.</p>
-      <p>Greenpulse, ihracat süreçlerinde oluşturulan ithalat beyannamesi verilerini doğru ve eksiksiz karbon raporlarına dönüştürerek süreci otomatikleştiriyor.</p>
-      <p>EUCarbonMarkets bağlantısı ise anlık EUA fiyat takibi, karbon kredisi tedariki ve maliyet riskinden korunma olanağı sağlıyor.</p>
-      <p>Açıklamada görüşlerine yer verilen ATEZ Üst Yöneticisi (CEO) Kenan Güler, bu işbirliğinin karbon uyumunu hem sorunsuz hem de stratejik bir hale getirdiğini belirtti.</p>
-
-      <blockquote>
-        <p>"Doğrulanmış emisyon verisi, otomatik raporlama ve karbon piyasasına doğrudan erişimi tek platformda birleştirerek işletmelerin sadece yasal gereklilikleri karşılamasına değil, rekabet avantajı kazanmasına da olanak sağlıyoruz."</p>
-        <cite>— Kenan Güler, CEO, ATEZ Yazılım Teknolojileri</cite>
-      </blockquote>
-    </div>
-
-    <!-- Bottom actions -->
-    <div class="article-actions">
-      <a href="basin-bultenleri.html" class="article-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        Haberlere Dön
-      </a>
-      <button class="article-share" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        Paylaş
-      </button>
-    </div>
-
-    <!-- Related articles -->
-    <section class="related-section">
-      <div class="related-inner">
-        <div class="related-header">
-          <span class="related-title">İlgili Yazılar</span>
-          <span class="related-count">Benzer konuda 8 yazı</span>
+        <div class="legal-step active" data-tab="sirket-politikasi">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">1</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Şirket Politikası</div>
+            <div class="legal-step-date">Güncelleme: 20/03/2024</div>
+          </div>
         </div>
-        <div class="related-grid">
 
-          <div class="related-card">
-            <div class="related-card-tags">
-              <span class="related-tag">Logicust</span>
-              <span class="related-tag">Greenpulse</span>
-              <span class="related-tag">Tariff</span>
-              <span class="related-tag">+1</span>
-            </div>
-            <h3>Dijital Ürün Pasaportu: Küresel Ticarette Ürün Bazlı Uyum Dönemi</h3>
-            <p>Dijital Ürün Pasaportu, ürünlerin yönetilme ve ticaret biçimini kökten değiştiriyor. AB'nin veri odaklı uyum modeline geçişi ile birlikte şirketlerin belge bazlı süreçlerden ürün bazlı veri sistemlerine geçmesi gerekiyor.</p>
-            <div class="related-card-meta">
-              <div class="related-author">
-                <div class="related-author-avatar">CY</div>
-                <div>
-                  <div class="related-author-name">Cüneyt Yetgin</div>
-                  <div class="related-author-info">30 gün önce</div>
-                </div>
-              </div>
-              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
-            </div>
+        <div class="legal-step" data-tab="bt-guvenligi">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">2</div>
+            <div class="legal-step-line"></div>
           </div>
-
-          <div class="related-card">
-            <div class="related-card-tags">
-              <span class="related-tag">Yenilik</span>
-              <span class="related-tag">Yapay Zeka</span>
-            </div>
-            <h3>Lojistikte Dijital Dönüşüme Doğru Güçlü Bir Adım: ATEZ Yazılım Teknolojileri × SİBER Yazılım</h3>
-            <p>ATEZ Software Technologies ve SİBER Yazılım, lojistik sektöründe dijital dönüşümü hızlandırmak için güçlerini birleştiriyor; böylece daha akıllı otomasyon, daha yüksek verimlilik ve sürdürülebilir operasyonlar sağlanıyor.</p>
-            <div class="related-card-meta">
-              <div class="related-author">
-                <div class="related-author-avatar">Sİ</div>
-                <div>
-                  <div class="related-author-name">Sena İmamoğlu</div>
-                  <div class="related-author-info">3 ay önce</div>
-                </div>
-              </div>
-              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
-            </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">BT Güvenliği Taahhüdü</div>
           </div>
-
-          <div class="related-card">
-            <div class="related-card-tags">
-              <span class="related-tag">Greenpulse</span>
-            </div>
-            <h3>CBAM: Mevzuattan Operasyonel Gerçekliğe</h3>
-            <p>CBAM, 1 Ocak 2026 itibarıyla yalnızca bir mevzuat başlığı olmaktan çıkıp şirketler için gerçek bir operasyonel ve finansal yönetim alanına dönüşüyor. Bu geçişte fark yaratan unsur, uyumun ötesine geçerek maliyetleri öngörülebilir ve yönetilebilir hale getirmek.</p>
-            <div class="related-card-meta">
-              <div class="related-author">
-                <div class="related-author-avatar">Sİ</div>
-                <div>
-                  <div class="related-author-name">Sena İmamoğlu</div>
-                  <div class="related-author-info">4 ay önce</div>
-                </div>
-              </div>
-              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
-            </div>
-          </div>
-
-          <div class="related-card">
-            <div class="related-card-tags">
-              <span class="related-tag">Greenpulse</span>
-            </div>
-            <h3>CBAM Kesin Uygulama Aşamasına Giriyor: Greenpulse ile Maliyetleri Kontrol Edin ve Riski Azaltın</h3>
-            <p>1 Ocak 2026 itibarıyla kesin döneme geçişle birlikte, CBAM artık sadece bir raporlama yükümlülüğü değil, doğrudan bir operasyonel ve finansal risk haline geliyor. Greenpulse'ın bu geçiş sürecini güvenle yönetmenize nasıl yardımcı olduğunu keşfedin.</p>
-            <div class="related-card-meta">
-              <div class="related-author">
-                <div class="related-author-avatar">Sİ</div>
-                <div>
-                  <div class="related-author-name">Sena İmamoğlu</div>
-                  <div class="related-author-info">4 ay önce</div>
-                </div>
-              </div>
-              <a href="haberler.html" class="related-read-link">Yazıyı Oku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
-            </div>
-          </div>
-
         </div>
-        <p class="related-more">Toplam 8 yazıdan 4'ü gösteriliyor</p>
-      </div>
-    </section>
 
-  </main>
+        <div class="legal-step" data-tab="davranis-kurallari">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">3</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Davranış Kuralları</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="karbon-emisyon">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">4</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Karbon Emisyon Raporu</div>
+          </div>
+        </div>
+
+        <div class="legal-step" data-tab="etik-ihlali">
+          <div class="legal-step-track">
+            <div class="legal-step-circle">5</div>
+            <div class="legal-step-line"></div>
+          </div>
+          <div class="legal-step-body">
+            <div class="legal-step-title">Etik İhlali Bildirimi</div>
+            <div class="step-form-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Etkileşimli Form
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- CONTENT PANELS -->
+    <main class="legal-content">
+
+      <!-- 1. Şirket Politikası -->
+      <article id="sirket-politikasi" class="legal-panel active">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Şirket Politikası</h2>
+          <span class="policy-date-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Son güncelleme: 20/03/2024</span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ Yazılım Teknolojileri A.Ş., tüm iş süreçlerini yasal mevzuata, uluslararası standartlara ve etik ilkelere uygun biçimde yürütmeyi taahhüt etmektedir.</p>
+        </div>
+      </article>
+
+      <!-- 2. BT Güvenliği Taahhüdü -->
+      <article id="bt-guvenligi" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">BT Güvenliği Taahhüdü</h2>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ, bilgi teknolojileri altyapısının ve müşteri verilerinin güvenliğini sağlamak için ISO 27001 Bilgi Güvenliği Yönetim Sistemi standartlarına uygun süreçleri hayata geçirmiştir.</p>
+        </div>
+      </article>
+
+      <!-- 3. Davranış Kuralları -->
+      <article id="davranis-kurallari" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Davranış Kuralları</h2>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ çalışanları, iş ortakları ve tedarikçilerinden beklenen etik davranış standartlarını belirleyen bu belge, şirketin değerlerine ve kurumsal kültürüne rehberlik eder.</p>
+        </div>
+      </article>
+
+      <!-- 4. Karbon Emisyon Raporu -->
+      <article id="karbon-emisyon" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Karbon Emisyon Raporu</h2>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ, iklim değişikliğiyle mücadele kapsamında karbon ayak izini ölçmekte, şeffaf biçimde raporlamakta ve emisyon azaltım hedefleri belirlemeye devam etmektedir.</p>
+        </div>
+      </article>
+
+      <!-- 5. Etik İhlali Bildirimi -->
+      <article id="etik-ihlali" class="legal-panel">
+        <div class="policy-topbar">
+          <h2 class="policy-title">Etik İhlali Bildirimi</h2>
+          <span class="policy-date-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Etkileşimli Form
+          </span>
+        </div>
+        <div class="policy-body">
+          <p class="policy-intro">ATEZ, tüm çalışanların, tedarikçilerin ve paydaşların etik ihlal, uygunsuzluk veya şüpheli durumları güvenli, gizli ve misilleme korkusu olmadan bildirebilmesi için aşağıdaki kanalları sunmaktadır.</p>
+
+          <div class="etik-form-block">
+            <div class="etik-form-title">Etik İhlali veya Endişenizi Bildirin</div>
+            <div class="etik-form-desc">Bildirimler Uyum Fonksiyonu tarafından gizlilikle ele alınır. Kimliğinizi açıklamadan anonim bildirim yapma hakkına sahipsiniz. Tüm bildirimler eşit ciddiyetle değerlendirilir.</div>
+            <div class="etik-form-actions">
+              <a href="mailto:etik@atez.com" class="btn-etik-primary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                E-posta ile Bildir
+              </a>
+              <a href="mailto:etik@atez.com" class="btn-etik-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.27-1.34a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Uyum Fonksiyonu ile İletişim
+              </a>
+            </div>
+            <div class="etik-guarantee">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Gizlilik güvencesi — Bildirimde bulunan çalışan her türlü misillemeye karşı korunur
+            </div>
+          </div>
+
+          <h2>Bildirim Kanalları</h2>
+          <ul>
+            <li>E-posta: <a href="mailto:etik@atez.com" style="color:var(--primary);font-weight:500;">etik@atez.com</a></li>
+            <li>Yüz yüze: Uyum Fonksiyonu ile doğrudan görüşme</li>
+            <li>Anonim bildirim hakkı tanınmaktadır</li>
+          </ul>
+
+          <h2>Süreç</h2>
+          <ul>
+            <li>Bildirimler derhal ve adil biçimde soruşturulur</li>
+            <li>Bir ihlalin teyit edilmesi halinde gerekli düzeltici önlemler alınır</li>
+            <li>Tüm süreç Bildirim, İhbar ve Misillemenin Önlenmesi Politikası çerçevesinde yürütülür</li>
+          </ul>
+        </div>
+      </article>
+
+    </main>
+  </div>
 
   <footer>
+    <div class="footer-wm" aria-hidden="true">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.8096 0C41.6196 0 53.6201 12.0005 53.6201 26.8105C53.6201 41.6205 41.6196 53.6201 26.8096 53.6201C11.9998 53.6199 3.09109e-05 41.6204 0 26.8105C0 12.0007 11.9998 0.000234917 26.8096 0ZM16.5801 21.3906C16.4403 21.3907 16.3206 21.4307 16.2207 21.5205L16.1533 21.6016C16.0942 21.6765 16.0606 21.7629 16.0605 21.8604V23.2002C16.0605 23.3402 16.1107 23.4407 16.2207 23.5107C16.3205 23.5806 16.4404 23.6103 16.5801 23.6104H22.291V40.2803C22.291 40.4203 22.3309 40.5406 22.4209 40.6406C22.5109 40.7405 22.6209 40.8008 22.7607 40.8008H24.1904C24.3303 40.8008 24.4403 40.7505 24.5303 40.6406C24.6203 40.5406 24.6602 40.4203 24.6602 40.2803V21.3906H16.5801ZM31.6104 21.4707C31.4705 21.4708 31.3509 21.5109 31.251 21.5908C31.151 21.6708 31.0908 21.7809 31.0908 21.9209V23.1602C31.0908 23.3002 31.141 23.4102 31.251 23.4902C31.3509 23.5701 31.4705 23.6103 31.6104 23.6104H40.2305C40.4003 23.6104 40.49 23.6703 40.4902 23.79C40.4902 23.8599 40.4609 23.9302 40.4111 24L31.1104 37.5107C30.9705 37.7006 30.8705 37.9405 30.8105 38.2402C30.7505 38.5402 30.7207 38.7905 30.7207 39.0205C30.7207 39.7105 30.8707 40.1809 31.1807 40.4209C31.4807 40.6608 32.051 40.7803 32.8809 40.7803H43.5303C43.6703 40.7803 43.7906 40.7404 43.8906 40.6504C43.9906 40.5604 44.0508 40.4505 44.0508 40.3105V39.0908C44.0508 38.9509 44.0006 38.8407 43.8906 38.7607L43.8105 38.7275C43.7257 38.6826 43.6277 38.6602 43.5303 38.6602H33.5605C33.3907 38.6601 33.3008 38.61 33.3008 38.5C33.3009 38.4301 33.331 38.3503 33.3809 38.2705L42.6611 24.7305C42.8011 24.5405 42.9007 24.2999 42.9707 24C43.0406 23.7102 43.0703 23.4403 43.0703 23.1904C43.0703 22.4806 42.8806 22.0208 42.5107 21.8008C42.1407 21.5808 41.5904 21.4707 40.8604 21.4707H31.6104ZM32.0801 12.8203C30.2601 12.8203 28.8897 13.1907 27.9697 13.9307C27.0499 14.6706 26.5899 15.9004 26.5898 17.6201V27.5508C26.5899 29.2705 27.0499 30.5003 27.9697 31.2402C28.8197 31.9202 30.0599 32.2808 31.6699 32.3408L33.1201 30.2402L33.1299 30.2207H32.1201C31.4301 30.2207 30.8797 30.1701 30.4697 30.0801C30.0598 29.9801 29.7395 29.8301 29.5195 29.6201C29.2997 29.4002 29.1503 29.1299 29.0703 28.79C28.9904 28.4501 28.9502 28.0401 28.9502 27.5303V17.6104C28.9502 17.1304 28.9903 16.7201 29.0703 16.3701C29.1503 16.0204 29.2997 15.7502 29.5195 15.5303C29.7395 15.3103 30.0598 15.1603 30.4697 15.0703C30.8797 14.9803 31.4301 14.9307 32.1201 14.9307H37.0996C37.2896 14.9307 37.3799 14.8301 37.3799 14.6201V13.3301C37.3798 13.2502 37.3595 13.1705 37.3096 13.1006C37.2696 13.0307 37.2 12.9907 37.1201 12.9707C36.8401 12.9507 36.4998 12.9302 36.0898 12.9102C35.6798 12.8802 35.2395 12.8704 34.7695 12.8604C34.3096 12.8603 33.8393 12.8401 33.3594 12.8301C32.8897 12.8301 32.4599 12.8203 32.0801 12.8203ZM16.9902 12.8008C16.7503 12.8008 16.5002 12.8306 16.2402 12.8906C15.9704 12.9506 15.7204 13.0503 15.4805 13.2002C15.2405 13.3502 15.0203 13.541 14.8203 13.791C14.6204 14.041 14.4701 14.3609 14.3701 14.7607L9.60059 31.5508C9.5993 31.5551 9.57033 31.6523 9.57031 31.7305C9.57031 32.0105 9.72074 32.1406 10.0107 32.1406H11.5303C11.6303 32.1406 11.7305 32.1005 11.8105 32.0205C11.9003 31.9407 11.9602 31.8508 11.9902 31.751L13.6406 25.8203L14.1299 23.7803L16.4805 15.291C16.5605 14.991 16.7303 14.8301 16.9902 14.8301V12.8008Z" fill="currentColor"/></svg>
+    </div>
     <div class="footer-brand">
       <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
       <div class="footer-socials">
@@ -481,8 +412,8 @@
     <hr class="footer-divider">
     <div class="footer-nav">
       <div class="footer-nav-col"><div class="footer-nav-group"><h4>Platform</h4><ul><li><a href="index.html">Ürünler</a></li><li><a href="solutions.html">Çözümler</a></li><li><a href="nasil-calisir.html">Nasıl Çalışır</a></li><li><a href="yapay-zeka.html">Yapay Zekâ</a></li><li><a href="blockchain.html">Blockchain</a></li></ul></div></div>
-      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Şirket</h4><ul><li><a href="hakkimizda.html">Hakkımızda</a></li><li><a href="iletisim.html">İletişim</a></li><li><a href="haberler.html">Haberler</a></li><li><a href="basin-bultenleri.html" class="active">Basın Bültenleri</a></li><li><a href="#">Etkinlikler</a></li><li><a href="yatirimcilar.html">Yatırımcılar</a></li></ul></div></div>
-      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Kurumsal Sorumluluk</h4><ul><li><a href="kurumsal-sorumluluk.html#sirket-politikasi">Şirket Politikası</a></li><li><a href="kurumsal-sorumluluk.html#bt-guvenligi">BT Güvenliği Taahhüdü</a></li><li><a href="kurumsal-sorumluluk.html#davranis-kurallari">Davranış Kuralları</a></li><li><a href="kurumsal-sorumluluk.html#karbon-emisyon">Karbon Emisyon Raporu</a></li><li><a href="kurumsal-sorumluluk.html#etik-ihlali">Etik İhlali Bildirimi</a></li></ul></div></div>
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Şirket</h4><ul><li><a href="hakkimizda.html">Hakkımızda</a></li><li><a href="iletisim.html">İletişim</a></li><li><a href="haberler.html">Haberler</a></li><li><a href="basin-bultenleri.html">Basın Bültenleri</a></li><li><a href="#">Etkinlikler</a></li><li><a href="yatirimcilar.html">Yatırımcılar</a></li></ul></div></div>
+      <div class="footer-nav-col"><div class="footer-nav-group"><h4>Kurumsal Sorumluluk</h4><ul><li><a href="kurumsal-sorumluluk.html#sirket-politikasi" class="active">Şirket Politikası</a></li><li><a href="kurumsal-sorumluluk.html#bt-guvenligi" class="active">BT Güvenliği Taahhüdü</a></li><li><a href="kurumsal-sorumluluk.html#davranis-kurallari" class="active">Davranış Kuralları</a></li><li><a href="kurumsal-sorumluluk.html#karbon-emisyon" class="active">Karbon Emisyon Raporu</a></li><li><a href="kurumsal-sorumluluk.html#etik-ihlali" class="active">Etik İhlali Bildirimi</a></li></ul></div></div>
       <div class="footer-nav-col"><div class="footer-nav-group"><h4>Hukuki</h4><ul><li><a href="hukuki-politikalar.html#hizmet-kosullari">Hizmet Koşulları</a></li><li><a href="hukuki-politikalar.html#gizlilik-politikasi">Gizlilik Politikası</a></li><li><a href="hukuki-politikalar.html#cerez-politikasi">Çerez Politikası</a></li><li><a href="#">Çerez Tercihleri</a></li><li><a href="hukuki-politikalar.html#uyum-politikasi">Uyum Politikası</a></li><li><a href="hukuki-politikalar.html#webinar-gizlilik">Webinar Gizlilik Bildirimi</a></li></ul></div></div>
     </div>
     <div class="footer-bottom">
@@ -498,6 +429,25 @@
     (function(){const bar=document.getElementById('announcement-bar');const btn=document.getElementById('announcement-close');if(!bar)return;if(localStorage.getItem('annbar-v1')==='dismissed'){document.documentElement.classList.add('annbar-off');return;}btn.addEventListener('click',()=>{document.documentElement.classList.add('annbar-off');localStorage.setItem('annbar-v1','dismissed');});})();
     (function(){const html=document.documentElement;const btn=document.getElementById('theme-toggle');const stored=localStorage.getItem('atez-theme');if(stored)html.setAttribute('data-theme',stored);btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('atez-theme',next);});})();
     const headerEl=document.getElementById('site-header');function updateHeader(){headerEl.classList.toggle('scrolled',window.scrollY>60);}window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
+
+    /* ─── STEPPER TAB LOGIC ─── */
+    function switchTab(id){
+      document.querySelectorAll('.legal-step').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.legal-panel').forEach(el=>el.classList.remove('active'));
+      const step=document.querySelector(`.legal-step[data-tab="${id}"]`);
+      const panel=document.getElementById(id);
+      if(step)step.classList.add('active');
+      if(panel)panel.classList.add('active');
+      history.replaceState(null,'','#'+id);
+    }
+
+    document.querySelectorAll('.legal-step').forEach(item=>{
+      item.addEventListener('click',()=>switchTab(item.dataset.tab));
+    });
+
+    const hash=location.hash.slice(1);
+    const valid=['sirket-politikasi','bt-guvenligi','davranis-kurallari','karbon-emisyon','etik-ihlali'];
+    if(hash&&valid.includes(hash))switchTab(hash);
   </script>
 </body>
 </html>
