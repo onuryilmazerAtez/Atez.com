@@ -200,34 +200,33 @@
     .btn-cta-outline-w:hover{border-color:#fff;background:rgba(255,255,255,.1);}
 
     /* FOOTER */
-    /* ── Mega menu (kategorili dropdown) ── */
-    .nav-dropdown-products{min-width:960px;padding:0;}
-    .nav-dd-mega{display:flex;min-height:340px;}
-    .nav-dd-left{width:238px;flex-shrink:0;border-right:1px solid var(--section-border);padding:10px 6px 0;display:flex;flex-direction:column;}
-    .nav-dd-sect-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:2px 8px 10px;opacity:.8;}
-    .nav-dd-cat{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;cursor:pointer;transition:background .14s;text-decoration:none;color:var(--text);}
+    /* ── Mega menu v3 (Atlassian style) ── */
+    .nav-dropdown-products{min-width:940px;padding:0;}
+    .nav-dd-mega{display:flex;min-height:360px;}
+    .nav-dd-left{width:210px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}
+    .nav-dd-cat{display:block;padding:9px 16px;border-radius:7px;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .14s,color .14s;text-decoration:none;color:var(--text);line-height:1.3;}
     .nav-dd-cat:hover{background:var(--bg-alt);}
-    .nav-dd-cat.active{background:rgba(0,82,135,.08);}
-    .nav-dd-cat-icon-wrap{width:34px;height:34px;border-radius:9px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    [data-theme="dark"] .nav-dd-cat-icon-wrap{border-color:rgba(126,201,247,.12);}
-    .nav-dd-cat-icon-wrap img{width:20px;height:20px;}
-    .nav-dd-cat-body{flex:1;min-width:0;}
-    .nav-dd-cat-num{display:block;font-size:.58rem;font-weight:700;color:var(--primary);opacity:.55;line-height:1;margin-bottom:2px;letter-spacing:.04em;}
-    .nav-dd-cat-name{font-size:.82rem;font-weight:600;color:var(--text);line-height:1.2;}
-    .nav-dd-cat-chev{flex-shrink:0;color:var(--muted);opacity:0;transition:opacity .14s;}
-    .nav-dd-cat:hover .nav-dd-cat-chev,.nav-dd-cat.active .nav-dd-cat-chev{opacity:.55;}
-    .nav-dd-left-footer{margin-top:auto;padding:10px 8px 12px;border-top:1px solid var(--section-border);}
-    .nav-dd-right{flex:1;padding:10px 10px 0;display:flex;flex-direction:column;min-width:0;}
+    .nav-dd-cat.active{color:var(--primary);background:rgba(0,82,135,.07);}
+    .nav-dd-left-footer{margin-top:auto;padding:14px 16px 4px;border-top:1px solid var(--section-border);}
+    .nav-dd-all-link{font-size:.83rem;font-weight:600;color:var(--primary);text-decoration:none;transition:opacity .15s;}
+    .nav-dd-all-link:hover{opacity:.7;}
+    .nav-dd-right{flex:1;padding:20px 20px 0;display:flex;flex-direction:column;min-width:0;}
+    .nav-dd-sect-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 0 10px;opacity:.8;}
     .nav-dd-panel{display:none;flex-direction:column;flex:1;}
     .nav-dd-panel.active{display:flex;}
-    .nav-dd-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
-    .nav-dd-panel-grid .nav-dd-item{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:9px;text-decoration:none;transition:background .14s;color:var(--text);}
-    .nav-dd-panel-grid .nav-dd-item:hover{background:var(--bg-alt);color:var(--text);}
-    .nav-dd-right-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px 12px;border-top:1px solid var(--section-border);flex-wrap:wrap;}
+    .nav-dd-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+    .nav-dd-panel-grid .nav-dd-item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:9px;text-decoration:none;transition:background .14s;color:var(--text);}
+    .nav-dd-panel-grid .nav-dd-item:hover{background:var(--bg-alt);}
+    .nav-dd-icon-wrap{width:36px;height:36px;border-radius:9px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    [data-theme="dark"] .nav-dd-icon-wrap{border-color:rgba(126,201,247,.12);}
+    .nav-dd-icon-wrap img{width:22px;height:22px;}
+    .nav-dd-name{font-size:.875rem;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:2px;}
+    .nav-dd-desc{font-size:.73rem;color:var(--muted);line-height:1.35;}
+    .nav-dd-right-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 4px 16px;border-top:1px solid var(--section-border);flex-wrap:wrap;}
     .nav-dd-right-footer-title{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:2px;}
     .nav-dd-right-footer-sub{font-size:.7rem;color:var(--muted);line-height:1.35;}
-    .nav-dd-right-footer-btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;background:var(--primary);color:#fff;border-radius:20px;font-size:.76rem;font-weight:600;text-decoration:none;flex-shrink:0;transition:background .15s;white-space:nowrap;}
-    .nav-dd-right-footer-btn:hover{background:var(--primary-dark);}
+    .nav-dd-cta-btn{display:inline-flex;align-items:center;height:32px;padding:0 15px;background:var(--primary);color:#fff!important;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none;flex-shrink:0;transition:background .15s,box-shadow .15s;box-shadow:0 2px 0 rgba(0,0,0,.06);border:1px solid var(--primary);white-space:nowrap;}
+    .nav-dd-cta-btn:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
 
     footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;}
     .footer-brand{margin-bottom:52px;}
@@ -287,33 +286,12 @@
         <div class="nav-dropdown nav-dropdown-products">
           <div class="nav-dd-mega">
             <div class="nav-dd-left">
-              <div class="nav-dd-sect-label">Çözüm Kategorileri</div>
-              <div class="nav-dd-cat active" data-cat="uyum">
-                <div class="nav-dd-cat-icon-wrap"><img src="assets/icons/CustomShield.svg" alt=""></div>
-                <div class="nav-dd-cat-body"><span class="nav-dd-cat-num">01</span><span class="nav-dd-cat-name">Mevzuata Uyum</span></div>
-                <svg class="nav-dd-cat-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="nav-dd-cat" data-cat="beyanname">
-                <div class="nav-dd-cat-icon-wrap"><img src="assets/icons/Declarant.svg" alt=""></div>
-                <div class="nav-dd-cat-body"><span class="nav-dd-cat-num">02</span><span class="nav-dd-cat-name">Beyanname Çözümleri</span></div>
-                <svg class="nav-dd-cat-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="nav-dd-cat" data-cat="ai">
-                <div class="nav-dd-cat-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt=""></div>
-                <div class="nav-dd-cat-body"><span class="nav-dd-cat-num">03</span><span class="nav-dd-cat-name">Yapay Zeka İşleme</span></div>
-                <svg class="nav-dd-cat-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="nav-dd-cat" data-cat="yesil">
-                <div class="nav-dd-cat-icon-wrap"><img src="assets/icons/greenpulse.svg" alt=""></div>
-                <div class="nav-dd-cat-body"><span class="nav-dd-cat-num">04</span><span class="nav-dd-cat-name">Yeşil Mutabakat</span></div>
-                <svg class="nav-dd-cat-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="nav-dd-cat" data-cat="analitik">
-                <div class="nav-dd-cat-icon-wrap"><img src="assets/icons/CustomsLoupe.svg" alt=""></div>
-                <div class="nav-dd-cat-body"><span class="nav-dd-cat-num">05</span><span class="nav-dd-cat-name">İş Zekası ve Analitik</span></div>
-                <svg class="nav-dd-cat-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-btn">Tüm Ürünleri Gör <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a></div>
+              <div class="nav-dd-cat active" data-cat="uyum">Mevzuata Uyum</div>
+              <div class="nav-dd-cat" data-cat="beyanname">Beyanname Çözümleri</div>
+              <div class="nav-dd-cat" data-cat="ai">Yapay Zeka İşleme</div>
+              <div class="nav-dd-cat" data-cat="yesil">Yeşil Mutabakat</div>
+              <div class="nav-dd-cat" data-cat="analitik">İş Zekası ve Analitik</div>
+              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör →</a></div>
             </div>
             <div class="nav-dd-right">
               <div class="nav-dd-panel active" data-panel="uyum">
@@ -354,7 +332,7 @@
               </div>
               <div class="nav-dd-right-footer">
                 <div><div class="nav-dd-right-footer-title">Farklı bir çözüme mi ihtiyacınız var?</div><div class="nav-dd-right-footer-sub">ATEZ uzmanlarıyla özel bir demo planlayın.</div></div>
-                <a href="iletisim.html" class="nav-dd-right-footer-btn">Görüşme Başlat</a>
+                <a href="iletisim.html" class="nav-dd-cta-btn">İletişime Geç</a>
               </div>
             </div>
           </div>

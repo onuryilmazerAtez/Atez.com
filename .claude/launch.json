@@ -4,8 +4,8 @@
     {
       "name": "atez-site",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "3333", "."],
-      "port": 3333
+      "runtimeArgs": ["serve", "/Users/onuryilmazer/Documents/GitHub/Atez.com", "-p", "7821", "--no-clipboard"],
+      "port": 7821
     }
   ]
 }
