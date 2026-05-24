@@ -4,8 +4,9 @@
     {
       "name": "atez-site",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "/Users/onuryilmazer/Documents/GitHub/Atez.com", "-p", "7821", "--no-clipboard"],
-      "port": 7821
+      "runtimeArgs": ["serve", "/Users/onuryilmazer/Documents/GitHub/Atez.com", "--no-clipboard"],
+      "port": 7821,
+      "autoPort": true
     }
   ]
 }
