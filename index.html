@@ -2172,15 +2172,24 @@
     /* Referanslar */
     .hms-refs-section .hms-h2{margin-bottom:0;}
     /* CTA */
-    .hms-cta-section{background:var(--primary);padding:96px max(48px,calc((100vw - 1440px)/2 + 48px));text-align:center;border-top:none;}
-    .hms-cta-inner{max-width:660px;margin:0 auto;}
-    .hms-cta-section h2{font-size:clamp(22px,2.6vw,36px);font-weight:800;letter-spacing:-.025em;line-height:1.2;color:#fff;margin-bottom:18px;}
-    .hms-cta-section p{font-size:.97rem;line-height:1.75;color:rgba(255,255,255,.8);margin-bottom:36px;}
-    .hms-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    .hms-cta-btn-primary{display:inline-flex;align-items:center;height:48px;padding:0 30px;background:#fff;color:var(--primary);border-radius:8px;font-family:var(--ff);font-size:.95rem;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 0 rgba(0,0,0,.06);}
-    .hms-cta-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
-    .hms-cta-btn-secondary{display:inline-flex;align-items:center;height:48px;padding:0 28px;background:transparent;color:#fff;border-radius:8px;font-family:var(--ff);font-size:.95rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.5);transition:border-color .2s,background .2s;}
-    .hms-cta-btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+    .hms-cta-section{background:var(--hero-bg);border-top:1px solid var(--section-border);padding:80px max(48px,calc((100vw - 1440px)/2 + 48px));position:relative;overflow:hidden;}
+    .hms-cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,82,135,.12) 0%,transparent 70%);pointer-events:none;}
+    [data-theme="dark"] .hms-cta-section::before{background:radial-gradient(ellipse,rgba(0,130,220,.1) 0%,transparent 70%);}
+    .hms-cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+    .hms-cta-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:20px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);padding:2px 8px;border:1px solid rgba(0,82,135,.22);border-radius:4px;background:rgba(0,82,135,.06);margin-bottom:24px;}
+    [data-theme="dark"] .hms-cta-badge{color:#7ec9f7;border-color:rgba(126,201,247,.22);background:rgba(126,201,247,.06);}
+    .hms-cta-title{font-family:var(--ff-head);font-size:30px;font-weight:600;letter-spacing:-.01em;color:var(--text);line-height:1.27;margin-bottom:.5em;}
+    .hms-cta-desc{font-size:14px;line-height:1.57;color:rgba(0,0,0,.45);margin-bottom:40px;}
+    [data-theme="dark"] .hms-cta-desc{color:rgba(255,255,255,.45);}
+    .hms-cta-form{display:flex;align-items:center;background:var(--cta-hero-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--cta-hero-bd);border-radius:16px;padding:6px 6px 6px 22px;width:100%;max-width:680px;margin:0 auto;box-shadow:var(--cta-hero-sh);transition:border-color .28s,background .28s,box-shadow .28s;}
+    .hms-cta-form:focus-within{border-color:var(--primary);box-shadow:var(--cta-focus-sh);}
+    .hms-cta-form input{flex:1;background:transparent;border:none;outline:none;font-family:var(--ff);font-size:.95rem;color:var(--cta-hero-c);padding:6px 0;min-width:0;}
+    .hms-cta-form input::placeholder{color:var(--cta-hero-ph);}
+    .hms-cta-form-btn{flex-shrink:0;height:44px;padding:0 22px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:var(--ff);font-size:.88rem;font-weight:700;letter-spacing:.02em;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s,transform .2s,gap .2s;white-space:nowrap;}
+    .hms-cta-form-btn:hover{background:var(--primary-dark);transform:scale(1.03);gap:12px;}
+    .hms-cta-form-btn:active{transform:scale(.98);}
+    .hms-cta-arrow{display:inline-flex;transition:transform .22s cubic-bezier(.34,1.56,.64,1);}
+    .hms-cta-form-btn:hover .hms-cta-arrow{transform:translate(2px,-2px);}
 
   </style>
 </head>
@@ -2504,11 +2513,20 @@
   <!-- CTA ─────────────────────────────────────────────────── -->
   <section class="hms-cta-section" id="hazir-misiniz">
     <div class="hms-cta-inner">
-      <h2>Dış Ticaret Süreçlerinizi Dönüştürmeye Hazır mısınız?</h2>
-      <p>Bağlanmaya ve bilgi sahibi olmaya hazır mısınız? Sorgu formumuz aracılığıyla ATEZ'in ticaret operasyonlarınızı nasıl dönüştürebileceğini keşfetmek için bizimle iletişime geçin — veya en son içgörüler ve güncellemeler için bültenimize abone olun.</p>
-      <div class="hms-cta-btns">
-        <a href="iletisim.html" class="hms-cta-btn-primary">İletişime Geçin</a>
-        <a href="#" class="hms-cta-btn-secondary">Bültene Abone Ol</a>
+      <div class="hms-cta-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Hemen Başlayın
+      </div>
+      <h2 class="hms-cta-title">Dış Ticaret Süreçlerinizi<br>Dönüştürmeye Hazır mısınız?</h2>
+      <p class="hms-cta-desc">ATEZ uzmanlarıyla iletişime geçin; ihtiyaçlarınıza özel bir çözüm keşfedelim. Bültenimize abone olarak yeni ürün lansmanlarından ve mevzuat güncellemelerinden ilk siz haberdar olun.</p>
+      <div class="hms-cta-form">
+        <input type="email" placeholder="E-posta adresinizi girin">
+        <button class="hms-cta-form-btn">
+          Demo Talep Et
+          <span class="hms-cta-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </button>
       </div>
     </div>
   </section>
