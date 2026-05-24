@@ -532,5 +532,76 @@
   <script>
     (function(){var cats=document.querySelectorAll('.nav-dd-cat');var panels=document.querySelectorAll('.nav-dd-panel');if(!cats.length)return;cats.forEach(function(cat){cat.addEventListener('mouseenter',function(){var id=cat.dataset.cat;cats.forEach(function(c){c.classList.remove('active');});panels.forEach(function(p){p.classList.remove('active');});cat.classList.add('active');var panel=document.querySelector('.nav-dd-panel[data-panel="'+id+'"]');if(panel)panel.classList.add('active');});});})();
   </script>
+
+  <!-- ── Cookie Banner ── -->
+  <style>
+    #cookie-banner{position:fixed;bottom:24px;left:24px;z-index:9990;width:400px;max-width:calc(100vw - 48px);background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.14),0 2px 8px rgba(0,0,0,.07);padding:22px 24px 20px;animation:ck-up .3s ease;transition:background .35s,border-color .35s;}
+    @keyframes ck-up{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    .ck-title{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
+    [data-theme="dark"] .ck-title{color:#7dd3fc;}
+    .ck-text{font-size:.82rem;line-height:1.65;color:var(--muted);margin-bottom:16px;}
+    .ck-text a{color:var(--primary);font-weight:600;text-decoration:none;}
+    .ck-text a:hover{text-decoration:underline;}
+    .ck-cats{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+    .ck-cat{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:11px 13px;background:var(--bg-alt);border:1px solid var(--section-border);border-radius:10px;transition:background .35s,border-color .35s;}
+    .ck-cat-name{font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.2;}
+    .ck-cat-desc{font-size:.73rem;color:var(--muted);line-height:1.45;}
+    .ck-toggle{flex-shrink:0;position:relative;display:inline-block;width:42px;height:23px;cursor:pointer;margin-top:1px;}
+    .ck-toggle input{opacity:0;width:0;height:0;position:absolute;}
+    .ck-track{display:block;width:42px;height:23px;background:var(--divider);border-radius:12px;transition:background .18s;position:relative;}
+    .ck-toggle input:checked ~ .ck-track{background:var(--primary);}
+    .ck-track::after{content:'';position:absolute;top:3px;left:3px;width:17px;height:17px;background:#fff;border-radius:50%;transition:left .18s;box-shadow:0 1px 3px rgba(0,0,0,.22);}
+    .ck-toggle input:checked ~ .ck-track::after{left:22px;}
+    .ck-toggle-disabled{opacity:.55;cursor:not-allowed;pointer-events:none;}
+    .ck-actions{display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap;}
+    .ck-btn{height:33px;padding:0 14px;border-radius:6px;font-family:var(--ff);font-size:.81rem;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,color .15s;border:1.5px solid;white-space:nowrap;line-height:1;}
+    .ck-btn-reject{background:transparent;color:var(--muted);border-color:var(--divider);}
+    .ck-btn-reject:hover{color:var(--text);border-color:var(--card-border);}
+    .ck-btn-save{background:transparent;color:var(--text);border-color:var(--divider);}
+    .ck-btn-save:hover{color:var(--primary);border-color:var(--primary);}
+    .ck-btn-accept{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 2px 0 rgba(0,0,0,.07);}
+    .ck-btn-accept:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+    @media(max-width:480px){#cookie-banner{left:12px;bottom:12px;width:calc(100vw - 24px);}}
+  </style>
+
+  <!-- ── Cookie Banner HTML ── -->
+  <div id="cookie-banner" style="display:none">
+    <div class="ck-title">Gizlilik Tercihleri</div>
+    <p class="ck-text">Genel sayfalar için çerez kategorilerini yönetin. Kesinlikle gerekli çerezler her zaman aktiftir, analitik izleme ise isteğe bağlıdır.&nbsp;<a href="hukuki-politikalar.html#cerez-politikasi">Çerez Politikası</a>.</p>
+    <div class="ck-cats">
+      <div class="ck-cat">
+        <div>
+          <div class="ck-cat-name">Kesinlikle Gerekli</div>
+          <div class="ck-cat-desc">Güvenlik, dil ayarı ve temel site işlevleri için gereklidir. Bunlar her zaman açıktır.</div>
+        </div>
+        <label class="ck-toggle ck-toggle-disabled" aria-label="Kesinlikle Gerekli">
+          <input type="checkbox" checked disabled>
+          <span class="ck-track"></span>
+        </label>
+      </div>
+      <div class="ck-cat">
+        <div>
+          <div class="ck-cat-name">Analitik ve İzleme</div>
+          <div class="ck-cat-desc">Genel sayfaları iyileştirmemize yardımcı olmak için anonim analitik ve etkileşim takibini etkinleştirin.</div>
+        </div>
+        <label class="ck-toggle" aria-label="Analitik ve İzleme">
+          <input type="checkbox" id="ck-analytics" checked>
+          <span class="ck-track"></span>
+        </label>
+      </div>
+    </div>
+    <div class="ck-actions">
+      <button class="ck-btn ck-btn-reject" onclick="ckReject()">Reddet</button>
+      <button class="ck-btn ck-btn-save" onclick="ckSave()">Tercihleri Kaydet</button>
+      <button class="ck-btn ck-btn-accept" onclick="ckAccept()">Kabul Et</button>
+    </div>
+  </div>
+  <script>
+    (function(){try{if(localStorage.getItem('atez-cookie-consent'))return;}catch(e){}var b=document.getElementById('cookie-banner');if(b)b.style.display='block';})();
+    function ckHide(){var b=document.getElementById('cookie-banner');if(b){b.style.opacity='0';b.style.transform='translateY(14px)';setTimeout(function(){b.style.display='none';},250);}}
+    function ckAccept(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:true}));}catch(e){}ckHide();}
+    function ckReject(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:false}));}catch(e){}ckHide();}
+    function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
+  </script>
 </body>
 </html>
