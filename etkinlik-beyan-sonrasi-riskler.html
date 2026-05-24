@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Ant Design -->
+  <link rel="stylesheet" href="https://unpkg.com/antd@5.21.6/dist/reset.css">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     :root{--primary:#005287;--primary-dark:#003d66;--annbar-h:50px;--header-h:96px;--ff:'Inter','Segoe UI',Arial,sans-serif;--ff-head:'Inter','Segoe UI',Arial,sans-serif;--bg:#ffffff;--bg-alt:#f5f5f5;--text:rgba(0,0,0,.88);--muted:rgba(0,0,0,.65);--divider:#d9d9d9;--section-border:#f0f0f0;--card-bg:#ffffff;--card-border:#d9d9d9;--mono-bg:#e8f5ff;--hdr-scrolled-bg:rgba(255,255,255,.94);--hdr-shadow:0 1px 0 rgba(0,0,0,.06);--nav-hero:rgba(0,0,0,.72);--nav-hero-hover:rgba(0,0,0,.88);--pill-hero-c:rgba(0,0,0,.65);--pill-hero-bd:rgba(0,0,0,.15);--pill-hero-bg:rgba(0,0,0,.04);--hero-bg:#e8f5ff;}
@@ -81,9 +83,10 @@
 
     /* ── Event detail page ── */
     .event-page{padding:calc(var(--header-h) + var(--annbar-h) + 56px) max(48px,calc((100vw - 1440px)/2 + 48px)) 96px;}
+    .event-inner{max-width:1100px;margin:0 auto;}
 
     /* Topbar */
-    .event-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:12px;}
+    .event-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;}
     .event-back{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--primary);border:1.5px solid rgba(0,82,135,.2);border-radius:20px;padding:9px 18px;transition:background .15s,color .15s,border-color .15s;}
     .event-back:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
     .event-back svg{width:14px;height:14px;}
@@ -91,72 +94,95 @@
     .event-share:hover{border-color:var(--primary);color:var(--primary);}
     .event-share svg{width:14px;height:14px;}
 
-    /* Header section */
-    .event-header{margin-bottom:56px;}
-    .event-badges{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+    /* Badges + Title */
+    .event-header{margin-bottom:32px;}
+    .event-badges{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
     .badge-live{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dc2626;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:20px;padding:5px 14px;}
     .badge-live-dot{width:7px;height:7px;border-radius:50%;background:#dc2626;flex-shrink:0;}
     @keyframes pulse-live{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
     .badge-live-dot{animation:pulse-live 1.6s ease infinite;}
     .badge-type{display:inline-flex;align-items:center;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);background:rgba(0,82,135,.08);border-radius:20px;padding:5px 14px;}
-    .event-header h1{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;color:var(--text);margin-bottom:28px;}
+    .event-header h1{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;line-height:1.18;letter-spacing:-.025em;color:var(--text);}
 
-    /* Speakers */
-    .speakers-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:56px;}
-    @media(max-width:900px){.speakers-row{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:560px){.speakers-row{grid-template-columns:1fr;}}
-    .speaker-card{background:var(--mono-bg);border:1px solid rgba(0,82,135,.1);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
-    [data-theme="dark"] .speaker-card{border-color:rgba(126,201,247,.12);}
-    .speaker-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:.04em;}
-    .speaker-name{font-size:.9rem;font-weight:700;color:var(--text);line-height:1.25;}
-    .speaker-role{font-size:.75rem;color:var(--muted);line-height:1.4;}
+    /* Poster */
+    .event-poster{width:100%;border-radius:16px;overflow:hidden;margin-bottom:40px;border:1px solid var(--section-border);max-height:420px;object-fit:cover;}
 
-    /* Content layout */
-    .event-content{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start;}
-    @media(max-width:1024px){.event-content{grid-template-columns:1fr;}}
+    /* Content layout: details LEFT | body RIGHT */
+    .event-content{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start;}
+    @media(max-width:900px){.event-content{grid-template-columns:1fr;}}
 
-    /* Main body */
-    .event-body p{font-size:1rem;color:var(--text);line-height:1.85;margin-bottom:22px;}
-    .event-body h2{font-size:1.15rem;font-weight:700;color:var(--text);margin:40px 0 20px;line-height:1.3;position:relative;padding-bottom:12px;}
-    .event-body h2::after{content:'';position:absolute;bottom:0;left:0;width:36px;height:2px;background:var(--primary);border-radius:2px;}
-    .agenda-list{list-style:none;display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
-    .agenda-item{display:flex;gap:14px;padding:18px 20px;background:var(--mono-bg);border-radius:12px;border:1px solid rgba(0,82,135,.08);}
-    [data-theme="dark"] .agenda-item{border-color:rgba(126,201,247,.08);}
-    .agenda-num{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-    .agenda-content{}
-    .agenda-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:5px;line-height:1.35;}
-    .agenda-desc{font-size:.85rem;color:var(--muted);line-height:1.65;}
-    .event-closing{background:var(--bg-alt);border-radius:14px;padding:24px;margin-top:32px;border-left:3px solid var(--primary);}
-    .event-closing p{font-size:.95rem;color:var(--text);line-height:1.75;margin-bottom:0;}
-
-    /* Sidebar */
+    /* Sidebar (now left) */
     .event-sidebar{position:sticky;top:calc(var(--header-h) + var(--annbar-h) + 24px);}
-    .event-details-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(0,82,135,.06);}
-    .event-details-card-header{background:linear-gradient(135deg,#003d66 0%,#005287 50%,#0073b8 100%);padding:24px;position:relative;overflow:hidden;}
+    .event-details-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,82,135,.06);}
+    .event-details-card-header{background:linear-gradient(135deg,#003d66 0%,#005287 50%,#0073b8 100%);padding:22px;position:relative;overflow:hidden;}
     .event-details-card-header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.12) 1px,transparent 1px);background-size:18px 18px;}
     .event-details-date{position:relative;z-index:1;text-align:center;}
-    .event-details-day{font-size:2.5rem;font-weight:800;color:#fff;line-height:1;}
-    .event-details-month{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
-    .event-details-body{padding:24px;}
-    .event-detail-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--section-border);}
+    .event-details-day{font-size:2.2rem;font-weight:800;color:#fff;line-height:1;}
+    .event-details-month{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+    .event-details-body{padding:20px;}
+    .event-detail-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--section-border);}
     .event-detail-row:last-of-type{border-bottom:none;}
-    .event-detail-icon{width:32px;height:32px;border-radius:8px;background:rgba(0,82,135,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .event-detail-icon svg{width:15px;height:15px;color:var(--primary);}
-    .event-detail-info{}
-    .event-detail-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
-    .event-detail-value{font-size:.9rem;font-weight:600;color:var(--text);line-height:1.35;}
-    .event-capacity-row{display:flex;align-items:center;gap:8px;padding:14px 0;border-bottom:1px solid var(--section-border);}
-    .event-capacity-badge{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:#16a34a;background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.18);border-radius:20px;padding:5px 12px;width:100%;justify-content:center;}
+    .event-detail-icon{width:30px;height:30px;border-radius:7px;background:rgba(0,82,135,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .event-detail-icon svg{width:14px;height:14px;color:var(--primary);}
+    .event-detail-label{font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
+    .event-detail-value{font-size:.85rem;font-weight:600;color:var(--text);line-height:1.3;}
+    .event-capacity-row{padding:12px 0;border-bottom:1px solid var(--section-border);}
+    .event-capacity-badge{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:#16a34a;background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.18);border-radius:20px;padding:5px 12px;width:100%;justify-content:center;}
     .event-capacity-badge svg{width:13px;height:13px;flex-shrink:0;}
-    .btn-register{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;background:var(--primary);color:#fff;border-radius:12px;font-size:.95rem;font-weight:700;text-decoration:none;margin-top:16px;transition:background .18s;}
+    .btn-register{display:flex;align-items:center;justify-content:center;gap:8px;height:46px;background:var(--primary);color:#fff;border-radius:10px;font-size:.9rem;font-weight:700;text-decoration:none;margin-top:14px;transition:background .18s;cursor:pointer;border:none;width:100%;font-family:var(--ff);}
     .btn-register:hover{background:var(--primary-dark);}
-    .btn-register svg{width:15px;height:15px;}
+    .btn-register svg{width:14px;height:14px;}
+
+    /* Main body (now right) */
+    .event-body p{font-size:.97rem;color:var(--text);line-height:1.85;margin-bottom:20px;}
+    .event-body h2{font-size:1.1rem;font-weight:700;color:var(--text);margin:36px 0 18px;line-height:1.3;position:relative;padding-bottom:10px;}
+    .event-body h2::after{content:'';position:absolute;bottom:0;left:0;width:32px;height:2px;background:var(--primary);border-radius:2px;}
+    .agenda-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+    .agenda-item{display:flex;gap:12px;padding:16px 18px;background:var(--mono-bg);border-radius:11px;border:1px solid rgba(0,82,135,.08);}
+    [data-theme="dark"] .agenda-item{border-color:rgba(126,201,247,.08);}
+    .agenda-num{width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .agenda-title{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.35;}
+    .agenda-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+    .event-closing{background:var(--bg-alt);border-radius:12px;padding:20px 22px;margin-top:28px;border-left:3px solid var(--primary);}
+    .event-closing p{font-size:.92rem;color:var(--text);line-height:1.75;margin-bottom:0;}
 
     /* Actions */
-    .event-actions-bar{display:flex;align-items:center;justify-content:space-between;margin-top:64px;padding-top:32px;border-top:1px solid var(--section-border);flex-wrap:wrap;gap:12px;}
+    .event-actions-bar{display:flex;align-items:center;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--section-border);flex-wrap:wrap;gap:12px;}
     .btn-back-bottom{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:var(--primary);border:1.5px solid rgba(0,82,135,.2);border-radius:20px;padding:10px 20px;transition:background .15s,color .15s,border-color .15s;}
     .btn-back-bottom:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
     .btn-back-bottom svg{width:14px;height:14px;}
+
+    /* ── Ant Design modal overrides ── */
+    #reg-root .ant-modal-content{border-radius:16px;overflow:hidden;padding:0;}
+    #reg-root .ant-modal-header{padding:24px 28px 0;border:none;margin-bottom:0;}
+    #reg-root .ant-modal-title{font-size:1.1rem;font-weight:700;font-family:var(--ff);}
+    #reg-root .ant-modal-body{padding:0 28px 28px;}
+    #reg-root .ant-steps{margin:20px 0 28px;}
+    #reg-root .ant-steps-item-title{font-family:var(--ff);font-size:.82rem;}
+    #reg-root .ant-btn-primary{background:var(--primary);border-color:var(--primary);}
+    #reg-root .ant-btn-primary:hover{background:var(--primary-dark)!important;border-color:var(--primary-dark)!important;}
+    #reg-root .ant-form-item-label>label{font-family:var(--ff);font-size:.85rem;font-weight:500;}
+    #reg-root .ant-input,#reg-root .ant-select-selector,#reg-root .ant-input-affix-wrapper{font-family:var(--ff);}
+    #reg-root .ant-checkbox-wrapper{font-family:var(--ff);font-size:.82rem;align-items:flex-start;}
+    #reg-root .ant-checkbox-wrapper .ant-checkbox{margin-top:2px;}
+    #reg-root .ant-steps-item-process .ant-steps-item-icon{background:var(--primary);border-color:var(--primary);}
+    #reg-root .ant-steps-item-finish .ant-steps-item-icon{border-color:var(--primary);}
+    #reg-root .ant-steps-item-finish .ant-steps-item-icon .ant-steps-icon{color:var(--primary);}
+    #reg-root .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-tail::after{background:var(--primary);}
+    .reg-modal-banner{background:linear-gradient(120deg,#003d66 0%,#005287 55%,#0073b8 100%);padding:20px 28px;position:relative;overflow:hidden;}
+    .reg-modal-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.12) 1px,transparent 1px);background-size:18px 18px;}
+    .reg-modal-banner-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    .reg-modal-event-title{font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;font-family:var(--ff);}
+    .reg-modal-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
+    .reg-modal-meta-item{display:flex;align-items:center;gap:5px;font-size:.75rem;color:rgba(255,255,255,.8);font-family:var(--ff);}
+    .reg-modal-meta-item svg{width:12px;height:12px;}
+    .reg-capacity-pill{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:#fff;background:rgba(22,163,74,.6);border:1px solid rgba(22,163,74,.4);border-radius:20px;padding:3px 10px;flex-shrink:0;}
+    .reg-step-hint{font-size:.82rem;color:var(--muted);margin-bottom:20px;line-height:1.55;font-family:var(--ff);}
+    .reg-consent-desc{font-size:.8rem;color:var(--muted);line-height:1.65;padding:12px 14px;background:var(--bg-alt);border-radius:8px;margin-bottom:16px;font-family:var(--ff);}
+    .reg-consent-group{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+    .reg-section-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:16px;font-family:var(--ff);}
+    .reg-revoke-note{font-size:.75rem;color:var(--muted);font-style:italic;margin-top:12px;font-family:var(--ff);line-height:1.5;}
+    .reg-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--section-border);}
 
     /* Footer */
     footer{background:var(--bg-alt);color:var(--text);padding:72px max(64px,calc((100vw - 1440px)/2 + 64px)) 40px;border-top:1px solid var(--section-border);transition:background .35s;}
@@ -240,186 +266,162 @@
   </header>
 
   <main class="event-page">
+    <div class="event-inner">
 
-    <div class="event-topbar">
-      <a href="etkinlikler.html" class="event-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        Etkinliklere Dön
-      </a>
-      <button class="event-share" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        Paylaş
-      </button>
-    </div>
-
-    <div class="event-header">
-      <div class="event-badges">
-        <span class="badge-live"><span class="badge-live-dot"></span>Canlı</span>
-        <span class="badge-type">Webinar</span>
+      <div class="event-topbar">
+        <a href="etkinlikler.html" class="event-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Etkinliklere Dön
+        </a>
+        <button class="event-share" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : navigator.clipboard.writeText(location.href)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Paylaş
+        </button>
       </div>
-      <h1>Beyan Sonrası Riskleri Yapay Zeka ile Yakalayın!</h1>
-    </div>
 
-    <!-- Speakers -->
-    <div class="speakers-row">
-      <div class="speaker-card">
-        <div class="speaker-avatar">MP</div>
-        <div class="speaker-name">Dr. Murat PALAOĞLU</div>
-        <div class="speaker-role">Yönetim Kurulu Üyesi / CSO</div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-avatar">EÖ</div>
-        <div class="speaker-name">Msc. Emre ÖZTÜRK</div>
-        <div class="speaker-role">Genel Müdür</div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-avatar">GÇ</div>
-        <div class="speaker-name">Gamze ÇETİN</div>
-        <div class="speaker-role">Senior Business Analyst</div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-avatar">AK</div>
-        <div class="speaker-name">Alican KOÇAK</div>
-        <div class="speaker-role">Product Owner</div>
-      </div>
-    </div>
-
-    <!-- Content + Sidebar -->
-    <div class="event-content">
-
-      <div class="event-body">
-        <p>Dış ticarette sürdürülebilir operasyonel başarı, yalnızca beyanın hazırlanmasıyla değil; tescil sonrası süreçte hataları, uyumsuzlukları ve mali riskleri erken yakalayabilmekle güçlenir. Ancak yüksek hacimli beyan verisi, manuel kontroller ve dağınık raporlama alışkanlıkları; risklerin görünmez kalmasına, potansiyel ceza bulgularına ve geri kazanım fırsatlarının kaçmasına yol açabilir. Peki, beyan sonrası kontrolü yapay zekâ ve görsel analitikle merkezileştirerek, bu riskleri nasıl yönetilebilir ve aksiyon alınabilir hale getirebiliriz? ATEZ olarak düzenlediğimiz yeni webinarımızda, beyan sonrası uyum ve analiz süreçlerinde Customs X-Ray ile riskleri nasıl ortaya çıkardığımızı; Customs Loupe ile bulguları nasıl anlaşılır panolara taşıyıp hızlı karar desteğine dönüştürdüğümüzü konuşuyoruz.</p>
-
-        <h2>Neler Konuşacağız?</h2>
-
-        <ul class="agenda-list">
-          <li class="agenda-item">
-            <div class="agenda-num">1</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Beyan Sonrası Analiz &amp; Customs X-Ray ile Risklerin Ortaya Çıkarılması</div>
-              <div class="agenda-desc">Tescil edilmiş beyanname verilerinin beyan sonrası nasıl analiz edilebildiğini; potansiyel hata, tutarsızlık ve risklerin veri üzerinden nasıl görünür hale getirildiğini ele alacağız.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">2</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Kontrol Kurgusu: Kural Tanımlama ve Veri İşleme Yaklaşımı</div>
-              <div class="agenda-desc">Customs X-Ray tarafında; kontrol kurallarının nasıl oluşturulduğu, beyanname verilerinin nasıl yorumlandığı ve belirlenen kurallar çerçevesinde nasıl işlendiğini detaylandıracağız.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">3</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Risk Tespiti ve Aksiyon Alınabilir İçgörüler</div>
-              <div class="agenda-desc">Gerçekleştirilen analizler sonucunda risklerin nasıl ortaya çıkarıldığını ve bu bulguların aksiyon alınabilir içgörülere nasıl dönüştüğünü inceleyeceğiz.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">4</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Customs Loupe ile Risklerin Görselleştirilmesi</div>
-              <div class="agenda-desc">X-Ray çıktılarının beyanname bazında nasıl görünür hale getirildiğini; farklı müşteri tiplerine göre risklerin nasıl filtrelenip kontrol edilebildiğini ele alacağız.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">5</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Dashboard &amp; İçgörü: Veriyi Karar Destek Katmanına Dönüştürmek</div>
-              <div class="agenda-desc">Beyanname verilerinin dashboard'larda nasıl sunulduğunu, hangi metriklerin takip edilebildiğini ve bu verilerden hangi stratejik içgörülerin elde edilebileceğini anlatacağız.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">6</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Esnek Yapı: İhtiyaca Göre Dashboard ve Analiz Özelleştirme</div>
-              <div class="agenda-desc">Kullanıcıların kendi ihtiyaçlarına göre dashboard'larını ve analiz yapılarını nasıl özelleştirebileceğini uygulamalı olarak göstereceğiz.</div>
-            </div>
-          </li>
-          <li class="agenda-item">
-            <div class="agenda-num">7</div>
-            <div class="agenda-content">
-              <div class="agenda-title">Canlı Demo &amp; Soru–Cevap</div>
-              <div class="agenda-desc">Gerçek senaryolar üzerinden X-Ray ve Loupe kullanımını canlı olarak deneyimleyip, katılımcı sorularını yanıtlayacağız.</div>
-            </div>
-          </li>
-        </ul>
-
-        <div class="event-closing">
-          <p>Süreçlerini daha kontrollü, daha şeffaf ve daha veri odaklı yönetmek isteyen tüm dış ticaret ve gümrük uyum profesyonellerini aramızda görmekten mutluluk duyarız.</p>
+      <div class="event-header">
+        <div class="event-badges">
+          <span class="badge-live"><span class="badge-live-dot"></span>Canlı</span>
+          <span class="badge-type">Webinar</span>
         </div>
-
-        <div class="event-actions-bar">
-          <a href="etkinlikler.html" class="btn-back-bottom">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-            Etkinliklere Dön
-          </a>
-        </div>
+        <h1>Beyan Sonrası Riskleri Yapay Zeka ile Yakalayın!</h1>
       </div>
 
-      <!-- Sidebar -->
-      <aside class="event-sidebar">
-        <div class="event-details-card">
-          <div class="event-details-card-header">
-            <div class="event-details-date">
-              <div class="event-details-day">09</div>
-              <div class="event-details-month">Haziran 2026</div>
+      <!-- Poster replacing speakers section -->
+      <img class="event-poster" src="assets/webinar-xray-loupe-01.avif" alt="Beyan Sonrası Riskleri Yapay Zeka ile Yakalayın! — Webinar Posteri">
+
+      <!-- Content: details LEFT | body RIGHT -->
+      <div class="event-content">
+
+        <!-- Left: event details card -->
+        <aside class="event-sidebar">
+          <div class="event-details-card">
+            <div class="event-details-card-header">
+              <div class="event-details-date">
+                <div class="event-details-day">09</div>
+                <div class="event-details-month">Haziran 2026</div>
+              </div>
+            </div>
+            <div class="event-details-body">
+              <p style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Etkinlik Detayları</p>
+              <div class="event-detail-row">
+                <div class="event-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                <div>
+                  <div class="event-detail-label">Tarih</div>
+                  <div class="event-detail-value">09.06.2026</div>
+                </div>
+              </div>
+              <div class="event-detail-row">
+                <div class="event-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div>
+                  <div class="event-detail-label">Saat</div>
+                  <div class="event-detail-value">11:00 – 12:00 (Europe/Istanbul)</div>
+                </div>
+              </div>
+              <div class="event-detail-row">
+                <div class="event-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <div>
+                  <div class="event-detail-label">Yer</div>
+                  <div class="event-detail-value">Online</div>
+                </div>
+              </div>
+              <div class="event-detail-row">
+                <div class="event-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <div>
+                  <div class="event-detail-label">Dil</div>
+                  <div class="event-detail-value">Türkçe</div>
+                </div>
+              </div>
+              <div class="event-capacity-row">
+                <span class="event-capacity-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  191 katılımcı kontenjanı mevcut
+                </span>
+              </div>
+              <button class="btn-register" id="open-reg-modal">
+                Hemen Kayıt Ol
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
             </div>
           </div>
-          <div class="event-details-body">
-            <p style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Etkinlik Detayları</p>
-            <div class="event-detail-row">
-              <div class="event-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </aside>
+
+        <!-- Right: description + agenda -->
+        <div class="event-body">
+          <p>Dış ticarette sürdürülebilir operasyonel başarı, yalnızca beyanın hazırlanmasıyla değil; tescil sonrası süreçte hataları, uyumsuzlukları ve mali riskleri erken yakalayabilmekle güçlenir. Ancak yüksek hacimli beyan verisi, manuel kontroller ve dağınık raporlama alışkanlıkları; risklerin görünmez kalmasına, potansiyel ceza bulgularına ve geri kazanım fırsatlarının kaçmasına yol açabilir. Peki, beyan sonrası kontrolü yapay zekâ ve görsel analitikle merkezileştirerek, bu riskleri nasıl yönetilebilir ve aksiyon alınabilir hale getirebiliriz? ATEZ olarak düzenlediğimiz yeni webinarımızda, beyan sonrası uyum ve analiz süreçlerinde Customs X-Ray ile riskleri nasıl ortaya çıkardığımızı; Customs Loupe ile bulguları nasıl anlaşılır panolara taşıyıp hızlı karar desteğine dönüştürdüğümüzü konuşuyoruz.</p>
+
+          <h2>Neler Konuşacağız?</h2>
+
+          <ul class="agenda-list">
+            <li class="agenda-item">
+              <div class="agenda-num">1</div>
+              <div>
+                <div class="agenda-title">Beyan Sonrası Analiz &amp; Customs X-Ray ile Risklerin Ortaya Çıkarılması</div>
+                <div class="agenda-desc">Tescil edilmiş beyanname verilerinin beyan sonrası nasıl analiz edilebildiğini; potansiyel hata, tutarsızlık ve risklerin veri üzerinden nasıl görünür hale getirildiğini ele alacağız.</div>
               </div>
-              <div class="event-detail-info">
-                <div class="event-detail-label">Tarih</div>
-                <div class="event-detail-value">09.06.2026</div>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">2</div>
+              <div>
+                <div class="agenda-title">Kontrol Kurgusu: Kural Tanımlama ve Veri İşleme Yaklaşımı</div>
+                <div class="agenda-desc">Customs X-Ray tarafında; kontrol kurallarının nasıl oluşturulduğu, beyanname verilerinin nasıl yorumlandığı ve belirlenen kurallar çerçevesinde nasıl işlendiğini detaylandıracağız.</div>
               </div>
-            </div>
-            <div class="event-detail-row">
-              <div class="event-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">3</div>
+              <div>
+                <div class="agenda-title">Risk Tespiti ve Aksiyon Alınabilir İçgörüler</div>
+                <div class="agenda-desc">Gerçekleştirilen analizler sonucunda risklerin nasıl ortaya çıkarıldığını ve bu bulguların aksiyon alınabilir içgörülere nasıl dönüştüğünü inceleyeceğiz.</div>
               </div>
-              <div class="event-detail-info">
-                <div class="event-detail-label">Saat</div>
-                <div class="event-detail-value">11:00 – 12:00 (Europe/Istanbul)</div>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">4</div>
+              <div>
+                <div class="agenda-title">Customs Loupe ile Risklerin Görselleştirilmesi</div>
+                <div class="agenda-desc">X-Ray çıktılarının beyanname bazında nasıl görünür hale getirildiğini; farklı müşteri tiplerine göre risklerin nasıl filtrelenip kontrol edilebildiğini ele alacağız.</div>
               </div>
-            </div>
-            <div class="event-detail-row">
-              <div class="event-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">5</div>
+              <div>
+                <div class="agenda-title">Dashboard &amp; İçgörü: Veriyi Karar Destek Katmanına Dönüştürmek</div>
+                <div class="agenda-desc">Beyanname verilerinin dashboard'larda nasıl sunulduğunu, hangi metriklerin takip edilebildiğini ve bu verilerden hangi stratejik içgörülerin elde edilebileceğini anlatacağız.</div>
               </div>
-              <div class="event-detail-info">
-                <div class="event-detail-label">Yer</div>
-                <div class="event-detail-value">Online</div>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">6</div>
+              <div>
+                <div class="agenda-title">Esnek Yapı: İhtiyaca Göre Dashboard ve Analiz Özelleştirme</div>
+                <div class="agenda-desc">Kullanıcıların kendi ihtiyaçlarına göre dashboard'larını ve analiz yapılarını nasıl özelleştirebileceğini uygulamalı olarak göstereceğiz.</div>
               </div>
-            </div>
-            <div class="event-detail-row">
-              <div class="event-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-num">7</div>
+              <div>
+                <div class="agenda-title">Canlı Demo &amp; Soru–Cevap</div>
+                <div class="agenda-desc">Gerçek senaryolar üzerinden X-Ray ve Loupe kullanımını canlı olarak deneyimleyip, katılımcı sorularını yanıtlayacağız.</div>
               </div>
-              <div class="event-detail-info">
-                <div class="event-detail-label">Dil</div>
-                <div class="event-detail-value">Türkçe</div>
-              </div>
-            </div>
-            <div class="event-capacity-row">
-              <span class="event-capacity-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                191 katılımcı kontenjanı mevcut
-              </span>
-            </div>
-            <a href="#" class="btn-register">
-              Hemen Kayıt Ol
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </li>
+          </ul>
+
+          <div class="event-closing">
+            <p>Süreçlerini daha kontrollü, daha şeffaf ve daha veri odaklı yönetmek isteyen tüm dış ticaret ve gümrük uyum profesyonellerini aramızda görmekten mutluluk duyarız.</p>
+          </div>
+
+          <div class="event-actions-bar">
+            <a href="etkinlikler.html" class="btn-back-bottom">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              Etkinliklere Dön
             </a>
           </div>
         </div>
-      </aside>
 
-    </div>
-
+      </div><!-- /event-content -->
+    </div><!-- /event-inner -->
   </main>
+
+  <!-- Registration modal root -->
+  <div id="reg-root"></div>
 
   <footer>
     <div class="footer-brand">
@@ -446,10 +448,239 @@
     </div>
   </footer>
 
+  <!-- React + Ant Design CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/dayjs@1.11.13/dayjs.min.js"></script>
+  <script src="https://unpkg.com/antd@5.21.6/dist/antd.min.js"></script>
+
   <script>
+    /* ── Site scripts ── */
     (function(){const bar=document.getElementById('announcement-bar');const btn=document.getElementById('announcement-close');if(!bar)return;if(localStorage.getItem('annbar-v1')==='dismissed'){document.documentElement.classList.add('annbar-off');return;}btn.addEventListener('click',()=>{document.documentElement.classList.add('annbar-off');localStorage.setItem('annbar-v1','dismissed');});})();
     (function(){const html=document.documentElement;const btn=document.getElementById('theme-toggle');const stored=localStorage.getItem('atez-theme');if(stored)html.setAttribute('data-theme',stored);btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('atez-theme',next);});})();
     const headerEl=document.getElementById('site-header');function updateHeader(){headerEl.classList.toggle('scrolled',window.scrollY>60);}window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
+  </script>
+
+  <script>
+    /* ── Registration Modal (React + Ant Design) ── */
+    (function(){
+      const { useState, useCallback } = React;
+      const { Modal, Form, Input, Select, Steps, Button, Checkbox, Typography, Space, Divider } = antd;
+      const { Text } = Typography;
+
+      const STEPS = ['Kişisel Bilgiler', 'Katılımınız Hakkında', 'Veri ve Gizlilik Onayları'];
+
+      function RegistrationModal({ open, onClose }) {
+        const [current, setCurrent] = useState(0);
+        const [form] = Form.useForm();
+        const [loading, setLoading] = useState(false);
+        const [done, setDone] = useState(false);
+        const [consent1, setConsent1] = useState(false);
+        const [extraConsents, setExtraConsents] = useState({ c2:false, c3:false, c4:false, c5:false });
+
+        const reset = useCallback(() => {
+          setCurrent(0); form.resetFields(); setDone(false);
+          setConsent1(false); setExtraConsents({ c2:false, c3:false, c4:false, c5:false });
+        }, [form]);
+
+        const handleClose = useCallback(() => { reset(); onClose(); }, [reset, onClose]);
+
+        const next = useCallback(() => {
+          form.validateFields().then(() => setCurrent(c => c + 1)).catch(() => {});
+        }, [form]);
+
+        const prev = useCallback(() => setCurrent(c => c - 1), []);
+
+        const submit = useCallback(() => {
+          if (!consent1) {
+            antd.message.warning('Kişisel veri işleme onayı zorunludur.');
+            return;
+          }
+          setLoading(true);
+          setTimeout(() => { setLoading(false); setDone(true); }, 1200);
+        }, [consent1]);
+
+        const antdPrimary = { background: '#005287', borderColor: '#005287' };
+
+        const stepContent = [
+          /* Step 0 — Kişisel Bilgiler */
+          React.createElement(React.Fragment, null,
+            React.createElement('p', { className: 'reg-step-hint' }, 'Bu etkinliğe kayıt olmak için aşağıdaki formu doldurunuz.'),
+            React.createElement(Form.Item, { style:{ marginBottom:0 } },
+              React.createElement('div', { style:{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0 16px' } },
+                React.createElement(Form.Item, { name:'ad', label:'Ad', rules:[{required:true,message:'Ad zorunludur'}] },
+                  React.createElement(Input, { placeholder:'Adınızı giriniz', size:'large' })
+                ),
+                React.createElement(Form.Item, { name:'soyad', label:'Soyad', rules:[{required:true,message:'Soyad zorunludur'}] },
+                  React.createElement(Input, { placeholder:'Soyadınızı giriniz', size:'large' })
+                )
+              )
+            ),
+            React.createElement(Form.Item, { name:'sirket', label:'Şirket / Kuruluş' },
+              React.createElement(Input, { placeholder:'Şirket veya kuruluşunuzun adını giriniz', size:'large' })
+            ),
+            React.createElement(Form.Item, { name:'unvan', label:'Unvan / Pozisyon' },
+              React.createElement(Input, { placeholder:'Unvanınızı veya pozisyonunuzu giriniz', size:'large' })
+            ),
+            React.createElement(Form.Item, { name:'email', label:'E-posta Adresi', rules:[{required:true,type:'email',message:'Geçerli bir e-posta giriniz'}] },
+              React.createElement(Input, { placeholder:'E-posta adresinizi girin', size:'large' })
+            )
+          ),
+
+          /* Step 1 — Katılımınız Hakkında */
+          React.createElement(React.Fragment, null,
+            React.createElement(Form.Item, { name:'kaynak', label:'Bu etkinlikten nasıl haberdar oldunuz?', rules:[{required:true,message:'Lütfen bir seçenek seçiniz'}] },
+              React.createElement(Select, { placeholder:'Bir seçenek seçiniz', size:'large', style:{width:'100%'} },
+                React.createElement(Select.Option, { value:'linkedin' }, 'LinkedIn'),
+                React.createElement(Select.Option, { value:'eposta' }, 'E-posta'),
+                React.createElement(Select.Option, { value:'websitesi' }, 'ATEZ Web Sitesi'),
+                React.createElement(Select.Option, { value:'arkadastan' }, 'Arkadaş / Meslektaş önerisi'),
+                React.createElement(Select.Option, { value:'diger' }, 'Diğer')
+              )
+            ),
+            React.createElement(Form.Item, { name:'ilgi', label:'Bu etkinlikte en çok neyi duymak istersiniz?' },
+              React.createElement(Input.TextArea, {
+                placeholder:'İlgi alanlarınızı ve duymak istediğiniz konuları paylaşın...',
+                rows: 4, size:'large'
+              })
+            )
+          ),
+
+          /* Step 2 — Veri ve Gizlilik Onayları */
+          React.createElement(React.Fragment, null,
+            React.createElement('div', { className: 'reg-consent-desc' },
+              'Kişisel verileriniz, etkinlik kaydı oluşturmak, katılım bilgilendirmesi yapmak ve etkinlik iletişimi sağlamak amacıyla işlenecektir. Detaylı bilgi için KVKK Aydınlatma Metni\'ni de içeren ',
+              React.createElement('a', { href:'hukuki-politikalar.html#gizlilik-politikasi', style:{color:'#005287'} }, 'Gizlilik Politikası'),
+              ' ve ',
+              React.createElement('a', { href:'hukuki-politikalar.html#webinar-gizlilik', style:{color:'#005287'} }, 'Etkinlik Gizlilik Bildirimi'),
+              '\'ni okuyabilirsiniz.'
+            ),
+            React.createElement(Checkbox, {
+              checked: consent1,
+              onChange: e => setConsent1(e.target.checked),
+              style:{ marginBottom:16, fontSize:'.82rem', fontFamily:'var(--ff)' }
+            },
+              React.createElement('span', null, 'Kişisel verilerimin etkinlik kaydı, bilgilendirme ve etkinlik iletişimi amacıyla işlenmesini kabul ediyorum. ', React.createElement('span', { style:{color:'#dc2626'} }, '*'))
+            ),
+            React.createElement('div', { className:'reg-section-label' }, 'Ek Onaylar'),
+            React.createElement('div', { className:'reg-consent-group' },
+              React.createElement(Checkbox, { checked: extraConsents.c2, onChange: e => setExtraConsents(p=>({...p, c2:e.target.checked})) },
+                'Webinar sırasında görüntü ve ses kaydı alınmasına açık rıza veriyorum.'
+              ),
+              React.createElement(Checkbox, { checked: extraConsents.c3, onChange: e => setExtraConsents(p=>({...p, c3:e.target.checked})) },
+                'Webinar altyapısı ve bilgi teknolojileri hizmet sağlayıcılarının kullanılması amacıyla kişisel verilerimin yurtdışına aktarılmasına açık rıza veriyorum.'
+              ),
+              React.createElement(Checkbox, { checked: extraConsents.c4, onChange: e => setExtraConsents(p=>({...p, c4:e.target.checked})) },
+                'Webinar kayıtlarının eğitim, arşivleme ve tanıtım amaçlarıyla paylaşılmasına veya yayınlanmasına açık rıza veriyorum.'
+              ),
+              React.createElement(Checkbox, { checked: extraConsents.c5, onChange: e => setExtraConsents(p=>({...p, c5:e.target.checked})) },
+                'ATEZ ürün ve hizmetleri ile gelecekteki etkinlikler hakkında tarafıma ticari elektronik ileti gönderilmesini kabul ediyorum.'
+              )
+            ),
+            React.createElement('p', { className:'reg-revoke-note' },
+              'Açık rızanızı dilediğiniz zaman geri alabilirsiniz. Geri alma işlemi geçmişe etkili değildir.'
+            )
+          )
+        ];
+
+        const successView = React.createElement('div', { style:{ textAlign:'center', padding:'32px 0 16px' } },
+          React.createElement('div', { style:{ fontSize:'3rem', marginBottom:16 } }, '✓'),
+          React.createElement(Typography.Title, { level:4, style:{ marginBottom:8 } }, 'Kaydınız Tamamlandı!'),
+          React.createElement(Text, { type:'secondary', style:{ display:'block', marginBottom:24 } },
+            'Beyan Sonrası Riskleri Yapay Zeka ile Yakalayın! webinarına başarıyla kayıt oldunuz. Onay ve katılım bilgileri e-posta adresinize gönderilecektir.'
+          ),
+          React.createElement(Button, { type:'primary', style:antdPrimary, onClick: handleClose }, 'Kapat')
+        );
+
+        return React.createElement(Modal, {
+          open,
+          onCancel: handleClose,
+          footer: null,
+          width: 640,
+          destroyOnClose: true,
+          styles: { body:{ padding:0 }, header:{ display:'none' } },
+          style: { top: 40 }
+        },
+          /* Modal banner */
+          React.createElement('div', { className: 'reg-modal-banner' },
+            React.createElement('div', { className: 'reg-modal-banner-inner' },
+              React.createElement('div', null,
+                React.createElement('div', { style:{ fontSize:'.68rem', fontWeight:700, letterSpacing:'.08em', textTransform:'uppercase', color:'rgba(255,255,255,.7)', marginBottom:4, fontFamily:'var(--ff)' } }, 'ETKİNLİK KAYDI · Webinar'),
+                React.createElement('div', { className: 'reg-modal-event-title' }, 'Beyan Sonrası Riskleri Yapay Zeka ile Yakalayın!'),
+                React.createElement('div', { className: 'reg-modal-meta' },
+                  React.createElement('span', { className:'reg-modal-meta-item' },
+                    React.createElement('svg', { viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:2 },
+                      React.createElement('rect', { x:3, y:4, width:18, height:18, rx:2 }),
+                      React.createElement('line', { x1:16, y1:2, x2:16, y2:6 }),
+                      React.createElement('line', { x1:8, y1:2, x2:8, y2:6 }),
+                      React.createElement('line', { x1:3, y1:10, x2:21, y2:10 })
+                    ),
+                    '09.06.2026'
+                  ),
+                  React.createElement('span', { className:'reg-modal-meta-item' },
+                    React.createElement('svg', { viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:2 },
+                      React.createElement('circle', { cx:12, cy:12, r:10 }),
+                      React.createElement('polyline', { points:'12 6 12 12 16 14' })
+                    ),
+                    '11:00 – 12:00'
+                  ),
+                  React.createElement('span', { className:'reg-modal-meta-item' }, 'Online · Türkçe')
+                )
+              ),
+              React.createElement('span', { className: 'reg-capacity-pill' }, '191 katılımcı kontenjanı mevcut')
+            )
+          ),
+
+          /* Modal body */
+          React.createElement('div', { style:{ padding:'24px 28px 28px' } },
+            done ? successView : React.createElement(React.Fragment, null,
+              React.createElement(Steps, {
+                current,
+                size: 'small',
+                items: STEPS.map(t => ({ title: t })),
+                style: { marginBottom: 28 }
+              }),
+              React.createElement(Form, { form, layout:'vertical', requiredMark:false },
+                stepContent[current]
+              ),
+              /* Footer navigation */
+              React.createElement('div', { className: 'reg-modal-footer' },
+                current === 0
+                  ? React.createElement(Button, { onClick: handleClose }, 'İptal')
+                  : React.createElement(Button, { onClick: prev }, '← Geri'),
+                current < STEPS.length - 1
+                  ? React.createElement(Button, { type:'primary', style:antdPrimary, onClick: next }, 'İleri →')
+                  : React.createElement(Button, { type:'primary', style:antdPrimary, loading, onClick: submit, disabled: !consent1 }, 'Kaydı Tamamla')
+              )
+            )
+          )
+        );
+      }
+
+      function App() {
+        const [open, setOpen] = useState(false);
+
+        React.useEffect(() => {
+          const triggers = document.querySelectorAll('#open-reg-modal, .js-open-reg-modal');
+          const handler = () => setOpen(true);
+          triggers.forEach(el => el.addEventListener('click', handler));
+          return () => triggers.forEach(el => el.removeEventListener('click', handler));
+        }, []);
+
+        return React.createElement(RegistrationModal, { open, onClose: () => setOpen(false) });
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('reg-root'));
+      root.render(React.createElement(antd.ConfigProvider, {
+        theme: {
+          token: {
+            colorPrimary: '#005287',
+            fontFamily: "Inter, 'Segoe UI', Arial, sans-serif",
+            borderRadius: 8,
+          }
+        }
+      }, React.createElement(App)));
+    })();
   </script>
 </body>
 </html>
