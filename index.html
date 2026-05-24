@@ -2158,8 +2158,12 @@
     .hms-refs-section .hms-h2{margin-bottom:0;}
     /* CTA */
     .hms-cta-section{background:var(--hero-bg);border-top:1px solid var(--section-border);padding:80px max(48px,calc((100vw - 1440px)/2 + 48px));position:relative;overflow:hidden;}
-    .hms-cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,82,135,.12) 0%,transparent 70%);pointer-events:none;}
-    [data-theme="dark"] .hms-cta-section::before{background:radial-gradient(ellipse,rgba(0,130,220,.1) 0%,transparent 70%);}
+    /* decorative SVG layers */
+    .hms-cta-deco{position:absolute;inset:0;pointer-events:none;user-select:none;overflow:hidden;}
+    .hms-cta-deco-waves{position:absolute;bottom:-24px;left:-3%;width:106%;opacity:.5;}
+    .hms-cta-deco-curvy{position:absolute;top:-55%;right:-8%;width:52%;opacity:.16;transform:scale(-1,1);}
+    [data-theme="dark"] .hms-cta-deco-waves{opacity:.25;}
+    [data-theme="dark"] .hms-cta-deco-curvy{opacity:.09;}
     .hms-cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;}
     .hms-cta-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:20px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);padding:0 8px;border:1px solid rgba(0,82,135,.22);border-radius:4px;background:rgba(0,82,135,.06);margin-bottom:24px;white-space:nowrap;}
     [data-theme="dark"] .hms-cta-badge{color:#7ec9f7;border-color:rgba(126,201,247,.22);background:rgba(126,201,247,.06);}
@@ -2529,6 +2533,27 @@
 
   <!-- CTA ─────────────────────────────────────────────────── -->
   <section class="hms-cta-section" id="hazir-misiniz">
+    <!-- Decorative SVG background layers -->
+    <div class="hms-cta-deco" aria-hidden="true">
+      <!-- Waves – bottom, full width -->
+      <svg class="hms-cta-deco-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1658.918 467.117">
+        <g transform="translate(-6557.113 -1941.225)">
+          <path d="M160.441,288.055a656.992,656.992,0,0,1-67.958-3.449,20.5,20.5,0,1,1,4.234-40.781C274.111,262.244,456.915,198.1,633.7,136.067c232.62-81.625,473.16-166.029,713.243-71.305A20.5,20.5,0,0,1,1331.9,102.9c-225.874-89.118-448.705-10.927-684.62,71.854C488.218,230.566,324.374,288.048,160.441,288.055Z" transform="translate(6746.088 1918.342)" fill="#c9c9c9"/>
+          <path d="M350.818,339.324c-113.149,0-226.81-27.194-340.346-100.732a20.5,20.5,0,1,1,22.289-34.412c261.211,169.189,518.563,78.886,791.026-16.719,145.54-51.069,296.035-103.876,445.585-112.186a20.5,20.5,0,0,1,2.275,40.937C1127.906,124.2,980.2,176.026,837.362,226.147,677.708,282.169,514.815,339.324,350.818,339.324Z" transform="translate(6556 2069.019)" fill="#cceafa"/>
+          <path d="M330.495,305.317c-103.541.007-207.483-22.758-311.364-82.964A20.5,20.5,0,1,1,39.69,186.88C291.816,333,540.356,245.791,803.489,153.459,982.841,90.525,1168.3,25.449,1353.062,43.086a20.5,20.5,0,0,1-3.9,40.814c-175.795-16.78-356.93,46.779-532.1,108.246C657.485,248.142,494.528,305.306,330.495,305.317Z" transform="translate(6576.3 1965.025)" fill="#ffd563"/>
+          <path d="M121.614,322.178a20.5,20.5,0,0,1-.886-40.981C267.187,274.754,417.722,221.932,563.3,170.85,833.106,76.177,1112.1-21.718,1390.187,158.4a20.5,20.5,0,1,1-22.289,34.412c-261.208-169.187-518.56-78.884-791.022,16.721C428.486,261.606,275.044,315.448,122.53,322.158,122.224,322.172,121.918,322.178,121.614,322.178Z" transform="translate(6816.485 2012.94)" fill="#b4e1f9"/>
+        </g>
+      </svg>
+      <!-- Curvy – top-right accent -->
+      <svg class="hms-cta-deco-curvy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1562.313 734.758">
+        <g transform="translate(-7350.545 -2502)">
+          <path d="M688.05,513.674c-251.482,0-489.055-102.249-652.492-285.174a20.5,20.5,0,1,1,30.574-27.317C246.675,403.255,522.6,501.909,804.224,465.084c276.028-36.093,504.65-195.506,627.246-437.363a20.5,20.5,0,0,1,36.57,18.537c-128.816,254.129-368.831,421.6-658.5,459.48A937.086,937.086,0,0,1,688.05,513.674Z" transform="translate(7442.597 2723.085)" fill="#cceafa"/>
+          <path d="M709.515,609.864a757.626,757.626,0,0,1-230.791-35.8C250.813,501.131,80.471,324.655,11.379,89.89A20.5,20.5,0,1,1,50.711,78.314c66.152,224.773,222.6,386.967,440.511,456.7,222.252,71.125,470.935,28.545,649-111.124a20.5,20.5,0,0,1,25.3,32.26C1037.247,556.773,874.456,609.864,709.515,609.864Z" transform="translate(7422.015 2438.403)" fill="#c9c9c9"/>
+          <path d="M764.83,610.109a872.058,872.058,0,0,1-175.655-17.9C300.51,532.862,79.741,338.768-16.525,59.7a20.5,20.5,0,1,1,38.759-13.37c91.425,265.035,301.076,449.363,575.2,505.722,279.035,57.368,566.164-32.188,749.336-233.72a20.5,20.5,0,1,1,30.34,27.576C1222.748,515.738,998.5,610.109,764.83,610.109Z" transform="translate(7368.197 2564.47)" fill="#b4e1f9"/>
+          <path d="M589.006,629.584c-179.648,0-356.58-59.052-494.774-170.6a20.5,20.5,0,1,1,25.752-31.9C309.959,580.426,577.462,629,818.1,553.837c232.768-72.7,406.669-251.674,477.114-491.03a20.5,20.5,0,1,1,39.332,11.576C1260.172,327.1,1076.391,516.12,830.327,592.973A809.95,809.95,0,0,1,589.006,629.584Z" transform="translate(7544.047 2480.418)" fill="#fed563"/>
+        </g>
+      </svg>
+    </div>
     <div class="hms-cta-inner">
       <div class="hms-cta-badge">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>

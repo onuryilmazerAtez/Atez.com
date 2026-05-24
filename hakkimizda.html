@@ -146,7 +146,7 @@
     .policy-link svg{width:14px;height:14px;stroke:var(--primary);fill:none;stroke-width:2.5;}
 
     /* ── CTA SECTION ────────────────────────────── */
-    .cta-section{background:var(--primary);padding:72px max(48px,calc((100vw - 1440px)/2 + 48px));}
+    .cta-section{position:relative;overflow:hidden;background:var(--primary);padding:72px max(48px,calc((100vw - 1440px)/2 + 48px));}.cta-deco{position:absolute;inset:0;pointer-events:none;user-select:none;overflow:hidden;}.cta-deco-waves{position:absolute;bottom:-16px;left:-3%;width:106%;opacity:.38;}
     .cta-inner{max-width:700px;margin:0 auto;text-align:center;}
     .cta-inner h2{font-size:clamp(22px,2.6vw,32px);font-weight:500;color:#fff;margin-bottom:14px;}
     .cta-inner p{font-size:15px;color:rgba(255,255,255,.8);margin-bottom:32px;line-height:1.7;}
@@ -527,7 +527,17 @@
 
   <!-- ── CTA ───────────────────────────────────────── -->
   <section class="cta-section">
-    <div class="cta-inner">
+  <div class="cta-deco" aria-hidden="true">
+    <svg class="cta-deco-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1658.918 467.117" aria-hidden="true">
+        <g transform="translate(-6557.113 -1941.225)">
+          <path d="M160.441,288.055a656.992,656.992,0,0,1-67.958-3.449,20.5,20.5,0,1,1,4.234-40.781C274.111,262.244,456.915,198.1,633.7,136.067c232.62-81.625,473.16-166.029,713.243-71.305A20.5,20.5,0,0,1,1331.9,102.9c-225.874-89.118-448.705-10.927-684.62,71.854C488.218,230.566,324.374,288.048,160.441,288.055Z" transform="translate(6746.088 1918.342)" fill="#c9c9c9"/>
+          <path d="M350.818,339.324c-113.149,0-226.81-27.194-340.346-100.732a20.5,20.5,0,1,1,22.289-34.412c261.211,169.189,518.563,78.886,791.026-16.719,145.54-51.069,296.035-103.876,445.585-112.186a20.5,20.5,0,0,1,2.275,40.937C1127.906,124.2,980.2,176.026,837.362,226.147,677.708,282.169,514.815,339.324,350.818,339.324Z" transform="translate(6556 2069.019)" fill="#cceafa"/>
+          <path d="M330.495,305.317c-103.541.007-207.483-22.758-311.364-82.964A20.5,20.5,0,1,1,39.69,186.88C291.816,333,540.356,245.791,803.489,153.459,982.841,90.525,1168.3,25.449,1353.062,43.086a20.5,20.5,0,0,1-3.9,40.814c-175.795-16.78-356.93,46.779-532.1,108.246C657.485,248.142,494.528,305.306,330.495,305.317Z" transform="translate(6576.3 1965.025)" fill="#ffd563"/>
+          <path d="M121.614,322.178a20.5,20.5,0,0,1-.886-40.981C267.187,274.754,417.722,221.932,563.3,170.85,833.106,76.177,1112.1-21.718,1390.187,158.4a20.5,20.5,0,1,1-22.289,34.412c-261.208-169.187-518.56-78.884-791.022,16.721C428.486,261.606,275.044,315.448,122.53,322.158,122.224,322.172,121.918,322.178,121.614,322.178Z" transform="translate(6816.485 2012.94)" fill="#b4e1f9"/>
+        </g>
+      </svg>
+  </div>
+      <div class="cta-inner">
       <h2>Ticaretin Geleceğine Hazır mısınız?</h2>
       <p>Başlamaya ve bilgi sahibi olmaya hazır mısınız? ATEZ'in ticaret operasyonlarınızı nasıl dönüştürebileceğini keşfetmek için ücretsiz iletişime geçin — veya en son güncellemeler için bültenimize abone olun.</p>
       <div class="cta-btns">
