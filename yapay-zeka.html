@@ -411,15 +411,6 @@
       transition:opacity .2s, transform .15s, box-shadow .2s; white-space:nowrap;
     }
     .btn-demo-submit:hover { opacity:.9; transform:translateY(-1px); box-shadow:0 8px 28px rgba(109,40,217,.45); }
-    .demo-trust {
-      display:flex; gap:20px; justify-content:center; flex-wrap:wrap;
-      margin-top:16px;
-    }
-    .demo-trust span {
-      display:inline-flex; align-items:center; gap:5px;
-      font-size:.73rem; color:rgba(255,255,255,.35); font-weight:500;
-    }
-    .demo-trust span svg { opacity:.5; }
     .demo-success {
       display:none; text-align:center; padding:22px;
       background:rgba(109,40,217,.15); border:1px solid rgba(168,85,247,.3);
@@ -822,11 +813,6 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </div>
-        <div class="demo-trust">
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>GDPR Uyumlu</span>
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Kredi kartı gerekmez</span>
-          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>24 saat içinde dönüş</span>
-        </div>
         <div class="demo-success" id="demo-success">
           <strong>✓ Talebiniz alındı!</strong> Ekibimiz en kısa sürede sizinle iletişime geçecek.
         </div>
@@ -962,7 +948,7 @@
         if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;
         // Hide form row, show success message
         form.querySelector('.demo-form-row').style.display='none';
-        form.querySelector('.demo-trust').style.display='none';
+        const dt=form.querySelector('.demo-trust');if(dt)dt.style.display='none';
         success.style.display='block';
       });
     })();
