@@ -2111,6 +2111,77 @@
     .nav-dd-icon-wrap img,.nav-dd-icon-wrap svg{width:30px;height:30px;}
     .nav-dd-name{font-size:.9rem;font-weight:500;color:var(--text);line-height:1.25;}
     .nav-dd-desc{font-size:.73rem;color:var(--muted);margin-top:3px;line-height:1.3;}.nav-dd-footer{padding:6px 8px 4px;margin-top:2px;display:flex;align-items:center;justify-content:flex-end;}.nav-dd-all-btn{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;font-weight:600;color:var(--primary);text-decoration:none;transition:opacity .15s;}.nav-dd-all-btn:hover{opacity:.65;}
+    /* ════════════════════════════════════════
+       HOME SECTIONS (hms-*)
+    ════════════════════════════════════════ */
+    .hms-section{padding:96px max(48px,calc((100vw - 1440px)/2 + 48px));border-top:1px solid var(--section-border);transition:background .35s;}
+    .hms-section-alt{background:var(--bg-alt);}
+    .hms-inner{max-width:1200px;margin:0 auto;}
+    .hms-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--primary);text-align:center;margin-bottom:12px;}
+    [data-theme="dark"] .hms-eyebrow{color:#7dd3fc;}
+    .hms-h2{font-size:clamp(26px,2.8vw,40px);font-weight:800;letter-spacing:-.025em;line-height:1.15;color:var(--text);text-align:center;margin-bottom:16px;}
+    .hms-lead{font-size:.97rem;line-height:1.75;color:var(--muted);max-width:740px;margin:0 auto 56px;text-align:center;}
+    /* Focus cards */
+    .hms-focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    @media(max-width:768px){.hms-focus-grid{grid-template-columns:1fr;}}
+    .hms-focus-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:36px 32px;transition:box-shadow .2s,border-color .2s;}
+    .hms-focus-card:hover{border-color:rgba(0,82,135,.2);box-shadow:0 8px 32px rgba(0,82,135,.07);}
+    .hms-focus-icon{width:52px;height:52px;border-radius:14px;background:var(--mono-bg);border:1px solid rgba(0,82,135,.12);display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
+    [data-theme="dark"] .hms-focus-icon{border-color:rgba(126,201,247,.15);}
+    .hms-focus-icon svg{width:26px;height:26px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+    .hms-focus-card h3{font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-.015em;line-height:1.3;}
+    .hms-focus-card p{font-size:.9rem;line-height:1.72;color:var(--muted);}
+    /* Stats */
+    .hms-stats-section{padding:88px max(48px,calc((100vw - 1440px)/2 + 48px));background:var(--primary);border-top:none;}
+    .hms-stats-section .hms-h2{color:#fff;}
+    .hms-stats-ts{font-size:.72rem;color:rgba(255,255,255,.45);text-align:center;margin-bottom:44px;margin-top:-8px;}
+    .hms-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+    @media(max-width:960px){.hms-stats-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:520px){.hms-stats-grid{grid-template-columns:1fr 1fr;}}
+    .hms-stat{padding:28px 20px;background:rgba(255,255,255,.07);border-radius:14px;text-align:center;border:1px solid rgba(255,255,255,.08);}
+    .hms-stat-val{font-size:clamp(22px,2.8vw,36px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:8px;}
+    .hms-stat-lbl{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.4;}
+    /* Testimonials */
+    .hms-testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    @media(max-width:900px){.hms-testi-grid{grid-template-columns:1fr;}}
+    .hms-testi{background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:16px;transition:box-shadow .2s,border-color .2s;}
+    .hms-testi:hover{box-shadow:0 6px 24px rgba(0,82,135,.07);border-color:rgba(0,82,135,.18);}
+    .hms-testi-qm{font-size:3rem;font-weight:900;color:var(--primary);line-height:.8;opacity:.25;font-family:Georgia,serif;}
+    .hms-testi-text{font-size:.92rem;line-height:1.72;color:var(--text);flex:1;}
+    .hms-testi-author{border-top:1px solid var(--section-border);padding-top:14px;}
+    .hms-testi-name{font-size:.88rem;font-weight:700;color:var(--text);}
+    .hms-testi-co{font-size:.76rem;color:var(--muted);margin-top:2px;}
+    /* News */
+    .hms-news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+    @media(max-width:960px){.hms-news-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){.hms-news-grid{grid-template-columns:1fr;}}
+    .hms-news-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .2s,border-color .2s;}
+    .hms-news-card:hover{box-shadow:0 6px 24px rgba(0,82,135,.08);border-color:rgba(0,82,135,.18);}
+    .hms-news-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+    .hms-news-tag{font-size:.65rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);background:rgba(0,82,135,.08);border:1px solid rgba(0,82,135,.14);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+    [data-theme="dark"] .hms-news-tag{color:#7dd3fc;background:rgba(0,130,220,.1);border-color:rgba(0,130,220,.22);}
+    .hms-news-dot{color:var(--divider);font-size:.75rem;}
+    .hms-news-date,.hms-news-rt{font-size:.76rem;color:var(--muted);}
+    .hms-news-title{font-size:.97rem;font-weight:700;color:var(--text);line-height:1.35;margin:0;}
+    .hms-news-excerpt{font-size:.84rem;line-height:1.65;color:var(--muted);flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+    .hms-news-link{font-size:.82rem;font-weight:600;color:var(--primary);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .15s;margin-top:4px;}
+    .hms-news-link:hover{gap:8px;}
+    .hms-center{text-align:center;}
+    .hms-btn-outline{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 24px;border:1.5px solid var(--primary);border-radius:8px;color:var(--primary);font-family:var(--ff);font-size:.88rem;font-weight:600;text-decoration:none;transition:background .18s,color .18s;}
+    .hms-btn-outline:hover{background:var(--primary);color:#fff;}
+    /* Referanslar */
+    .hms-refs-section .hms-h2{margin-bottom:0;}
+    /* CTA */
+    .hms-cta-section{background:var(--primary);padding:96px max(48px,calc((100vw - 1440px)/2 + 48px));text-align:center;border-top:none;}
+    .hms-cta-inner{max-width:660px;margin:0 auto;}
+    .hms-cta-section h2{font-size:clamp(22px,2.6vw,36px);font-weight:800;letter-spacing:-.025em;line-height:1.2;color:#fff;margin-bottom:18px;}
+    .hms-cta-section p{font-size:.97rem;line-height:1.75;color:rgba(255,255,255,.8);margin-bottom:36px;}
+    .hms-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .hms-cta-btn-primary{display:inline-flex;align-items:center;height:48px;padding:0 30px;background:#fff;color:var(--primary);border-radius:8px;font-family:var(--ff);font-size:.95rem;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 0 rgba(0,0,0,.06);}
+    .hms-cta-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+    .hms-cta-btn-secondary{display:inline-flex;align-items:center;height:48px;padding:0 28px;background:transparent;color:#fff;border-radius:8px;font-family:var(--ff);font-size:.95rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.5);transition:border-color .2s,background .2s;}
+    .hms-cta-btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+
   </style>
 </head>
 <body>
@@ -2278,531 +2349,171 @@
 
   </section>
 
-  <!-- SOLUTIONS -->
-  <section class="solutions-section" id="solutions">
-    <div class="sol-bg">
-      <div class="sol-blob sol-blob-1"></div>
-      <div class="sol-blob sol-blob-2"></div>
-      <div class="sol-blob sol-blob-3"></div>
-      <div class="sol-blob sol-blob-4"></div>
-    </div>
 
-    <div class="sol-inner">
-      <div class="sol-top">
-        <div class="sol-left">
-          <div class="sol-eyebrow">Uzmanlık Alanlarımız</div>
-          <h2 class="sol-h2">
-            Odaklandığımız
-            <span class="sol-h2-gradient">Çözüm Alanları</span>
-          </h2>
-        </div>
-        <p class="sol-desc">ATEZ Yazılım Teknolojileri, sınır ötesi eşya hareketleri, gümrük mevzuatı uyumluluğu ve gümrük/transit beyanları odaklı üst düzey yazılım çözümleri konusunda uzmanlaşmıştır. Blockchain, Yapay Zeka, Makine Öğrenimi ve İş Zekası dahil olmak üzere yeni nesil teknolojilerden yararlanarak uçtan uca veri akışını ve prosedür yönetimini mümkün olduğunca otonom hale getirmeyi amaçlamaktadır.</p>
-      </div>
-
-      <div class="sol-cards">
-
-        <!-- Card 1 -->
-        <div class="sol-card">
-          <div class="sol-card-glow"></div>
-          <div class="sol-card-line"></div>
-          <div class="sol-card-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2l1.8 5.4L19.8 9l-6 1.8L12 16.8l-1.8-6L4.2 9l6-1.6L12 2z"/>
-              <path d="M19 16l.9 2.6L22.5 19.5l-2.6.9L19 23l-.9-2.5L15.5 19.5l2.6-.9L19 16z"/>
-              <path d="M5 3l.6 1.8L7.5 5.5 5.8 6.1 5.2 8 4.5 6.2 2.5 5.5l1.7-.7L5 3z"/>
-            </svg>
+  <!-- ÇÖZÜM ALANLARI ──────────────────────────────────────── -->
+  <section class="hms-section hms-section-alt" id="cozum-alanlari">
+    <div class="hms-inner">
+      <p class="hms-eyebrow">Uzmanlık Alanlarımız</p>
+      <h2 class="hms-h2">Odaklandığımız Çözüm Alanları</h2>
+      <p class="hms-lead">ATEZ Yazılım Teknolojileri, sınır ötesi eşya hareketleri, gümrük mevzuatı uyumluluğu ve gümrük/transit beyanları odaklı üst düzey yazılım çözümleri konusunda uzmanlaşmıştır. Blockchain, Yapay Zeka, Makine Öğrenimi ve İş Zekası dahil olmak üzere yeni nesil teknolojilerden yararlanarak uçtan uca veri akışını ve prosedür yönetimini mümkün olduğunca otonom hale getirmeyi amaçlamaktadır.</p>
+      <div class="hms-focus-grid">
+        <div class="hms-focus-card">
+          <div class="hms-focus-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
           </div>
           <h3>Yapay Zeka Destekli Veri Girişi ve Kontroller</h3>
           <p>Beyan öncesi veri girişlerinizi ve beyan sonrası kontrollerinizi otonom hale getirmek için Yapay Zeka ile tanışın.</p>
         </div>
-
-        <!-- Card 2 -->
-        <div class="sol-card">
-          <div class="sol-card-glow"></div>
-          <div class="sol-card-line"></div>
-          <div class="sol-card-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="2" y="3" width="7" height="7" rx="1.5"/>
-              <rect x="15" y="3" width="7" height="7" rx="1.5"/>
-              <rect x="8.5" y="14" width="7" height="7" rx="1.5"/>
-              <path d="M5.5 10v1.5a3 3 0 0 0 3 3h7a3 3 0 0 0 3-3V10"/>
-              <line x1="12" y1="13" x2="12" y2="14"/>
-            </svg>
+        <div class="hms-focus-card">
+          <div class="hms-focus-icon">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M6 9v12"/></svg>
           </div>
           <h3>Uçtan Uca Veri Akışı ile Otonom Süreç Yönetimi</h3>
           <p>Maksimum verimlilik ve minimum hata için süreçleriniz boyunca veri işlemeyi otomatikleştirin.</p>
         </div>
-
-        <!-- Card 3 -->
-        <div class="sol-card">
-          <div class="sol-card-glow"></div>
-          <div class="sol-card-line"></div>
-          <div class="sol-card-icon">
-            <svg viewBox="0 0 24 24">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
+        <div class="hms-focus-card">
+          <div class="hms-focus-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <h3>Hızlı, Kolaylaştırılmış Gümrük ve Transit Süreçleri</h3>
           <p>Akıllı otomasyon ve entegrasyonlar yoluyla gümrük ve transit beyan süreçlerinizi basitleştirin ve hızlandırın.</p>
         </div>
-
-        <!-- Card 4 -->
-        <div class="sol-card">
-          <div class="sol-card-glow"></div>
-          <div class="sol-card-line"></div>
-          <div class="sol-card-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
+        <div class="hms-focus-card">
+          <div class="hms-focus-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Sınır Ötesi Eşya Hareketlerinde Gümrük Mevzuatına Uyum</h3>
           <p>Karmaşık uluslararası gümrük ve transit süreçlerinde kolayca, risksiz ve hassasiyetle yol alın.</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- CHANNELS / PRODUCTS -->
-  <section class="channels-section" id="channels">
-    <div class="channels-header">
-      <h2>
-        <span class="channels-h2-accent">Entegre Ürün Ekosistemi,</span>
-        sınırsız operasyonel kapsam
-      </h2>
-      <p>Beyan otomasyonundan lojistik yönetimine, tarife optimizasyonundan AI destekli taramaya — dış ticaretin her boyutunda yanınızdayız.</p>
-    </div>
-    <div class="channels-grid" id="channels-grid">
-
-      <!-- ROW 1 -->
-
-      <!-- TransitAI — OPEN, pink tint -->
-      <div class="product-card is-open" data-tint="pink">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
-              <img src="assets/icons/TransitAI.svg" alt="TransitAI" width="28" height="28">
-            </div>
-            <span class="pc-tag">AI · Transit</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">TransitAI</div>
-        <div class="pc-subtitle">Transit otomasyon platformu</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-features">
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#a855f7"></span>AI Beyan Otomasyonu</span>
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#3b82f6"></span>Anomali Tespiti</span>
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#06b6d4"></span>Akıllı Sınıflandırma</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(168,85,247,.45);"></div>
+  <!-- SAYILARLA PLATFORM ──────────────────────────────────── -->
+  <section class="hms-stats-section" id="sayilarla-platform">
+    <div class="hms-inner">
+      <h2 class="hms-h2">Sayılarla Platformumuz</h2>
+      <p class="hms-stats-ts">Son güncelleme: 15:23:38 (Her 30 dakikada güncellenir)</p>
+      <div class="hms-stats-grid">
+        <div class="hms-stat"><div class="hms-stat-val" data-target="2102">0</div><div class="hms-stat-lbl">Tariff Kullanıcısı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="77336">0</div><div class="hms-stat-lbl">Tariff Sorgusu</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="1038677">0</div><div class="hms-stat-lbl">Logicust Üzerinde Yönetilen Ürün</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="80238">0</div><div class="hms-stat-lbl">Customs Shield ile Kontrol Edilen Beyanname</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="351051">0</div><div class="hms-stat-lbl">Transcode ile Sunulan Transit Beyanı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="1439309">0</div><div class="hms-stat-lbl">TransitAI İşlemi</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="14084">0</div><div class="hms-stat-lbl">Declarant ile Sunulan Gümrük Beyanı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="57744">0</div><div class="hms-stat-lbl">DeclarantAI İşlemi</div></div>
       </div>
-
-      <!-- Declarant — OPEN, blue tint -->
-      <div class="product-card is-open" data-tint="blue">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
-              <img src="assets/icons/Declarant.svg" alt="Declarant" width="28" height="28">
-            </div>
-            <span class="pc-tag">Beyan</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">Declarant</div>
-        <div class="pc-subtitle">Gümrük beyanı yönetimi</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-preview">
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Dosya No</span>
-                <span class="pc-preview-val">TR-2025-047821</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">GTİP</span>
-                <span class="pc-preview-val">8471.30.00.00</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Durum</span>
-                <span class="pc-status-badge" style="background:rgba(16,185,129,.15);color:#10b981">
-                  <span class="pc-status-dot" style="background:#10b981"></span>Onaylı
-                </span>
-              </div>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
-      </div>
-
-      <!-- CustomShield — OPEN, green tint -->
-      <div class="product-card is-open" data-tint="green">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(16,185,129,.12);">
-              <img src="assets/icons/CustomShield.svg" alt="CustomShield" width="28" height="28">
-            </div>
-            <span class="pc-tag">Uyumluluk</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">CustomShield</div>
-        <div class="pc-subtitle">Mevzuat uyumluluk kalkanı</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-features">
-              <span class="pc-feat"><span class="pc-status-dot" style="background:#10b981"></span>Risk: Düşük</span>
-              <span class="pc-feat"><span class="pc-status-dot" style="background:#10b981"></span>Mevzuat Güncel</span>
-              <span class="pc-feat"><span class="pc-status-dot" style="background:#3b82f6"></span>24/7 İzleme</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(16,185,129,.4);"></div>
-      </div>
-
-      <!-- ROW 2 -->
-
-      <!-- Logicust — OPEN WIDE, blue tint -->
-      <div class="product-card is-open wide" data-tint="blue">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
-              <img src="assets/icons/Logicust.svg" alt="Logicust" width="28" height="28">
-            </div>
-            <span class="pc-tag">Lojistik</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">Logicust</div>
-        <div class="pc-subtitle">Çok modlu lojistik yönetimi</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-transport-grid">
-              <div class="pc-transport-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l2-10h14l2 10H3z"/><path d="M5 7V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
-                Kara
-              </div>
-              <div class="pc-transport-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
-                Hava
-              </div>
-              <div class="pc-transport-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V10l8-6 8 6v10"/><path d="M10 20v-6h4v6"/></svg>
-                Deniz
-              </div>
-              <div class="pc-transport-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M1 10h22M7 6v12M17 6v12"/></svg>
-                Demiryolu
-              </div>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
-      </div>
-
-      <!-- DeclarantAI — CLOSED, purple tint -->
-      <div class="product-card" data-tint="purple">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
-              <img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI" width="28" height="28">
-            </div>
-            <span class="pc-tag">AI · Beyan</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">DeclarantAI</div>
-        <div class="pc-subtitle">AI destekli beyan sistemi</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-features">
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#a855f7"></span>Otomatik Form Doldurma</span>
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#ec4899"></span>Hata Önleme</span>
-              <span class="pc-feat"><span class="pc-feat-dot" style="background:#6366f1"></span>Akıllı Doğrulama</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(168,85,247,.4);"></div>
-      </div>
-
-      <!-- ROW 3 -->
-
-      <!-- AGSW — CLOSED -->
-      <div class="product-card">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(0,98,255,.12);">
-              <img src="assets/icons/AGSW.svg" alt="AGSW" width="28" height="28">
-            </div>
-            <span class="pc-tag">Entegrasyon</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">AGSW</div>
-        <div class="pc-subtitle">Sistem entegrasyon gateway'i</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-code-flow">
-              <span class="pc-code-box">ERP</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box" style="background:var(--primary)">AGSW</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box">WMS</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box">Gümrük</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(0,98,255,.4);"></div>
-      </div>
-
-      <!-- Tariff — CLOSED, blue tint -->
-      <div class="product-card" data-tint="blue">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
-              <img src="assets/icons/Tariff.svg" alt="Tariff" width="28" height="28">
-            </div>
-            <span class="pc-tag">Tarife</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">Tariff</div>
-        <div class="pc-subtitle">GTİP & tarife yönetimi</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-preview">
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Ürün</span>
-                <span class="pc-preview-val">Bilgisayar</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">HS Kodu</span>
-                <span class="pc-preview-val">8471.30</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Vergi Oranı</span>
-                <span class="pc-preview-val">0%</span>
-              </div>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
-      </div>
-
-      <!-- CustomLoop — CLOSED -->
-      <div class="product-card">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(0,98,255,.12);">
-              <img src="assets/icons/CustomLoop.svg" alt="CustomLoop" width="28" height="28">
-            </div>
-            <span class="pc-tag">Otomasyon</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">CustomLoop</div>
-        <div class="pc-subtitle">İş akışı otomasyon motoru</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-code-flow">
-              <span class="pc-code-box" style="background:#6366f1">Giriş</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box">İşlem</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box" style="background:#10b981">Çıkış</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(0,98,255,.4);"></div>
-      </div>
-
-      <!-- ROW 4 -->
-
-      <!-- X-rayAI — OPEN WIDE, pink tint -->
-      <div class="product-card is-open wide" data-tint="pink">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(248,0,255,.12);">
-              <img src="assets/icons/XrayAI.svg" alt="X-rayAI" width="28" height="28">
-            </div>
-            <span class="pc-tag">AI · Tarama</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">X-rayAI</div>
-        <div class="pc-subtitle">AI destekli yük tarama analizi</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-preview">
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Tarama ID</span>
-                <span class="pc-preview-val">XR-20250518-0042</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Sonuç</span>
-                <span class="pc-status-badge" style="background:rgba(16,185,129,.15);color:#10b981"><span class="pc-status-dot" style="background:#10b981"></span>Güvenli</span>
-              </div>
-              <div class="pc-preview-row">
-                <span class="pc-preview-label">Güven Skoru</span>
-                <span class="pc-preview-val">98.4%</span>
-              </div>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(248,0,255,.4);"></div>
-      </div>
-
-      <!-- TransCode — CLOSED -->
-      <div class="product-card">
-        <div class="pc-header">
-          <div class="pc-icon-row">
-            <div class="pc-icon" style="background:rgba(32,92,255,.12);">
-              <img src="assets/icons/TransCode.svg" alt="TransCode" width="28" height="28">
-            </div>
-            <span class="pc-tag">Kodlama</span>
-          </div>
-          <div class="pc-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="pc-title">TransCode</div>
-        <div class="pc-subtitle">Uluslararası kod dönüşüm motoru</div>
-        <div class="pc-body">
-          <div class="pc-body-inner">
-            <div class="pc-code-flow">
-              <span class="pc-code-box">HS</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box">TARIC</span>
-              <span class="pc-code-arrow">→</span>
-              <span class="pc-code-box">GTİP</span>
-            </div>
-            <a href="#" class="pc-link">Keşfet <span class="pc-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-          </div>
-        </div>
-        <div class="pc-deco" style="background:rgba(32,92,255,.4);"></div>
-      </div>
-
-    </div>
-    <div class="channels-hiw-cta">
-      <a href="nasil-calisir.html" class="channels-hiw-btn">
-        Tümünün nasıl birlikte çalıştığını görün
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </a>
     </div>
   </section>
 
-  <!-- BRANDS (REFERANSLARIMIZ) -->
-  <section class="brands-section" id="brands">
-    <div class="brands-label">Referanslarımız</div>
-    <div class="brands-track-wrap">
-      <div class="brands-track" id="brands-track"></div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-section" id="testimonials">
-    <h2>Müşteriler Ne Diyor?</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <p class="testimonial-quote">ATEZ Yazılım, gümrük süreçlerimizi devrim niteliğinde değiştirerek daha hızlı ve güvenilir hale getirdi.</p>
-        <div class="testimonial-author">
-          <span class="testimonial-name">Fırat Pişirici</span>
-          <span class="testimonial-company">Amazon</span>
+  <!-- MÜŞTERİLERİMİZ ─────────────────────────────────────── -->
+  <section class="hms-section" id="musteriler">
+    <div class="hms-inner">
+      <p class="hms-eyebrow">Müşteri Görüşleri</p>
+      <h2 class="hms-h2">Müşterilerimiz Ne Diyor?</h2>
+      <div class="hms-testi-grid">
+        <div class="hms-testi">
+          <div class="hms-testi-qm">"</div>
+          <p class="hms-testi-text">ATEZ Yazılım, gümrük süreçlerimizi devrim niteliğinde değiştirerek daha hızlı ve güvenilir hale getirdi.</p>
+          <div class="hms-testi-author">
+            <div class="hms-testi-name">Fırat Pişirici</div>
+            <div class="hms-testi-co">Amazon</div>
+          </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Olağanüstü destek ve en son teknoloji. ATEZ'i şiddetle tavsiye ederim.</p>
-        <div class="testimonial-author">
-          <span class="testimonial-name">Andreas Luxbauer</span>
-          <span class="testimonial-company">Verag AG</span>
+        <div class="hms-testi">
+          <div class="hms-testi-qm">"</div>
+          <p class="hms-testi-text">Olağanüstü destek ve en son teknoloji. ATEZ'i şiddetle tavsiye ederim.</p>
+          <div class="hms-testi-author">
+            <div class="hms-testi-name">Andreas Luxbauer</div>
+            <div class="hms-testi-co">Verag AG</div>
+          </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Yapay zeka destekli araçlar, uyumluluk ve verimlilik açısından oyunun kurallarını değiştiriyor.</p>
-        <div class="testimonial-author">
-          <span class="testimonial-name">Özkan Derya</span>
-          <span class="testimonial-company">DCS Customs Consultancy</span>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Otonom veri akışı çözümleri manuel iş yükümüzü önemli ölçüde azalttı.</p>
-        <div class="testimonial-author">
-          <span class="testimonial-name">Cihat Gür</span>
-          <span class="testimonial-company">Kale Seramik</span>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">ATEZ'in transit beyanlarına getirdiği uzmanlığı gelecek için çok önemli buluyorum.</p>
-        <div class="testimonial-author">
-          <span class="testimonial-name">Erman Ereke</span>
-          <span class="testimonial-company">IRU</span>
+        <div class="hms-testi">
+          <div class="hms-testi-qm">"</div>
+          <p class="hms-testi-text">Yapay zeka destekli araçlar, uyumluluk ve verimlilik açısından oyunun kurallarını değiştiriyor.</p>
+          <div class="hms-testi-author">
+            <div class="hms-testi-name">Özkan Derya</div>
+            <div class="hms-testi-co">DCS Customs Consultancy</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWS -->
-  <section id="news">
-    <div class="news-section">
-      <div class="news-section-header">
-        <h2>Bizden Haberler</h2>
-        <a href="#" class="news-all-link">Tümünü Gör →</a>
+  <!-- SON HABERLER ────────────────────────────────────────── -->
+  <section class="hms-section hms-section-alt" id="son-haberler">
+    <div class="hms-inner">
+      <p class="hms-eyebrow">Blog</p>
+      <h2 class="hms-h2">Son Haberler &amp; Güncellemeler</h2>
+      <p class="hms-lead">En son görüşlerimiz, yeniliklerimiz ve sektör gelişmelerimizden haberdar olun</p>
+      <div class="hms-news-grid">
+        <div class="hms-news-card">
+          <div class="hms-news-meta">
+            <span class="hms-news-tag">Şirket Haberleri</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-date">18/05/2026</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-rt">1 min read</span>
+          </div>
+          <h3 class="hms-news-title">ICS2 &amp; NCTS Faz 6 Uyum Süreci: 1 Haziran 2026 Hazır!</h3>
+          <p class="hms-news-excerpt">1 Haziran 2026 tarihinden itibaren, Bulgaristan'ın ICS2 istisnasının sona ermesi ve Türkiye'nin NCTS 6. Aşama'ya geçişiyle birlikte, ICS2 ENS gereklilikleri genişleyecek; bu durum, artan karmaşıklık, veri ihtiyaçları ve uyum gerekliliklerini beraberinde getirecek ve bu süreçte hız, entegrasyon ve otomasyon başarının anahtar unsurları olacaktır.</p>
+          <a href="haberler.html" class="hms-news-link">Devamını Oku →</a>
+        </div>
+        <div class="hms-news-card">
+          <div class="hms-news-meta">
+            <span class="hms-news-tag">Şirket Haberleri</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-date">04/05/2026</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-rt">1 min read</span>
+          </div>
+          <h3 class="hms-news-title">Transcode Artık Hollanda NCTS İçin Hazır</h3>
+          <p class="hms-news-excerpt">Hollanda NCTS beyannamelerinizi yapay zeka destekli Transcode ile saniyeler içinde oluşturun. Transcode üzerinden Transit beyannamelerinizi artık doğrudan Hollanda NCTS sistemine gönderebilirsiniz.</p>
+          <a href="haberler.html" class="hms-news-link">Devamını Oku →</a>
+        </div>
+        <div class="hms-news-card">
+          <div class="hms-news-meta">
+            <span class="hms-news-tag">Mevzuatsal Gereksinimler</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-date">22/04/2026</span>
+            <span class="hms-news-dot">·</span>
+            <span class="hms-news-rt">1 min read</span>
+          </div>
+          <h3 class="hms-news-title">Dijital Ürün Pasaportu: Küresel Ticarette Ürün Bazlı Uyum Dönemi</h3>
+          <p class="hms-news-excerpt">Dijital Ürün Pasaportu, ürünlerin yönetilme ve ticaret biçimini kökten değiştiriyor. AB'nin veri odaklı uyum modeline geçişi ile birlikte, şirketlerin belge bazlı süreçlerden ürün bazlı veri sistemlerine geçmesi gerekiyor.</p>
+          <a href="haberler.html" class="hms-news-link">Devamını Oku →</a>
+        </div>
       </div>
-      <div class="news-grid">
-
-        <div class="news-card">
-          <div class="news-card-img">🇳🇱</div>
-          <div class="news-card-body">
-            <div class="news-tags">
-              <span class="news-tag sirket">Şirket</span>
-              <span class="news-tag mevzuat">Mevzuat</span>
-            </div>
-            <div class="news-card-title">Transcode artık Hollanda NCTS için hazır!</div>
-            <p class="news-card-excerpt">Hollanda NCTS beyannamelerinizi yapay zeka destekli Transcode ile saniyeler içinde oluşturun. Transcode üzerinden Transit…</p>
-            <div class="news-card-meta">16 Mayıs 2026</div>
-          </div>
-        </div>
-
-        <div class="news-card">
-          <div class="news-card-img">🤖</div>
-          <div class="news-card-body">
-            <div class="news-tags">
-              <span class="news-tag sektor">Sektör</span>
-            </div>
-            <div class="news-card-title">Yapay Zekâ gümrük dünyasını nasıl dönüştürüyor?</div>
-            <p class="news-card-excerpt">Makine öğrenmesi ve büyük dil modelleri artık gümrük beyannamelerini otomatik olarak doğruluyor ve hataları önlüyor.</p>
-            <div class="news-card-meta">10 Mayıs 2026</div>
-          </div>
-        </div>
-
-        <div class="news-card">
-          <div class="news-card-img">📋</div>
-          <div class="news-card-body">
-            <div class="news-tags">
-              <span class="news-tag mevzuat">Mevzuat</span>
-            </div>
-            <div class="news-card-title">AB Gümrük Kodundaki değişiklikler ne anlama geliyor?</div>
-            <p class="news-card-excerpt">2026 itibarıyla yürürlüğe girecek yeni AB Gümrük Kodu düzenlemeleri ve ATEZ platformlarının uyumluluk süreci.</p>
-            <div class="news-card-meta">2 Mayıs 2026</div>
-          </div>
-        </div>
-
+      <div class="hms-center">
+        <a href="haberler.html" class="hms-btn-outline">Tüm Haberleri Görüntüle →</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- REFERANSLAR ─────────────────────────────────────────── -->
+  <section class="hms-section hms-refs-section" id="referanslar">
+    <div class="hms-inner">
+      <h2 class="hms-h2">Referanslar</h2>
+      <div class="brands-track-wrap" style="margin-top:44px">
+        <div class="brands-track" id="brands-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ─────────────────────────────────────────────────── -->
+  <section class="hms-cta-section" id="hazir-misiniz">
+    <div class="hms-cta-inner">
+      <h2>Dış Ticaret Süreçlerinizi Dönüştürmeye Hazır mısınız?</h2>
+      <p>Bağlanmaya ve bilgi sahibi olmaya hazır mısınız? Sorgu formumuz aracılığıyla ATEZ'in ticaret operasyonlarınızı nasıl dönüştürebileceğini keşfetmek için bizimle iletişime geçin — veya en son içgörüler ve güncellemeler için bültenimize abone olun.</p>
+      <div class="hms-cta-btns">
+        <a href="iletisim.html" class="hms-cta-btn-primary">İletişime Geçin</a>
+        <a href="#" class="hms-cta-btn-secondary">Bültene Abone Ol</a>
+      </div>
+    </div>
+  </section>
+
+
   <footer>
     <!-- Tagline + Socials -->
     <div class="footer-brand">
@@ -3228,6 +2939,31 @@
     function ckAccept(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:true}));}catch(e){}ckHide();}
     function ckReject(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:false}));}catch(e){}ckHide();}
     function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
+  </script>
+
+  <script>
+    /* ── Stats counter animation ── */
+    (function(){
+      function fmt(n){return n.toLocaleString('tr-TR');}
+      var els=document.querySelectorAll('.hms-stat-val[data-target]');
+      if(!els.length)return;
+      var observer=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(!e.isIntersecting)return;
+          observer.unobserve(e.target);
+          var el=e.target,target=parseInt(el.dataset.target),dur=1800,start=null;
+          function step(ts){
+            if(!start)start=ts;
+            var p=Math.min((ts-start)/dur,1);
+            var ease=1-Math.pow(1-p,3);
+            el.textContent=fmt(Math.round(ease*target));
+            if(p<1)requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      },{threshold:.3});
+      els.forEach(function(el){observer.observe(el);});
+    })();
   </script>
 </body>
 </html>
