@@ -717,10 +717,6 @@
     }
 
     /* ── HERO PRODUCT LOGO GRID ─────────────────────── */
-    @keyframes plgGridIn {
-      from { opacity:0; transform:translateX(44px); }
-      to   { opacity:1; transform:translateX(0); }
-    }
     @keyframes plgCenterGlow {
       0%,100% { box-shadow: 0 0 28px rgba(0,98,255,.28), 0 8px 28px rgba(0,0,0,.14); }
       50%     { box-shadow: 0 0 48px rgba(0,98,255,.48), 0 8px 28px rgba(0,0,0,.14); }
@@ -732,7 +728,6 @@
       justify-content: center;
       width: 100%;
       max-width: 566px;
-      animation: plgGridIn 1.0s cubic-bezier(.16,1,.3,1) .1s both;
     }
     .plg-grid {
       display: grid;
@@ -750,14 +745,13 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       opacity: var(--plg-op, 1);
-      transition:
-        opacity .35s ease,
-        transform .35s cubic-bezier(.34,1.3,.64,1),
-        box-shadow .35s ease,
-        border-color .35s ease;
+      transform: translate(var(--plg-px, 0px), var(--plg-py, 0px));
+      transition: opacity .35s ease, box-shadow .35s ease, border-color .35s ease;
       cursor: default;
       position: relative;
       overflow: hidden;
+      will-change: transform;
+      pointer-events: none;
     }
     .plg-card::after {
       content: '';
@@ -772,44 +766,26 @@
       height: 52px;
       object-fit: contain;
       display: block;
-      transition: transform .35s cubic-bezier(.34,1.3,.64,1);
       position: relative;
       z-index: 1;
-    }
-    .plg-card:hover {
-      opacity: 1 !important;
-      transform: scale(1.08);
-      border-color: rgba(0,100,210,.30);
-      box-shadow: 0 6px 24px rgba(0,80,200,.14);
-    }
-    .plg-card:hover img {
-      transform: scale(1.06);
     }
     /* Centre card — AGSW */
     .plg-card-center {
       background: #ffffff;
       border-color: rgba(0,98,255,.22);
       box-shadow: 0 0 28px rgba(0,98,255,.28), 0 8px 28px rgba(0,0,0,.14);
-      transform: scale(1.14);
+      transform: translate(var(--plg-px, 0px), var(--plg-py, 0px)) scale(1.14);
       z-index: 2;
-      animation: plgCenterGlow 3s ease-in-out 1.2s infinite;
+      animation: plgCenterGlow 3s ease-in-out 1.4s infinite;
     }
     .plg-card-center img {
       width: 64px;
       height: 64px;
     }
-    .plg-card-center:hover {
-      transform: scale(1.22) !important;
-      box-shadow: 0 0 52px rgba(0,98,255,.55), 0 10px 36px rgba(0,0,0,.18) !important;
-    }
     /* Dark mode */
     [data-theme="dark"] .plg-card {
       background: rgba(255,255,255,.038);
       border-color: rgba(255,255,255,.09);
-    }
-    [data-theme="dark"] .plg-card:hover {
-      border-color: rgba(80,160,255,.32);
-      box-shadow: 0 6px 24px rgba(40,110,255,.22);
     }
     [data-theme="dark"] .plg-card-center {
       background: rgba(255,255,255,.96);
@@ -2374,23 +2350,22 @@
         <div class="plg-grid-wrap">
           <div class="plg-grid">
             <!-- Row 0 — distance from centre: 3, 2, 1, 2, 3 -->
-            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/Tariff.svg"       alt="Tariff"></div>
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/TariffAI.svg"     alt="TariffAI"></div>
-            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/Logicust.svg"     alt="Logicust"></div>
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomShield.svg" alt="CustomShield"></div>
-            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/TransCode.svg"    alt="TransCode"></div>
+            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/Tariff.svg"        alt="Tariff"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/greenpulse.svg"    alt="GreenPulse"></div>
+            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/Logicust.svg"      alt="Logicust"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomShield.svg"  alt="CustomShield"></div>
+            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/TransCode.svg"     alt="TransCode"></div>
             <!-- Row 1 — distance: 2, 1, 0(centre), 1, 2 -->
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/Declarant.svg"    alt="Declarant"></div>
-            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/DeclarantAI.svg"  alt="DeclarantAI"></div>
-            <div class="plg-card plg-card-center"      style="--plg-op:1" ><img src="assets/icons/AGSW.svg"        alt="AGSW"></div>
-            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/TransitAI.svg"    alt="TransitAI"></div>
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/greenpulse.svg"   alt="GreenPulse"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/Declarant.svg"     alt="Declarant"></div>
+            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/DeclarantAI.svg"   alt="DeclarantAI"></div>
+            <div class="plg-card plg-card-center"      style="--plg-op:1" ><img src="assets/icons/AGSW.svg"         alt="AGSW"></div>
+            <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/TransitAI.svg"     alt="TransitAI"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/TariffAI.svg"      alt="TariffAI"></div>
             <!-- Row 2 — distance: 3, 2, 1, 2, 3 -->
-            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/XrayAI.svg"       alt="XrayAI"></div>
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomXray.svg"   alt="CustomXray"></div>
+            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/XrayAI.svg"        alt="XrayAI"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomXray.svg"    alt="CustomXray"></div>
             <div class="plg-card" style="--plg-op:.72"><img src="assets/icons/CustomShield2.svg" alt="CustomShield2"></div>
-            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomsLoupe.svg" alt="CustomsLoupe"></div>
-            <div class="plg-card" style="--plg-op:.18"><img src="assets/icons/CustomLoop.svg"   alt="CustomLoop"></div>
+            <div class="plg-card" style="--plg-op:.40"><img src="assets/icons/CustomsLoupe.svg"  alt="CustomsLoupe"></div>
           </div>
         </div>
       </div><!-- /.hero-right -->
@@ -3080,6 +3055,92 @@
       },{threshold:.3});
       els.forEach(function(el){observer.observe(el);});
     })();
+  </script>
+
+  <!-- PLG GRID — entrance animation + parallax ────────────────── -->
+  <script>
+  (function () {
+    var grid  = document.querySelector('.plg-grid');
+    var wrap  = document.querySelector('.plg-grid-wrap');
+    if (!grid || !wrap) return;
+    var cards = Array.from(grid.querySelectorAll('.plg-card'));
+    var COLS = 5, CENTER_COL = 2, CENTER_ROW = 1;
+
+    /* hide all cards initially */
+    cards.forEach(function (c) { c.style.opacity = '0'; });
+
+    function getCardPos(i) { return { col: i % COLS, row: Math.floor(i / COLS) }; }
+
+    requestAnimationFrame(function () {
+      cards.forEach(function (card, i) {
+        var pos    = getCardPos(i);
+        var dx     = pos.col - CENTER_COL;
+        var dy     = pos.row - CENTER_ROW;
+        var isCenter = card.classList.contains('plg-card-center');
+        var op     = parseFloat(card.style.getPropertyValue('--plg-op') || card.getAttribute('style').match(/--plg-op:([\d.]+)/) && card.getAttribute('style').match(/--plg-op:([\d.]+)/)[1] || '1');
+        var dist   = Math.sqrt(dx * dx + dy * dy);
+        var delay  = isCenter ? 0 : Math.round(200 + dist * 140);
+        var keyframes, options;
+
+        if (isCenter) {
+          keyframes = [
+            { opacity: 0, transform: 'translate(0,0) scale(0.5)' },
+            { opacity: 1, transform: 'translate(0,0) scale(1.20)', offset: 0.65 },
+            { opacity: 1, transform: 'translate(0,0) scale(1.14)' }
+          ];
+          options = { duration: 850, delay: 0, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
+        } else {
+          var sx = dx * 88, sy = dy * 70;
+          keyframes = [
+            { opacity: 0, transform: 'translate(' + sx + 'px,' + sy + 'px) scale(0.82)' },
+            { opacity: op, transform: 'translate(0,0) scale(1)' }
+          ];
+          options = { duration: 620, delay: delay, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
+        }
+
+        var anim = card.animate(keyframes, options);
+        anim.addEventListener('finish', function () {
+          card.style.opacity = '';
+          anim.cancel();
+        });
+      });
+    });
+
+    /* parallax */
+    var targetX = 0, targetY = 0, curX = 0, curY = 0, ticking = false;
+    var maxPx  = 14;
+    var maxDist = Math.sqrt(CENTER_COL * CENTER_COL + CENTER_ROW * CENTER_ROW);
+
+    function paralaksTick() {
+      ticking = false;
+      curX += (targetX - curX) * 0.07;
+      curY += (targetY - curY) * 0.07;
+      cards.forEach(function (card, i) {
+        var pos = getCardPos(i);
+        var dx  = pos.col - CENTER_COL;
+        var dy  = pos.row - CENTER_ROW;
+        var f   = Math.sqrt(dx * dx + dy * dy) / maxDist;
+        card.style.setProperty('--plg-px', (curX * maxPx * f).toFixed(2) + 'px');
+        card.style.setProperty('--plg-py', (curY * maxPx * f).toFixed(2) + 'px');
+      });
+      if (Math.abs(curX - targetX) > 0.002 || Math.abs(curY - targetY) > 0.002) {
+        ticking = true;
+        requestAnimationFrame(paralaksTick);
+      }
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      var rect = wrap.getBoundingClientRect();
+      targetX = Math.max(-1, Math.min(1, (e.clientX - (rect.left + rect.width / 2)) / (rect.width * 0.8)));
+      targetY = Math.max(-1, Math.min(1, (e.clientY - (rect.top  + rect.height / 2)) / (rect.height * 0.8)));
+      if (!ticking) { ticking = true; requestAnimationFrame(paralaksTick); }
+    });
+
+    document.addEventListener('mouseleave', function () {
+      targetX = 0; targetY = 0;
+      if (!ticking) { ticking = true; requestAnimationFrame(paralaksTick); }
+    });
+  })();
   </script>
 </body>
 </html>
