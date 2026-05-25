@@ -90,6 +90,10 @@
     [data-theme="dark"] .prod-hero-icon{border-color:rgba(126,201,247,.15);}
     .prod-hero-icon img,.prod-hero-icon svg{width:36px;height:36px;}
     .prod-hero h1{font-size:clamp(32px,4vw,52px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:var(--text);margin-bottom:12px;}
+    /* Logo + isim yan yana */
+    .prod-hero-title-row{display:flex;align-items:center;gap:20px;margin-bottom:24px;}
+    .prod-hero-title-row .prod-hero-icon{margin-bottom:0;flex-shrink:0;}
+    .prod-hero-title-row h1{margin-bottom:0;}
     .prod-hero h1 .accent{background:var(--h1-accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .prod-hero-subtitle{font-size:1.1rem;font-weight:400;color:var(--muted);margin-bottom:32px;line-height:1.6;max-width:700px;}
     .prod-hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
@@ -299,10 +303,12 @@
   <section class="prod-hero">
     <div class="prod-hero-inner">
       <div class="prod-eyebrow">AI · IDP · Transit Beyan</div>
-      <div class="prod-hero-icon">
-        <img src="assets/icons/TransitAI.svg" alt="TransitAI">
+      <div class="prod-hero-title-row">
+        <div class="prod-hero-icon">
+          <img src="assets/icons/TransitAI.svg" alt="TransitAI">
+        </div>
+        <h1>TransitAI</h1>
       </div>
-      <h1>TransitAI<br><span class="accent">Intelligent Transit Document Processing</span></h1>
       <p class="prod-hero-subtitle">PDF belgeleri sınıflandırmak ve transit beyannamesi verisini oluşturmak için yapay zeka IDP çözümü</p>
       <div class="prod-hero-actions">
         <button class="btn-cta-primary">Demo Talep Et →</button>
