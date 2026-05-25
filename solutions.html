@@ -527,7 +527,13 @@
 
     .prod-card-meta { flex: 1; min-width: 0; }
 
-    .prod-name {
+    /* ATEZ brand label above product name */
+    .prod-brand {
+      font-size: .6rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted); line-height: 1; margin-bottom: 3px;
+    }
+
+        .prod-name {
       font-family: var(--ff-head);
       font-size: 20px;           /* AntD h4 */
       font-weight: 600;          /* AntD fontWeightStrong */
@@ -774,8 +780,8 @@
     /* ── FOOTER ──────────────────────────────────────────── */
     /* ── Mega menu v3 (Atlassian style) ── */
     
-    .nav-dropdown.nav-dropdown-products{min-width:min(960px,calc(100vw - 96px));left:0;transform:translateY(-6px);padding:0;top:calc(100% + 14px);}.nav-item:hover .nav-dropdown.nav-dropdown-products{transform:translateY(0);}.nav-dropdown.nav-dropdown-products::before{left:60px;transform:none;}.nav-dd-mega{display:flex;min-height:360px;}
-    .nav-dd-left{background: #f5f5f5;width:220px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
+    .nav-dropdown.nav-dropdown-products{min-width:min(960px,calc(100vw - 96px));left:0;transform:translateY(-6px);padding:0;top:calc(100% + 14px);overflow:hidden;}.nav-item:hover .nav-dropdown.nav-dropdown-products{transform:translateY(0);}.nav-dropdown.nav-dropdown-products::before{left:60px;transform:none;}.nav-dd-mega{display:flex;min-height:360px;}
+    .nav-dd-left{border-radius:11px 0 0 11px;background: #f5f5f5;width:220px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
     
     .nav-dd-cat{display:block;padding:9px 16px;border-radius:7px;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .14s,color .14s;text-decoration:none;color:var(--text);line-height:1.3;}
     .nav-dd-cat:hover{background:var(--bg-alt);}
@@ -924,6 +930,7 @@
 
   </style>
   <link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="assets/mobile-nav.css">
 </head>
 <body>
 
@@ -955,7 +962,7 @@
         </span>
         <div class="nav-dropdown">
           <a href="solutions.html" class="active">Çözümler</a>
-          <span style="display:inline-flex;align-items:center;gap:6px;opacity:.4;pointer-events:none;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span>
+          <span style="display:flex;align-items:center;gap:6px;padding:10px 15px;opacity:.4;pointer-events:none;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span>
         </div>
       </div>
             <div class="nav-item">
@@ -1077,8 +1084,8 @@
                 <img src="assets/icons/TariffAI.svg" alt="TariffAI">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">TariffAI</div>
-                <span class="prod-tag">Tarife &amp; GTİP</span>
               </div>
             </div>
             <p class="prod-desc">Doğru GTİP sınıflandırması ve gümrük mevzuatına uyum için güncel veri bankası.</p>
@@ -1097,8 +1104,8 @@
                 <img src="assets/icons/Logicust.svg" alt="Logicust">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">Logicust</div>
-                <span class="prod-tag">Eşya Kataloğu</span>
               </div>
             </div>
             <p class="prod-desc">Ürün ve gümrük mevzuatına eşya bazlı uyum için merkezi yönetim sistemi.</p>
@@ -1125,8 +1132,8 @@
                 <img src="assets/icons/CustomShield.svg" alt="Customs Shield">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">Customs Shield</div>
-                <span class="prod-tag">Uyumluluk &amp; Risk</span>
               </div>
             </div>
             <p class="prod-desc">Beyan öncesi veri kontrolü için yapay zeka destekli risk tespiti ve uyum aracı.</p>
@@ -1145,8 +1152,8 @@
                 <img src="assets/icons/XrayAI.svg" alt="Customs X-Ray">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">Customs X-Ray</div>
-                <span class="prod-tag">AI Analiz</span>
               </div>
             </div>
             <p class="prod-desc">Yapay zeka ile beyan sonrası kontrol ve anomali tespiti aracı.</p>
@@ -1180,8 +1187,8 @@
                 <img src="assets/icons/TransCode.svg" alt="Transcode">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">Transcode</div>
-                <span class="prod-tag">Kod Dönüşümü</span>
               </div>
             </div>
             <p class="prod-desc">Yapay zeka destekli transit beyanı hazırlama ve sunma sistemi.</p>
@@ -1200,8 +1207,8 @@
                 <img src="assets/icons/Declarant.svg" alt="Declarant">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">Declarant</div>
-                <span class="prod-tag">Beyanname</span>
               </div>
             </div>
             <p class="prod-desc">Yapay zeka destekli gümrük beyan verisi hazırlama ve iletme sistemi.</p>
@@ -1235,8 +1242,8 @@
                 <img src="assets/icons/TransitAI.svg" alt="TransitAI">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">TransitAI</div>
-                <span class="prod-tag">AI &amp; Transit</span>
               </div>
             </div>
             <p class="prod-desc">Transit beyanları için AI-destekli belge işleme sistemi.</p>
@@ -1255,8 +1262,8 @@
                 <img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI">
               </div>
               <div class="prod-card-meta">
+                <div class="prod-brand">ATEZ</div>
                 <div class="prod-name">DeclarantAI</div>
-                <span class="prod-tag">AI &amp; Beyanname</span>
               </div>
             </div>
             <p class="prod-desc">Gümrük beyanları için AI-destekli belge işleme sistemi.</p>
@@ -1288,8 +1295,8 @@
               <img src="assets/icons/greenpulse.svg" alt="Greenpulse">
             </div>
             <div class="prod-card-meta">
+              <div class="prod-brand">ATEZ</div>
               <div class="prod-name">Greenpulse</div>
-              <span class="prod-tag green">Yeşil Mutabakat</span>
             </div>
           </div>
           <p class="prod-desc">CBAM raporlaması ve sürdürülebilirlik uyum yönetimi aracı.</p>
@@ -1320,8 +1327,8 @@
               <img src="assets/icons/CustomsLoupe.svg" alt="Customs Loupe">
             </div>
             <div class="prod-card-meta">
+              <div class="prod-brand">ATEZ</div>
               <div class="prod-name">Customs Loupe</div>
-              <span class="prod-tag">İş Zekası</span>
             </div>
           </div>
           <p class="prod-desc">Gümrük beyanları için iş zekası ve analitik çözümü.</p>
@@ -1592,5 +1599,6 @@
     function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
   </script>
 <script src="assets/talep-modal.js" defer></script>
+<script src="assets/mobile-nav.js" defer></script>
 </body>
 </html>

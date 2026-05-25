@@ -323,10 +323,15 @@
     .prod-name { font-size:clamp(22px,2.8vw,30px); font-weight:500; letter-spacing:-.02em; margin-bottom:6px; }
     .prod-tagline { font-size:15px; color:var(--muted); line-height:1.5; }
 
+    .prod-desc-block {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+      max-width: 900px;
+      padding-bottom: 40px; border-bottom: 1px solid var(--section-border);
+      margin-bottom: 40px;
+    }
     .prod-desc {
       font-size:15.5px; line-height:1.78; color:var(--muted);
-      max-width:900px; margin-bottom:40px;
-      padding-bottom:36px; border-bottom:1px solid var(--section-border);
+      margin: 0;
     }
 
     /* Feature grid */
@@ -344,6 +349,27 @@
     [data-theme="dark"] .feat-icon { background:rgba(167,139,250,.12); }
     .feat-title { font-size:14px; font-weight:500; margin-bottom:6px; }
     .feat-desc { font-size:13.5px; line-height:1.65; color:var(--muted); }
+
+    /* ATEZ brand label above product name */
+    .prod-brand {
+      font-size: .62rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted); line-height: 1; margin-bottom: 4px;
+    }
+
+    /* Ant Design–style link button — large */
+    .btn-prod-explore {
+      display: inline-flex; align-items: center; gap: 6px;
+      height: 40px; padding: 0;
+      background: none; border: none; border-radius: 0;
+      color: #6d28d9; font-family: var(--ff); font-size: 16px; font-weight: 400;
+      text-decoration: none; cursor: pointer; line-height: 1.5;
+      transition: color .2s, gap .2s;
+    }
+    .btn-prod-explore:hover { color: #5b21b6; gap: 10px; }
+    .btn-prod-explore svg { flex-shrink: 0; transition: transform .2s; }
+    .btn-prod-explore:hover svg { transform: translateX(2px); }
+    [data-theme="dark"] .btn-prod-explore { color: #a78bfa; }
+    [data-theme="dark"] .btn-prod-explore:hover { color: #c4b5fd; }
 
     /* Reveal */
     @keyframes revealUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
@@ -414,8 +440,8 @@
     /* ── FOOTER ── */
     /* ── Mega menu v3 (Atlassian style) ── */
     
-    .nav-dropdown.nav-dropdown-products{min-width:min(960px,calc(100vw - 96px));left:0;transform:translateY(-6px);padding:0;top:calc(100% + 14px);}.nav-item:hover .nav-dropdown.nav-dropdown-products{transform:translateY(0);}.nav-dropdown.nav-dropdown-products::before{left:60px;transform:none;}.nav-dd-mega{display:flex;min-height:360px;}
-    .nav-dd-left{background: #f5f5f5;width:220px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
+    .nav-dropdown.nav-dropdown-products{min-width:min(960px,calc(100vw - 96px));left:0;transform:translateY(-6px);padding:0;top:calc(100% + 14px);overflow:hidden;}.nav-item:hover .nav-dropdown.nav-dropdown-products{transform:translateY(0);}.nav-dropdown.nav-dropdown-products::before{left:60px;transform:none;}.nav-dd-mega{display:flex;min-height:360px;}
+    .nav-dd-left{border-radius:11px 0 0 11px;background: #f5f5f5;width:220px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
     
     .nav-dd-cat{display:block;padding:9px 16px;border-radius:7px;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .14s,color .14s;text-decoration:none;color:var(--text);line-height:1.3;}
     .nav-dd-cat:hover{background:var(--bg-alt);}
@@ -466,6 +492,7 @@
 
   </style>
   <link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="assets/mobile-nav.css">
 </head>
 <body>
 
@@ -497,7 +524,7 @@
         </span>
         <div class="nav-dropdown">
           <a href="solutions.html">Çözümler</a>
-          <span style="display:inline-flex;align-items:center;gap:6px;opacity:.4;pointer-events:none;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span>
+          <span style="display:flex;align-items:center;gap:6px;padding:10px 15px;opacity:.4;pointer-events:none;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span>
         </div>
       </div>
             <div class="nav-item">
@@ -739,11 +766,15 @@
           <img src="assets/ai-logos/tariffai.svg" alt="TariffAI">
         </div>
         <div class="prod-head-text">
+          <div class="prod-brand">ATEZ</div>
           <div class="prod-name">TariffAI</div>
           <div class="prod-tagline">Tarife sınıflandırması ve senaryo bazlı gümrük vergisi hesaplamaları için yapay zekâ tabanlı sohbet Asistanı</div>
         </div>
       </div>
-      <p class="prod-desc reveal" style="animation-delay:.06s">TariffAI, ATEZ'in GTİP tespiti ve gümrük uyumu desteği için yapay zekâ tabanlı çözümüdür. Ürün adları, açıklamalar, URL'ler, görseller veya teknik belgeler aracılığıyla yapılandırılmış sorgularla doğru GTİP'i belirler. Gerçek zamanlı ve güvenilir tarife verilerini kullanır; AB ülkeleri ve Türkiye için Bağlayıcı Tarife Bilgilerini (BTB) doğrular.</p>
+      <div class="prod-desc-block">
+        <p class="prod-desc reveal" style="animation-delay:.06s">TariffAI, ATEZ'in GTİP tespiti ve gümrük uyumu desteği için yapay zekâ tabanlı çözümüdür. Ürün adları, açıklamalar, URL'ler, görseller veya teknik belgeler aracılığıyla yapılandırılmış sorgularla doğru GTİP'i belirler. Gerçek zamanlı ve güvenilir tarife verilerini kullanır; AB ülkeleri ve Türkiye için Bağlayıcı Tarife Bilgilerini (BTB) doğrular.</p>
+        <a href="tariffai.html" class="btn-prod-explore reveal" style="animation-delay:.09s">Ürünü Keşfet <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
       <div class="feat-grid reveal" style="animation-delay:.12s">
         <div class="feat-card">
           <div class="feat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
@@ -777,11 +808,15 @@
           <img src="assets/ai-logos/customshield.svg" alt="Customs Shield">
         </div>
         <div class="prod-head-text">
+          <div class="prod-brand">ATEZ</div>
           <div class="prod-name">Customs Shield</div>
           <div class="prod-tagline">Gümrük beyannamelerinde ön-kontrol uyum motoru</div>
         </div>
       </div>
-      <p class="prod-desc reveal" style="animation-delay:.06s">Customs Shield, gümrük idarelerine gönderilmeden önce ithalat ve ihracat beyannamesi XML verilerini doğrulayan bir ön-beyanname veri kontrol çözümüdür. Veri eksiksizliği, mantıksal tutarlılık ve mevzuat uygunluğunu denetler; tarihsel risk kalıpları ve güncel mevzuat kurallarını entegre ederek olası sorunları erken tespit eder.</p>
+      <div class="prod-desc-block">
+        <p class="prod-desc reveal" style="animation-delay:.06s">Customs Shield, gümrük idarelerine gönderilmeden önce ithalat ve ihracat beyannamesi XML verilerini doğrulayan bir ön-beyanname veri kontrol çözümüdür. Veri eksiksizliği, mantıksal tutarlılık ve mevzuat uygunluğunu denetler; tarihsel risk kalıpları ve güncel mevzuat kurallarını entegre ederek olası sorunları erken tespit eder.</p>
+        <a href="customs-shield.html" class="btn-prod-explore reveal" style="animation-delay:.09s">Ürünü Keşfet <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
       <div class="feat-grid reveal" style="animation-delay:.12s">
         <div class="feat-card">
           <div class="feat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -815,11 +850,15 @@
           <img src="assets/ai-logos/customxray.svg" alt="Customs X-Ray">
         </div>
         <div class="prod-head-text">
+          <div class="prod-brand">ATEZ</div>
           <div class="prod-name">Customs X-Ray</div>
           <div class="prod-tagline">Gümrük beyannamelerinde yapay zekâ destekli risk analizi</div>
         </div>
       </div>
-      <p class="prod-desc reveal" style="animation-delay:.06s">Customs X-Ray, kayıtlı ithalat beyannamelerini YZ ve makine öğrenimi ile inceleyerek hata, anomali, düzensiz işlem ve fazla ödenmiş gümrük vergi ve harçlarını tespit eden beyan-sonrası uyum ve analitik çözümüdür. Mevcut gümrük ERP sistemleriyle entegre çalışarak gerçek zamanlıya yakın analizler sunar.</p>
+      <div class="prod-desc-block">
+        <p class="prod-desc reveal" style="animation-delay:.06s">Customs X-Ray, kayıtlı ithalat beyannamelerini YZ ve makine öğrenimi ile inceleyerek hata, anomali, düzensiz işlem ve fazla ödenmiş gümrük vergi ve harçlarını tespit eden beyan-sonrası uyum ve analitik çözümüdür. Mevcut gümrük ERP sistemleriyle entegre çalışarak gerçek zamanlıya yakın analizler sunar.</p>
+        <a href="customs-xray.html" class="btn-prod-explore reveal" style="animation-delay:.09s">Ürünü Keşfet <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
       <div class="feat-grid reveal" style="animation-delay:.12s">
         <div class="feat-card">
           <div class="feat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
@@ -853,11 +892,15 @@
           <img src="assets/ai-logos/declarantai.svg" alt="DeclarantAI">
         </div>
         <div class="prod-head-text">
+          <div class="prod-brand">ATEZ</div>
           <div class="prod-name">DeclarantAI</div>
           <div class="prod-tagline">Gümrük dokümanlarında yapay zekâ analizi</div>
         </div>
       </div>
-      <p class="prod-desc reveal" style="animation-delay:.06s">DeclarantAI, ATEZ'in ithalat beyannameleri için Akıllı Belge İşleme (IDP) hizmetidir. Faturalar, A.TR belgeleri, banka dekontları, konşimentolar, menşe şahadetnameleri, navlun ve sigorta poliçelerini otomatik olarak okur, sınıflandırır ve yapılandırılmış, kullanıma hazır ithalat beyannamesi verisine dönüştürür.</p>
+      <div class="prod-desc-block">
+        <p class="prod-desc reveal" style="animation-delay:.06s">DeclarantAI, ATEZ'in ithalat beyannameleri için Akıllı Belge İşleme (IDP) hizmetidir. Faturalar, A.TR belgeleri, banka dekontları, konşimentolar, menşe şahadetnameleri, navlun ve sigorta poliçelerini otomatik olarak okur, sınıflandırır ve yapılandırılmış, kullanıma hazır ithalat beyannamesi verisine dönüştürür.</p>
+        <a href="declarantai.html" class="btn-prod-explore reveal" style="animation-delay:.09s">Ürünü Keşfet <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
       <div class="feat-grid reveal" style="animation-delay:.12s">
         <div class="feat-card">
           <div class="feat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
@@ -891,11 +934,15 @@
           <img src="assets/ai-logos/transitai.svg" alt="TransitAI">
         </div>
         <div class="prod-head-text">
+          <div class="prod-brand">ATEZ</div>
           <div class="prod-name">TransitAI</div>
           <div class="prod-tagline">Transit dokümanlarında yapay zekâ analizi</div>
         </div>
       </div>
-      <p class="prod-desc reveal" style="animation-delay:.06s">TransitAI, ATEZ'in transit beyannameleri için Akıllı Belge İşleme (IDP) hizmetidir. İhracat Beyannameleri, Ana Konşimento ve Konşimentolardan veri çıkarımı ve işlenmesini otomatikleştirir. Sistem, birçok ülke ve hizmet sağlayıcıdan on binlerce belge formatı üzerinde eğitilmiştir.</p>
+      <div class="prod-desc-block">
+        <p class="prod-desc reveal" style="animation-delay:.06s">TransitAI, ATEZ'in transit beyannameleri için Akıllı Belge İşleme (IDP) hizmetidir. İhracat Beyannameleri, Ana Konşimento ve Konşimentolardan veri çıkarımı ve işlenmesini otomatikleştirir. Sistem, birçok ülke ve hizmet sağlayıcıdan on binlerce belge formatı üzerinde eğitilmiştir.</p>
+        <a href="transitai.html" class="btn-prod-explore reveal" style="animation-delay:.09s">Ürünü Keşfet <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
       <div class="feat-grid reveal" style="animation-delay:.12s">
         <div class="feat-card">
           <div class="feat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
@@ -1158,5 +1205,6 @@
     function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
   </script>
 <script src="assets/talep-modal.js" defer></script>
+<script src="assets/mobile-nav.js" defer></script>
 </body>
 </html>

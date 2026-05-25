@@ -78,6 +78,16 @@ footer {
 @media(max-width:900px){ .footer-nav { grid-template-columns: repeat(2,1fr); } }
 @media(max-width:520px){ .footer-nav { grid-template-columns: 1fr; } }
 
+@media(max-width:860px){
+  footer { padding: 48px 24px 36px; }
+  .footer-divider { margin-bottom: 32px; }
+  .footer-nav { margin-bottom: 36px; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media(max-width:520px){
+  footer { padding: 40px 20px 32px; }
+}
+
 .footer-nav-col { display: flex; flex-direction: column; gap: 24px; }
 
 .footer-nav-group h4 {
