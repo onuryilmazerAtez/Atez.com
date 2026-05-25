@@ -681,6 +681,55 @@
     @media(max-width:900px){ header { padding-left:24px; padding-right:24px; } footer { padding-left:24px; padding-right:24px; } }
     @media(max-width:640px){ .header-search,.btn-pill:not(.btn-theme) { display:none; } nav { gap:18px; margin-left:20px; } nav > a { font-size:.9rem; } }
 
+  /* ── YAKINDA OVERLAY ── */
+  #yakinda-overlay {
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    display: flex; align-items: center; justify-content: center;
+    padding: calc(var(--annbar-h) + var(--header-h) + 40px) 24px 40px;
+  }
+  [data-theme="dark"] #yakinda-overlay {
+    background: rgba(17,19,24,.94);
+  }
+  #yakinda-card {
+    background: var(--bg, #fff); border: 1px solid var(--card-border, #e5e7eb);
+    border-radius: 20px; padding: 52px 60px; max-width: 460px; width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.09), 0 4px 12px rgba(0,0,0,.05);
+  }
+  [data-theme="dark"] #yakinda-card {
+    background: var(--card-bg, #1c1e26);
+  }
+  .yakinda-badge {
+    display: inline-flex; align-items: center; padding: 4px 14px;
+    border-radius: 6px; background: rgba(0,82,135,.08);
+    border: 1px solid rgba(0,82,135,.2); color: var(--primary, #005287);
+    font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 28px;
+    font-family: var(--ff, 'Inter', sans-serif);
+  }
+  [data-theme="dark"] .yakinda-badge {
+    background: rgba(0,82,135,.18); border-color: rgba(0,82,135,.35); color: #7ec9f7;
+  }
+  #yakinda-card h2 {
+    font-size: 1.65rem; font-weight: 500; color: var(--text, rgba(0,0,0,.88));
+    letter-spacing: -.02em; margin-bottom: 14px; line-height: 1.2;
+    font-family: var(--ff, 'Inter', sans-serif);
+  }
+  #yakinda-card p {
+    font-size: .9rem; color: var(--muted, rgba(0,0,0,.55));
+    line-height: 1.72; margin-bottom: 36px;
+    font-family: var(--ff, 'Inter', sans-serif);
+  }
+  .yakinda-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 24px; background: var(--primary, #005287);
+    color: #fff; border-radius: 8px; font-size: .9rem; font-weight: 500;
+    text-decoration: none; font-family: var(--ff, 'Inter', sans-serif);
+    transition: opacity .18s;
+  }
+  .yakinda-back:hover { opacity: .88; }
   </style>
   <link rel="stylesheet" href="footer.css">
 </head>
@@ -691,7 +740,7 @@
     <div class="announcement-content">
       <span class="announcement-badge">Yeni</span>
       <span class="announcement-text">Webinar: AI ile Gümrük Otomasyonu — <strong>25 Ocak 2025, 14:00</strong></span>
-      <a href="#" class="announcement-link">Ücretsiz Kayıt Ol →</a>
+      <a href="#" class="announcement-link">Ücretsiz Kayıt Ol</a>
     </div>
     <button class="announcement-close" id="announcement-close" aria-label="Kapat">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -726,7 +775,7 @@
               <div class="nav-dd-cat" data-cat="gt">Gümrük ve Transit</div>
               <div class="nav-dd-cat" data-cat="yesil">Yeşil Mutabakat</div>
               <div class="nav-dd-cat" data-cat="analitik">İş Zekası ve Analitik</div>
-              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör →</a></div>
+              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör</a></div>
             </div>
             <div class="nav-dd-right">
               <div class="nav-dd-panel active" data-panel="gdt">
@@ -1245,6 +1294,19 @@
   </section>
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <!-- ─── YAKINDA OVERLAY ──────────────────────────────────── -->
+  <div id="yakinda-overlay" role="status" aria-live="polite">
+    <div id="yakinda-card">
+      <div class="yakinda-badge">Yakında</div>
+      <h2>Bu sayfa yapım aşamasında</h2>
+      <p>Nasıl Çalışır sayfası çok yakında yayına girecek.<br>Ekibimiz üzerinde çalışmaya devam ediyor.</p>
+      <a href="index.html" class="yakinda-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        Ana Sayfaya Dön
+      </a>
+    </div>
+  </div>
+
   <footer>
   <!-- Watermark filigran – absolutely positioned bottom-right -->
   <div class="footer-wm" aria-hidden="true">
@@ -1258,20 +1320,6 @@
   </div>
 
   <!-- Brand / Tagline -->
-  <div class="footer-brand">
-    <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
-    <div class="footer-socials">
-      <a href="#" class="footer-social-btn" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="#" class="footer-social-btn" aria-label="X / Twitter">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="#" class="footer-social-btn" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
-      </a>
-    </div>
-  </div>
 
   <hr class="footer-divider">
 
@@ -1335,7 +1383,20 @@
       </svg>
       <span>ATEZ Yazılım A.Ş.</span>
     </div>
-    <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="footer-socials">
+        <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    </div>
   </div>
 </footer>
 
@@ -1486,5 +1547,6 @@
     function ckReject(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:false}));}catch(e){}ckHide();}
     function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
   </script>
+<script src="assets/talep-modal.js" defer></script>
 </body>
 </html>

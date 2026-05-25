@@ -274,18 +274,6 @@
     }
     .btn-inv-primary:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 12px 36px rgba(0,82,135,.45); }
 
-    /* ISIN chip in hero */
-    .inv-hero-isin {
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 18px; border-radius:10px;
-      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
-    }
-    .inv-hero-actions { }
-    .inv-hero-isin-label { font-size:.72rem; font-weight:600; color:rgba(255,255,255,.35); letter-spacing:.08em; text-transform:uppercase; }
-    .inv-hero-isin-value { font-family:var(--ff); font-size:.88rem; font-weight:600; color:#7ec9f7; letter-spacing:.05em; }
-    .inv-hero-isin-sep { width:1px; height:18px; background:rgba(255,255,255,.15); }
-    .inv-hero-isin-exchange { font-size:.78rem; font-weight:600; color:rgba(255,255,255,.4); }
-
     @media(max-width:640px){ .inv-hero { padding-left:24px; padding-right:24px; } .inv-hero h1 { font-size:34px; } }
 
     /* ══════════════════════════════════════
@@ -588,7 +576,7 @@
     <div class="announcement-content">
       <span class="announcement-badge">Yatırımcı</span>
       <span class="announcement-text">SIX Swiss Exchange'de ATEZ Tracker Sertifikası — ISIN: <strong>CH1427490276</strong></span>
-      <a href="https://www.six-group.com" target="_blank" rel="noopener" class="announcement-link">Detayları Gör →</a>
+      <a href="https://www.six-group.com" target="_blank" rel="noopener" class="announcement-link">Detayları Gör</a>
     </div>
     <button class="announcement-close" id="announcement-close" aria-label="Kapat">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -611,7 +599,7 @@
         </span>
         <div class="nav-dropdown">
           <a href="solutions.html">Çözümler</a>
-          <a href="nasil-calisir.html">Nasıl Çalışır</a>
+          <span style="display:inline-flex;align-items:center;gap:6px;opacity:.4;pointer-events:none;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span>
         </div>
       </div>
             <div class="nav-item">
@@ -623,7 +611,7 @@
               <div class="nav-dd-cat" data-cat="gt">Gümrük ve Transit</div>
               <div class="nav-dd-cat" data-cat="yesil">Yeşil Mutabakat</div>
               <div class="nav-dd-cat" data-cat="analitik">İş Zekası ve Analitik</div>
-              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör →</a></div>
+              <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör</a></div>
             </div>
             <div class="nav-dd-right">
               <div class="nav-dd-panel active" data-panel="gdt">
@@ -702,15 +690,7 @@
       <div class="inv-hero-actions" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
         <a href="#demo-cta" class="btn-inv-primary">
           Yatırımcı İlişkileri ile İletişime Geçin
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <div class="inv-hero-isin">
-          <span class="inv-hero-isin-label">ISIN</span>
-          <span class="inv-hero-isin-sep"></span>
-          <span class="inv-hero-isin-value">CH1427490276</span>
-          <span class="inv-hero-isin-sep"></span>
-          <span class="inv-hero-isin-exchange">SIX Swiss Exchange</span>
-        </div>
       </div>
     </div>
   </section>
@@ -941,7 +921,6 @@
             <div class="link-card-title">SIX Swiss Exchange</div>
             <div class="link-card-desc">Resmi borsa bilgileri ve piyasa verileri</div>
           </div>
-          <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
 
         <a href="#demo-cta" class="link-card reveal" style="animation-delay:.08s">
@@ -952,7 +931,6 @@
             <div class="link-card-title">Yatırımcı İletişim</div>
             <div class="link-card-desc">ATEZ yatırımcı ilişkileri ekibi ile iletişime geçin</div>
           </div>
-          <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
 
       </div>
@@ -969,7 +947,6 @@
           <input type="email" class="demo-input" id="demo-email" placeholder="İş e-posta adresiniz" autocomplete="email" required>
           <button type="submit" class="btn-demo-submit">
             İletişime Geçin
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </div>
         <div class="demo-success" id="demo-success">
@@ -993,20 +970,6 @@
   </div>
 
   <!-- Brand / Tagline -->
-  <div class="footer-brand">
-    <div class="footer-tagline">ATEZ.<br>Otonom ve Zeki<br>Dış Ticaret.</div>
-    <div class="footer-socials">
-      <a href="#" class="footer-social-btn" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="#" class="footer-social-btn" aria-label="X / Twitter">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="#" class="footer-social-btn" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
-      </a>
-    </div>
-  </div>
 
   <hr class="footer-divider">
 
@@ -1018,7 +981,7 @@
         <ul>
           <li><a href="solutions.html">Ürünler</a></li>
           <li><a href="solutions.html">Çözümler</a></li>
-          <li><a href="nasil-calisir.html">Nasıl Çalışır</a></li>
+          <li><span style="display:inline-flex;align-items:center;gap:6px;opacity:.4;cursor:not-allowed;">Nasıl Çalışır<span style="font-size:.6rem;font-weight:600;background:#005287;color:#fff;padding:1px 7px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase;">Yakında</span></span></li>
           <li><a href="yapay-zeka.html">Yapay Zekâ</a></li>
           <li><a href="blockchain.html">Blockchain</a></li>
         </ul>
@@ -1070,7 +1033,20 @@
       </svg>
       <span>ATEZ Yazılım A.Ş.</span>
     </div>
-    <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="footer-socials">
+        <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <span class="footer-copy">© 2026 ATEZ. Tüm hakları saklıdır.</span>
+    </div>
   </div>
 </footer>
 
@@ -1196,5 +1172,6 @@
     function ckReject(){try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:false}));}catch(e){}ckHide();}
     function ckSave(){var a=document.getElementById('ck-analytics');try{localStorage.setItem('atez-cookie-consent',JSON.stringify({necessary:true,analytics:a?a.checked:false}));}catch(e){}ckHide();}
   </script>
+<script src="assets/talep-modal.js" defer></script>
 </body>
 </html>
