@@ -2114,37 +2114,18 @@
     .hms-focus-icon svg{width:26px;height:26px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
     .hms-focus-card h3{font-size:1.08rem;font-weight:500;color:var(--text);margin-bottom:10px;letter-spacing:-.015em;line-height:1.3;}
     .hms-focus-card p{font-size:.9rem;line-height:1.72;color:var(--muted);}
-    /* Stats */
-    /* ═══ STATS — Live Platform Intelligence ═══ */
-    .hms-stats-section{padding:88px max(48px,calc((100vw - 1440px)/2 + 48px));background:linear-gradient(155deg,#03070f 0%,#050c1c 50%,#060d1e 100%);border-top:none;position:relative;overflow:hidden;}
-    .hms-stats-section::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 10% 50%,rgba(0,82,135,.22) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 90% 25%,rgba(88,28,220,.12) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 50% 95%,rgba(0,82,135,.10) 0%,transparent 60%);}
-    .hms-stats-section::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,130,220,.32) 25%,rgba(125,211,252,.48) 50%,rgba(0,130,220,.32) 75%,transparent 100%);animation:plat-scan 9s linear infinite;pointer-events:none;z-index:0;}
-    @keyframes plat-scan{0%{top:-2px;opacity:0}4%{opacity:1}92%{opacity:.55}100%{top:100%;opacity:0}}
-    .hms-stats-section .hms-h2{color:#fff;position:relative;z-index:1;}
-    .hms-stats-section .hms-eyebrow{position:relative;z-index:1;}
-    .hms-stats-ts{font-size:.72rem;color:rgba(255,255,255,.38);text-align:center;margin-bottom:52px;margin-top:-8px;display:flex;align-items:center;justify-content:center;gap:8px;font-variant-numeric:tabular-nums;position:relative;z-index:1;}
-    .plat-live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;box-shadow:0 0 6px rgba(34,197,94,.7);animation:plat-live 2.2s ease infinite;}
-    @keyframes plat-live{0%,100%{opacity:1;box-shadow:0 0 5px rgba(34,197,94,.8),0 0 12px rgba(34,197,94,.3);}50%{opacity:.45;box-shadow:0 0 3px rgba(34,197,94,.4);}}
-    .hms-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;z-index:1;}
+    /* ── SAYILARLA PLATFORMUMUZ ──────────────────────────────── */
+    .hms-stats-section{padding:88px max(48px,calc((100vw - 1440px)/2 + 48px));background:var(--bg-alt);border-top:1px solid var(--section-border);}
+    .hms-stats-section .hms-h2{color:var(--text);}
+    .hms-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--divider);border-left:1px solid var(--divider);}
     @media(max-width:960px){.hms-stats-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:520px){.hms-stats-grid{grid-template-columns:1fr 1fr;}}
-    .hms-stat{padding:30px 18px 26px;background:rgba(255,255,255,.04);border-radius:16px;text-align:center;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;transition:border-color .32s,background .32s,transform .32s cubic-bezier(.34,1.56,.64,1),box-shadow .32s;opacity:0;transform:translateY(22px);}
-    .hms-stat.plat-visible{animation:plat-stat-in .58s cubic-bezier(.22,1,.36,1) forwards;}
-    @keyframes plat-stat-in{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-    .hms-stat:nth-child(1){animation-delay:0ms}.hms-stat:nth-child(2){animation-delay:70ms}.hms-stat:nth-child(3){animation-delay:140ms}.hms-stat:nth-child(4){animation-delay:210ms}.hms-stat:nth-child(5){animation-delay:280ms}.hms-stat:nth-child(6){animation-delay:350ms}.hms-stat:nth-child(7){animation-delay:420ms}.hms-stat:nth-child(8){animation-delay:490ms}
-    .hms-stat::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,130,220,.6),rgba(125,211,252,.5),rgba(0,130,220,.6),transparent);opacity:.5;transition:opacity .32s,left .32s,right .32s;}
-    .hms-stat::after{content:'';position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:160px;height:110px;background:radial-gradient(ellipse,rgba(0,130,220,.14) 0%,transparent 70%);pointer-events:none;transition:opacity .32s;}
-    .hms-stat:hover{border-color:rgba(0,130,220,.42);background:rgba(0,82,135,.11);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,82,135,.28),0 4px 16px rgba(0,82,135,.18),inset 0 0 40px rgba(0,82,135,.05);}
-    .hms-stat:hover::before{opacity:1;left:5%;right:5%;}
-    .hms-stat:hover::after{opacity:1.6;}
-    .hms-stat-logo{height:26px;width:auto;max-width:96px;object-fit:contain;margin:0 auto 16px;display:block;filter:brightness(0) invert(1);opacity:.65;transition:opacity .25s,transform .25s;}
-    .hms-stat:hover .hms-stat-logo{opacity:1;transform:scale(1.06);}
-    .hms-stat-val{font-size:clamp(24px,2.6vw,38px);font-weight:500;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;transition:color .25s,text-shadow .25s;}
-    .hms-stat:hover .hms-stat-val{color:#7dd3fc;text-shadow:0 0 28px rgba(125,211,252,.45);}
+    @media(max-width:520px){.hms-stats-grid{grid-template-columns:repeat(2,1fr);}}
+    .hms-stat{padding:44px 28px 40px;text-align:center;border-right:1px solid var(--divider);border-bottom:1px solid var(--divider);}
+    .hms-stat-logo{display:none;}
+    .hms-stat-val{font-size:clamp(28px,3vw,44px);font-weight:600;color:var(--primary);letter-spacing:-.03em;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums;}
     .hms-stat-val.plat-done{animation:plat-land .42s cubic-bezier(.34,1.56,.64,1);}
     @keyframes plat-land{0%{transform:scale(1.08);}100%{transform:scale(1);}}
-    .hms-stat-lbl{font-size:.74rem;color:rgba(255,255,255,.42);line-height:1.45;transition:color .25s;}
-    .hms-stat:hover .hms-stat-lbl{color:rgba(255,255,255,.68);}
+    .hms-stat-lbl{font-size:.82rem;color:var(--muted);line-height:1.45;}
     /* Testimonials */
     .hms-testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
     @media(max-width:900px){.hms-testi-grid{grid-template-columns:1fr;}}
@@ -2418,16 +2399,15 @@
   <section class="hms-stats-section" id="sayilarla-platform">
     <div class="hms-inner">
       <h2 class="hms-h2">Sayılarla Platformumuz</h2>
-      <p class="hms-stats-ts"><span class="plat-live-dot"></span>Son güncelleme: 15:23:38 &nbsp;·&nbsp; Her 30 dakikada güncellenir</p>
       <div class="hms-stats-grid">
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/Tariff.svg" alt="Tariff"><div class="hms-stat-val" data-target="2102">0</div><div class="hms-stat-lbl">Tariff Kullanıcısı</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/TariffAI.svg" alt="TariffAI"><div class="hms-stat-val" data-target="77336">0</div><div class="hms-stat-lbl">Tariff Sorgusu</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/Logicust.svg" alt="Logicust"><div class="hms-stat-val" data-target="1038677">0</div><div class="hms-stat-lbl">Logicust Üzerinde Yönetilen Ürün</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/CustomShield.svg" alt="Customs Shield"><div class="hms-stat-val" data-target="80238">0</div><div class="hms-stat-lbl">Customs Shield ile Kontrol Edilen Beyanname</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/TransCode.svg" alt="Transcode"><div class="hms-stat-val" data-target="351051">0</div><div class="hms-stat-lbl">Transcode ile Sunulan Transit Beyanı</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/TransitAI.svg" alt="TransitAI"><div class="hms-stat-val" data-target="1439309">0</div><div class="hms-stat-lbl">TransitAI İşlemi</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/Declarant.svg" alt="Declarant"><div class="hms-stat-val" data-target="14084">0</div><div class="hms-stat-lbl">Declarant ile Sunulan Gümrük Beyanı</div></div>
-        <div class="hms-stat"><img class="hms-stat-logo" src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"><div class="hms-stat-val" data-target="57744">0</div><div class="hms-stat-lbl">DeclarantAI İşlemi</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="2102">0</div><div class="hms-stat-lbl">Tariff Kullanıcısı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="77336">0</div><div class="hms-stat-lbl">Tariff Sorgusu</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="1038677">0</div><div class="hms-stat-lbl">Logicust Üzerinde Yönetilen Ürün</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="80238">0</div><div class="hms-stat-lbl">Customs Shield ile Kontrol Edilen Beyanname</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="351051">0</div><div class="hms-stat-lbl">Transcode ile Sunulan Transit Beyanı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="1439309">0</div><div class="hms-stat-lbl">TransitAI İşlemi</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="14084">0</div><div class="hms-stat-lbl">Declarant ile Sunulan Gümrük Beyanı</div></div>
+        <div class="hms-stat"><div class="hms-stat-val" data-target="57744">0</div><div class="hms-stat-lbl">DeclarantAI İşlemi</div></div>
       </div>
     </div>
   </section>
