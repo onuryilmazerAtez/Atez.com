@@ -157,7 +157,7 @@
     /* ── Mega menu v3 (Atlassian style) ── */
     
     .nav-dropdown.nav-dropdown-products{min-width:min(960px,calc(100vw - 96px));left:0;transform:translateY(-6px);padding:0;top:calc(100% + 14px);}.nav-item:hover .nav-dropdown.nav-dropdown-products{transform:translateY(0);}.nav-dropdown.nav-dropdown-products::before{left:60px;transform:none;}.nav-dd-mega{display:flex;min-height:360px;}
-    .nav-dd-left{background: #f5f5f5;width:210px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
+    .nav-dd-left{background: #f5f5f5;width:220px;flex-shrink:0;border-right:1px solid var(--section-border);padding:20px 8px 16px;display:flex;flex-direction:column;gap:2px;}[data-theme="dark"] .nav-dd-left{background:#1a1a2e;}
     
     .nav-dd-cat{display:block;padding:9px 16px;border-radius:7px;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .14s,color .14s;text-decoration:none;color:var(--text);line-height:1.3;}
     .nav-dd-cat:hover{background:var(--bg-alt);}
@@ -166,7 +166,7 @@
     .nav-dd-all-link{font-size:.83rem;font-weight:600;color:var(--primary);text-decoration:none;transition:opacity .15s;}
     .nav-dd-all-link:hover{opacity:.7;}
     .nav-dd-right{flex:1;padding:20px 20px 0;display:flex;flex-direction:column;min-width:0;}
-    .nav-dd-sect-label{font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 0 10px;opacity:.8;}
+    .nav-dd-sect-label{font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 0 10px;opacity:.8;}.nav-dd-panel-grid+.nav-dd-sect-label{margin-top:16px;}
     .nav-dd-panel{display:none;flex-direction:column;flex:1;}
     .nav-dd-panel.active{display:flex;}
     .nav-dd-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
@@ -241,36 +241,35 @@
         <div class="nav-dropdown nav-dropdown-products">
           <div class="nav-dd-mega">
             <div class="nav-dd-left">
-              <div class="nav-dd-cat active" data-cat="uyum">Mevzuata Uyum</div>
-              <div class="nav-dd-cat" data-cat="beyanname">Beyanname Çözümleri</div>
-              <div class="nav-dd-cat" data-cat="ai">Yapay Zeka İşleme</div>
+              <div class="nav-dd-cat active" data-cat="gdt">Gümrük ve Dış Ticaret</div>
+              <div class="nav-dd-cat" data-cat="gt">Gümrük ve Transit</div>
               <div class="nav-dd-cat" data-cat="yesil">Yeşil Mutabakat</div>
               <div class="nav-dd-cat" data-cat="analitik">İş Zekası ve Analitik</div>
               <div class="nav-dd-left-footer"><a href="solutions.html" class="nav-dd-all-link">Tüm Ürünleri Gör →</a></div>
             </div>
             <div class="nav-dd-right">
-              <div class="nav-dd-panel active" data-panel="uyum">
-                <div class="nav-dd-sect-label">Mevzuata Uyum Çözümleri</div>
+              <div class="nav-dd-panel active" data-panel="gdt">
+                <div class="nav-dd-sect-label">Veribankası ve Dinamik Veritabanı Çözümleri</div>
                 <div class="nav-dd-panel-grid">
                   <a href="tariffai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TariffAI.svg" alt="TariffAI"></div><div><div class="nav-dd-name">TariffAI</div><div class="nav-dd-desc">AI ile GTİP sınıflandırma yardımcısı</div></div></a>
-                  <a href="tariff.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Tariff.svg" alt="Tariff"></div><div><div class="nav-dd-name">Tariff</div><div class="nav-dd-desc">GTİP ve tarife veri platformu</div></div></a>
                   <a href="logicust.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Logicust.svg" alt="Logicust"></div><div><div class="nav-dd-name">Logicust</div><div class="nav-dd-desc">Merkezi ürün gümrük uyum yönetimi</div></div></a>
+                </div>
+                <div class="nav-dd-sect-label">Yapay Zeka Destekli Mevzuata Uyum Araçları</div>
+                <div class="nav-dd-panel-grid">
                   <a href="customs-shield.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/CustomShield.svg" alt="Customs Shield"></div><div><div class="nav-dd-name">Customs Shield</div><div class="nav-dd-desc">Beyan öncesi mevzuat uyum kontrolü</div></div></a>
                   <a href="customs-xray.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/XrayAI.svg" alt="Customs X-Ray"></div><div><div class="nav-dd-name">Customs X-Ray</div><div class="nav-dd-desc">AI ile beyan sonrası uyum kontrolü</div></div></a>
                 </div>
               </div>
-              <div class="nav-dd-panel" data-panel="beyanname">
-                <div class="nav-dd-sect-label">Beyanname ve Transit Çözümleri</div>
+              <div class="nav-dd-panel" data-panel="gt">
+                <div class="nav-dd-sect-label">Beyanname Hazırlama Sistemleri</div>
                 <div class="nav-dd-panel-grid">
-                  <a href="declarant.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Declarant.svg" alt="Declarant"></div><div><div class="nav-dd-name">Declarant</div><div class="nav-dd-desc">Gümrük beyannamesi yönetimi</div></div></a>
                   <a href="transcode.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransCode.svg" alt="Transcode"></div><div><div class="nav-dd-name">Transcode</div><div class="nav-dd-desc">Transit beyan yönetim sistemi</div></div></a>
+                  <a href="declarant.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/Declarant.svg" alt="Declarant"></div><div><div class="nav-dd-name">Declarant</div><div class="nav-dd-desc">Gümrük beyannamesi yönetimi</div></div></a>
                 </div>
-              </div>
-              <div class="nav-dd-panel" data-panel="ai">
                 <div class="nav-dd-sect-label">Yapay Zeka İle Belge İşleme</div>
                 <div class="nav-dd-panel-grid">
-                  <a href="declarantai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"></div><div><div class="nav-dd-name">DeclarantAI</div><div class="nav-dd-desc">AI destekli beyan otomasyonu ve IDP</div></div></a>
                   <a href="transitai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/TransitAI.svg" alt="TransitAI"></div><div><div class="nav-dd-name">TransitAI</div><div class="nav-dd-desc">AI ile transit belge işleme</div></div></a>
+                  <a href="declarantai.html" class="nav-dd-item"><div class="nav-dd-icon-wrap"><img src="assets/icons/DeclarantAI.svg" alt="DeclarantAI"></div><div><div class="nav-dd-name">DeclarantAI</div><div class="nav-dd-desc">AI destekli beyan otomasyonu ve IDP</div></div></a>
                 </div>
               </div>
               <div class="nav-dd-panel" data-panel="yesil">
