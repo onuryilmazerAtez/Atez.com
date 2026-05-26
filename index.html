@@ -3072,7 +3072,7 @@
         var isCenter = card.classList.contains('plg-card-center');
         var op     = parseFloat(card.style.getPropertyValue('--plg-op') || card.getAttribute('style').match(/--plg-op:([\d.]+)/) && card.getAttribute('style').match(/--plg-op:([\d.]+)/)[1] || '1');
         var dist   = Math.sqrt(dx * dx + dy * dy);
-        var delay  = isCenter ? 0 : Math.round(200 + dist * 140);
+        var delay  = isCenter ? 0 : Math.round(250 + dist * 175);
         var keyframes, options;
 
         if (isCenter) {
@@ -3081,14 +3081,14 @@
             { opacity: 1, transform: 'translate(0,0) scale(1.20)', offset: 0.65 },
             { opacity: 1, transform: 'translate(0,0) scale(1.14)' }
           ];
-          options = { duration: 1063, delay: 0, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
+          options = { duration: 1329, delay: 0, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
         } else {
           var sx = dx * 88, sy = dy * 70;
           keyframes = [
             { opacity: 0, transform: 'translate(' + sx + 'px,' + sy + 'px) scale(0.82)' },
             { opacity: op, transform: 'translate(0,0) scale(1)' }
           ];
-          options = { duration: 775, delay: delay, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
+          options = { duration: 969, delay: delay, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' };
         }
 
         var anim = card.animate(keyframes, options);

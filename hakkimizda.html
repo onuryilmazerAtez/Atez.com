@@ -118,16 +118,19 @@
     .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px;}
     @media(max-width:1024px){.team-grid{grid-template-columns:repeat(3,1fr);}}
     @media(max-width:640px){.team-grid{grid-template-columns:repeat(2,1fr);gap:16px;}}
-    .team-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px 20px 24px;text-align:center;transition:box-shadow .25s,border-color .25s,transform .25s;}
+    /* Card: no padding, overflow hidden for angled photo */
+    .team-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:0;text-align:center;overflow:hidden;transition:box-shadow .25s,border-color .25s,transform .25s;}
     .team-card:hover{border-color:rgba(0,82,135,.25);box-shadow:0 10px 36px rgba(0,82,135,.11);transform:translateY(-3px);}
-    .team-avatar{width:148px;height:148px;border-radius:50%;background:var(--mono-bg);border:3px solid rgba(0,82,135,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem;font-weight:500;color:var(--primary);letter-spacing:-.02em;user-select:none;overflow:hidden;flex-shrink:0;box-shadow:0 4px 20px rgba(0,82,135,.10);}
-    [data-theme="dark"] .team-avatar{border-color:rgba(126,201,247,.22);background:rgba(0,130,220,.14);box-shadow:0 4px 20px rgba(0,0,0,.35);}
-    img.team-avatar{display:block;object-fit:cover;font-size:0;width:148px;height:148px;filter:saturate(0.82) contrast(1.06) brightness(0.97);}
-    [data-theme="dark"] img.team-avatar{filter:saturate(0.78) contrast(1.08) brightness(0.90);}
-    .team-card:hover img.team-avatar{filter:saturate(1.0) contrast(1.03) brightness(1.00);}
-    [data-theme="dark"] .team-card:hover img.team-avatar{filter:saturate(0.92) contrast(1.05) brightness(0.96);}
-    .team-name{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3;}
-    .team-role{font-size:.78rem;color:var(--muted);line-height:1.5;}
+    /* Photo wrapper: fills ~2/3, diagonal clip bottom */
+    .team-photo-wrap{position:relative;width:100%;padding-top:72%;clip-path:polygon(0 0,100% 0,100% 82%,0 95%);margin-bottom:0;}
+    .team-photo-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:saturate(0.82) contrast(1.06) brightness(0.97);}
+    [data-theme="dark"] .team-photo-wrap img{filter:saturate(0.78) contrast(1.08) brightness(0.90);}
+    .team-card:hover .team-photo-wrap img{filter:saturate(1.0) contrast(1.03) brightness(1.00);}
+    [data-theme="dark"] .team-card:hover .team-photo-wrap img{filter:saturate(0.92) contrast(1.05) brightness(0.96);}
+    /* Text info */
+    .team-info{padding:10px 18px 22px;position:relative;z-index:1;}
+    .team-name{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.3;}
+    .team-role{font-size:.75rem;color:var(--muted);line-height:1.5;}
 
     /* ── POLICY SECTION ─────────────────────────── */
     .policy-badge{display:inline-flex;align-items:center;padding:0 7px;font-size:12px;line-height:20px;white-space:nowrap;border-radius:4px;border:1px solid rgba(0,82,135,.22);background:rgba(0,82,135,.06);color:var(--primary);font-weight:500;letter-spacing:.02em;}
@@ -364,75 +367,99 @@
       <div class="team-grid">
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_kenan_guler.avif" alt="Dr. Kenan Güler">
-          <div class="team-name">Dr. Kenan Güler</div>
-          <div class="team-role">Yönetim Kurulu Başkanı</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_kenan_guler.avif" alt="Dr. Kenan Güler"></div>
+          <div class="team-info">
+            <div class="team-name">Dr. Kenan Güler</div>
+            <div class="team-role">Yönetim Kurulu Başkanı</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_cuneyt_yetgin.avif" alt="Dr. Cüneyt Yetgin">
-          <div class="team-name">Dr. Cüneyt Yetgin</div>
-          <div class="team-role">Yönetim Kurulu Başkan Yrd.</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_cuneyt_yetgin.avif" alt="Dr. Cüneyt Yetgin"></div>
+          <div class="team-info">
+            <div class="team-name">Dr. Cüneyt Yetgin</div>
+            <div class="team-role">Yönetim Kurulu Başkan Yrd.</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_murat_paloglu.avif" alt="Dr. Murat Palaoğlu">
-          <div class="team-name">Dr. Murat Palaoğlu</div>
-          <div class="team-role">CSO, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_murat_paloglu.avif" alt="Dr. Murat Palaoğlu"></div>
+          <div class="team-info">
+            <div class="team-name">Dr. Murat Palaoğlu</div>
+            <div class="team-role">CSO, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_ali_ersever.avif" alt="Ali Ersever">
-          <div class="team-name">Ali Ersever</div>
-          <div class="team-role">CTrO, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_ali_ersever.avif" alt="Ali Ersever"></div>
+          <div class="team-info">
+            <div class="team-name">Ali Ersever</div>
+            <div class="team-role">CTrO, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_onur_eron.avif" alt="Onur Eron">
-          <div class="team-name">Onur Eron</div>
-          <div class="team-role">CSME, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_onur_eron.avif" alt="Onur Eron"></div>
+          <div class="team-info">
+            <div class="team-name">Onur Eron</div>
+            <div class="team-role">CSME, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_emre_ozturk.avif" alt="Emre Öztürk">
-          <div class="team-name">Emre Öztürk</div>
-          <div class="team-role">Genel Müdür, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_emre_ozturk.avif" alt="Emre Öztürk"></div>
+          <div class="team-info">
+            <div class="team-name">Emre Öztürk</div>
+            <div class="team-role">Genel Müdür, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_hazim_dikenli.avif" alt="Hazım Dikenli">
-          <div class="team-name">Hazım Dikenli</div>
-          <div class="team-role">CTO, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_hazim_dikenli.avif" alt="Hazım Dikenli"></div>
+          <div class="team-info">
+            <div class="team-name">Hazım Dikenli</div>
+            <div class="team-role">CTO, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_busra_ozcan.avif" alt="Büşra Yüksel Özcan">
-          <div class="team-name">Büşra Yüksel Özcan</div>
-          <div class="team-role">CIO, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_busra_ozcan.avif" alt="Büşra Yüksel Özcan" style="object-position: center 25%;"></div>
+          <div class="team-info">
+            <div class="team-name">Büşra Yüksel Özcan</div>
+            <div class="team-role">CIO, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_caglar_akyol.avif" alt="Çağlar Berker Akyol">
-          <div class="team-name">Çağlar Berker Akyol</div>
-          <div class="team-role">İş ve Ürün Geliştirme Müdürü, Yönetim Kurulu Üyesi</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_caglar_akyol.avif" alt="Çağlar Berker Akyol"></div>
+          <div class="team-info">
+            <div class="team-name">Çağlar Berker Akyol</div>
+            <div class="team-role">İş ve Ürün Geliştirme Müdürü, Yönetim Kurulu Üyesi</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_halil_ozbay.avif" alt="Halil Özbay">
-          <div class="team-name">Halil Özbay</div>
-          <div class="team-role">Müşteri İlişkileri Müdürü</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_halil_ozbay.avif" alt="Halil Özbay"></div>
+          <div class="team-info">
+            <div class="team-name">Halil Özbay</div>
+            <div class="team-role">Müşteri İlişkileri Müdürü</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_aysenur_turkarslan.avif" alt="Ayşenur Türkarslan">
-          <div class="team-name">Ayşenur Türkarslan</div>
-          <div class="team-role">Etik ve Uyum Sorumlusu</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_aysenur_turkarslan.avif" alt="Ayşenur Türkarslan"></div>
+          <div class="team-info">
+            <div class="team-name">Ayşenur Türkarslan</div>
+            <div class="team-role">Etik ve Uyum Sorumlusu</div>
+          </div>
         </div>
 
         <div class="team-card">
-          <img class="team-avatar" src="assets/team/persona_baris_dikici.avif" alt="Barış Dikici">
-          <div class="team-name">Barış Dikici</div>
-          <div class="team-role">Veri Bilimi &amp; AI Ürün Müdürü</div>
+          <div class="team-photo-wrap"><img src="assets/team/persona_baris_dikici.avif" alt="Barış Dikici"></div>
+          <div class="team-info">
+            <div class="team-name">Barış Dikici</div>
+            <div class="team-role">Veri Bilimi &amp; AI Ürün Müdürü</div>
+          </div>
         </div>
 
       </div>
